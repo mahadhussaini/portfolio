@@ -28,7 +28,26 @@ const Experience = () => {
             03/2024 - Present, Remote
           </Typography>
           <Typography variant="body1">
+            Developed a full-stack Learning Management System using MERN stack.
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            <em>Project Duration: August 2024 - December 2024</em>
+          </Typography>
+          <Typography color="textSecondary">
+            <a
+              href="https://github.com/mahadhussaini/learnhub"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#f1c40f", textDecoration: "underline" }}
+            >
+              View LearnHub on GitHub
+            </a>
+          </Typography>
+          <Typography variant="body1">
             Developed a full-stack Event Management Portal using MERN stack.
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            <em>Project Duration: March 2024 - July 2024</em>
           </Typography>
           <Typography color="textSecondary">
             <a
