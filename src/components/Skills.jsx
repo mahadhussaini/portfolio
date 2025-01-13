@@ -1,38 +1,58 @@
-import React from "react";
-import { Card, CardContent, Typography, Grid } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Tabs,
+  Tab,
+  Grid,
+  Chip,
+} from "@mui/material";
 
 const skills = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "React.js",
-  "React Native",
-  "OOP",
-  "Git",
-  "SQL",
-  "Bootstrap",
-  "MongoDB",
-  "Material-UI",
-  "DOM",
-  "Express.js",
-  "Node.js",
-  "ECMAScript",
-  "React Hooks",
-  "Redux.js",
-  "Webpack",
-  "Software Development",
-  "Frontend Development",
-  "Backend Development",
-  "Database Management",
-  "Responsive Web Design",
-  "Styled-Components",
-  "RESTful API",
-  "API Integration",
-  "Debugging",
-  "Problem Solving",
+  { name: "HTML", category: "Frontend" },
+  { name: "CSS", category: "Frontend" },
+  { name: "JavaScript", category: "Frontend" },
+  { name: "React.js", category: "Frontend" },
+  { name: "React Native", category: "Frontend" },
+  { name: "Bootstrap", category: "Frontend" },
+  { name: "Material-UI", category: "Frontend" },
+  { name: "Node.js", category: "Backend" },
+  { name: "Express.js", category: "Backend" },
+  { name: "RESTful API", category: "Backend" },
+  { name: "SQL", category: "Database" },
+  { name: "MongoDB", category: "Database" },
+  { name: "Git", category: "Tools" },
+  { name: "Webpack", category: "Tools" },
+  { name: "Redux.js", category: "Frontend" },
+  { name: "Responsive Web Design", category: "Frontend" },
+  { name: "OOP", category: "Concepts" },
+  { name: "Problem Solving", category: "Concepts" },
+  { name: "Debugging", category: "Concepts" },
+  { name: "Data Structures", category: "Concepts" },
+  { name: "Algorithms", category: "Concepts" },
+  { name: "System Design", category: "Concepts" },
+  { name: "Version Control", category: "Concepts" },
+  { name: "Design Patterns", category: "Concepts" },
+  { name: "Sequelize ORM", category: "Database" },
+  { name: "Mongoose ORM", category: "Database" },
+  { name: "Docker", category: "Tools" },
+  { name: "Kubernetes", category: "Tools" },
+  { name: "Jest", category: "Tools" },
+  { name: "Mocha", category: "Tools" },
+  { name: "Chai", category: "Tools" },
+  { name: "Selenium", category: "Tools" },
 ];
 
+const categories = [...new Set(skills.map((skill) => skill.category))];
+
 const Skills = () => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
+  };
+
   return (
     <Card
       sx={{
@@ -48,38 +68,57 @@ const Skills = () => {
           variant="h5"
           component="h2"
           gutterBottom
-          sx={{ color: "#fff", textAlign: "center", marginBottom: "20px" }}
+          sx={{
+            color: "#fff",
+            textAlign: "center",
+            marginBottom: "20px",
+          }}
         >
           Skills
         </Typography>
-        <Grid container spacing={2}>
-          {skills.map((skill, index) => (
-            <Grid
-              item
-              xs={12} // 1 skill per row on extra small screens (mobile)
-              sm={6} // 2 skills per row on small screens (tablets)
-              md={4} // 3 skills per row on medium screens (laptops)
-              lg={3} // 4 skills per row on large screens (desktops)
-              key={index}
-            >
-              <Typography
-                variant="body1"
-                sx={{
-                  color: "#ddd",
-                  textAlign: "center",
-                  padding: "10px",
-                  borderRadius: "10px",
-                  backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-                  "&:hover": {
-                    backgroundColor: "rgba(255, 255, 255, 0.2)",
-                  },
-                }}
-              >
-                {skill}
-              </Typography>
-            </Grid>
+
+        <Tabs
+          value={activeTab}
+          onChange={handleTabChange}
+          variant="scrollable"
+          scrollButtons
+          allowScrollButtonsMobile
+          sx={{
+            marginBottom: 3,
+            "& .MuiTab-root": {
+              color: "#ddd",
+              "&:hover": { color: "#fff" },
+            },
+            "& .Mui-selected": {
+              color: "#ff7f50 !important",
+            },
+          }}
+        >
+          {categories.map((category, index) => (
+            <Tab key={index} label={category} />
           ))}
+        </Tabs>
+
+        <Grid container spacing={2}>
+          {skills
+            .filter((skill) => skill.category === categories[activeTab])
+            .map((skill, index) => (
+              <Grid item xs={6} sm={4} lg={3} key={index}>
+                <Chip
+                  label={skill.name}
+                  sx={{
+                    width: "100%",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    color: "#fff",
+                    backgroundColor: "#ff7f50",
+                    "&:hover": {
+                      backgroundColor: "#ff6347",
+                    },
+                  }}
+                />
+              </Grid>
+            ))}
         </Grid>
       </CardContent>
     </Card>
