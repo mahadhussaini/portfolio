@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography, Button, Box, Avatar, Stack } from "@mui/material";
-import { Link } from "react-router-dom";
 
 const avatarUrl =
   "https://media.licdn.com/dms/image/v2/D4D03AQFE5DwmKkGEgg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1700839156751?e=1742428800&v=beta&t=lrJaDWj0t-jZZ1RSD-KhIxLbPc3YX_Ej4Xy-7621LS8";
@@ -39,9 +38,7 @@ const Header = () => {
           marginTop: "15px",
         }}
       >
-        <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-          Syed Mahad Hussaini
-        </Link>
+        Syed Mahad Hussaini
       </Typography>
 
       <Typography
@@ -67,6 +64,13 @@ const Header = () => {
         focus on clean, maintainable code.
       </Typography>
 
+      {/* Tagline or Short Introduction */}
+      <Typography variant="body1" sx={{ color: "#ddd", mb: 4 }}>
+        "Building scalable, high-performance web solutions to bridge the gap
+        between ideas and real-world applications."
+      </Typography>
+
+      {/* Contact Info */}
       <Typography variant="body1" sx={{ mb: 4 }}>
         Email:{" "}
         <a href="mailto:mahadarshad214@gmail.com" style={{ color: "#f1c40f" }}>
@@ -78,6 +82,16 @@ const Header = () => {
         </a>
       </Typography>
 
+      {/* Skills Section */}
+      <Typography variant="h6" sx={{ color: "#fff", mb: 2 }}>
+        Key Skills
+      </Typography>
+      <Typography variant="body1" sx={{ color: "#ddd", mb: 4 }}>
+        JavaScript | React | Node.js | Express | MongoDB | SQL | Git | Docker |
+        Python | HTML/CSS | REST APIs | Agile Development
+      </Typography>
+
+      {/* Button Section */}
       <Stack direction="row" spacing={2} justifyContent="center" mb={3}>
         <Button
           variant="contained"
