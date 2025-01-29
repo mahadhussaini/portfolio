@@ -9,9 +9,15 @@ import {
   Stack,
   Modal,
   Box,
+  TextField,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
 } from "@mui/material";
+import { Build } from "@mui/icons-material";
 
-// List of all projects
+// Project Data
 const projects = [
   {
     name: "BMI Calculator",
@@ -176,42 +182,71 @@ const projects = [
   },
 ];
 
+// Get unique technologies for filtering
+const uniqueTags = [...new Set(projects.flatMap((p) => p.tags))];
+
 const Projects = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const [currentProject, setCurrentProject] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTag, setSelectedTag] = useState("");
 
-  const handleModalOpen = (project) => {
-    setCurrentProject(project);
-    setOpenModal(true);
-  };
-
-  const handleModalClose = () => {
-    setOpenModal(false);
-    setCurrentProject(null);
-  };
+  // Filtering logic
+  const filteredProjects = projects.filter((project) => {
+    return (
+      project.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (selectedTag ? project.tags.includes(selectedTag) : true)
+    );
+  });
 
   return (
     <Card
       sx={{
-        backgroundColor: "rgba(255, 255, 255, 0.2)",
+        backgroundColor: "rgba(255, 255, 255, 0.1)",
         borderRadius: "15px",
-        boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
-        color: "#fff",
         padding: "20px",
+        color: "#fff",
       }}
     >
       <CardContent>
         <Typography
-          variant="h5"
-          component="h2"
+          variant="h4"
           gutterBottom
-          sx={{ color: "#fff", textAlign: "center", marginBottom: "20px" }}
+          align="center"
+          sx={{ fontWeight: "bold", color: "#fff", marginBottom: "20px" }}
         >
-          Projects
+          🚀 Projects
         </Typography>
 
+        {/* Search and Filter Options */}
+        <Stack direction="row" spacing={2} sx={{ marginBottom: 3 }}>
+          <TextField
+            variant="outlined"
+            label="Search Projects..."
+            fullWidth
+            sx={{ backgroundColor: "white", borderRadius: 1 }}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+
+          <FormControl fullWidth>
+            <InputLabel>Filter by Technology</InputLabel>
+            <Select
+              value={selectedTag}
+              onChange={(e) => setSelectedTag(e.target.value)}
+              sx={{ backgroundColor: "white", borderRadius: 1 }}
+            >
+              <MenuItem value="">All</MenuItem>
+              {uniqueTags.map((tag, index) => (
+                <MenuItem key={index} value={tag}>
+                  {tag}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Stack>
+
+        {/* Project Cards */}
         <Grid container spacing={3}>
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card
                 sx={{
@@ -226,7 +261,6 @@ const Projects = () => {
                     boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
                   },
                 }}
-                onClick={() => handleModalOpen(project)}
               >
                 <Typography variant="h6" sx={{ color: "#fff" }}>
                   {project.name}
@@ -267,70 +301,6 @@ const Projects = () => {
           ))}
         </Grid>
       </CardContent>
-
-      {/* Modal for Project Details */}
-      <Modal
-        open={openModal}
-        onClose={handleModalClose}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Box
-          sx={{
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
-            padding: 3,
-            borderRadius: "10px",
-            maxWidth: "800px",
-            width: "100%",
-            color: "#fff",
-            boxShadow: 24,
-          }}
-        >
-          <Typography variant="h5" sx={{ marginBottom: 2 }}>
-            {currentProject?.name}
-          </Typography>
-          <Typography variant="body1" sx={{ marginBottom: 2 }}>
-            {currentProject?.description}
-          </Typography>
-          <Typography variant="body2" sx={{ color: "#bbb", marginBottom: 2 }}>
-            <strong>Year: </strong>
-            {currentProject?.year}
-          </Typography>
-          <Typography variant="body2" sx={{ color: "#bbb", marginBottom: 2 }}>
-            <strong>Tags: </strong>
-            {currentProject?.tags.join(", ")}
-          </Typography>
-
-          <Button
-            variant="contained"
-            href={currentProject?.url}
-            target="_blank"
-            sx={{
-              backgroundColor: "#ff7f50",
-              "&:hover": { backgroundColor: "#ff6347" },
-              borderRadius: "10px",
-            }}
-          >
-            View Project
-          </Button>
-
-          <Button
-            variant="outlined"
-            onClick={handleModalClose}
-            sx={{
-              backgroundColor: "transparent",
-              color: "#fff",
-              border: "1px solid #fff",
-              marginLeft: "15px",
-            }}
-          >
-            Close
-          </Button>
-        </Box>
-      </Modal>
     </Card>
   );
 };

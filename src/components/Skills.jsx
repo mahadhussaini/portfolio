@@ -10,168 +10,122 @@ import {
   TextField,
   Box,
   Tooltip,
+  CircularProgress,
+  Fade,
+  InputAdornment,
 } from "@mui/material";
+import { motion } from "framer-motion";
+import { Search as SearchIcon, Code as CodeIcon } from "@mui/icons-material";
 
+// Skill data with proficiency levels (1-5)
 const skills = [
   {
     name: "HTML",
     category: "Frontend",
     description: "Markup language for web pages",
+    level: 5,
   },
   {
     name: "CSS",
     category: "Frontend",
     description: "Style sheet language for web design",
+    level: 5,
   },
   {
     name: "JavaScript",
     category: "Frontend",
     description: "Programming language for web development",
+    level: 5,
   },
   {
     name: "React.js",
     category: "Frontend",
     description: "JavaScript library for building user interfaces",
-  },
-  {
-    name: "React Native",
-    category: "Frontend",
-    description: "Framework for building native mobile apps",
-  },
-  {
-    name: "Bootstrap",
-    category: "Frontend",
-    description: "CSS framework for responsive design",
-  },
-  {
-    name: "Material-UI",
-    category: "Frontend",
-    description: "React component library for building UIs",
+    level: 4,
   },
   {
     name: "Node.js",
     category: "Backend",
     description: "JavaScript runtime for server-side development",
+    level: 4,
   },
   {
     name: "Express.js",
     category: "Backend",
     description: "Web framework for Node.js",
-  },
-  {
-    name: "RESTful API",
-    category: "Backend",
-    description: "API architecture for client-server communication",
-  },
-  {
-    name: "SQL",
-    category: "Database",
-    description: "Structured Query Language for relational databases",
+    level: 4,
   },
   {
     name: "MongoDB",
     category: "Database",
     description: "NoSQL database for storing data",
+    level: 4,
   },
   {
-    name: "Git",
-    category: "Tools",
-    description: "Version control system for tracking code changes",
-  },
-  {
-    name: "Webpack",
-    category: "Tools",
-    description: "Module bundler for JavaScript applications",
-  },
-  {
-    name: "Redux.js",
-    category: "Frontend",
-    description: "State management library for React",
-  },
-  {
-    name: "Responsive Web Design",
-    category: "Frontend",
-    description: "Designing for different screen sizes",
-  },
-  {
-    name: "OOP",
-    category: "Concepts",
-    description: "Object-Oriented Programming paradigm",
-  },
-  {
-    name: "Problem Solving",
-    category: "Concepts",
-    description: "Ability to solve programming challenges",
-  },
-  {
-    name: "Debugging",
-    category: "Concepts",
-    description: "Identifying and fixing issues in code",
-  },
-  {
-    name: "Data Structures",
-    category: "Concepts",
-    description: "Organizing and storing data efficiently",
-  },
-  {
-    name: "Algorithms",
-    category: "Concepts",
-    description: "Step-by-step procedure for solving problems",
-  },
-  {
-    name: "System Design",
-    category: "Concepts",
-    description: "Designing scalable software systems",
-  },
-  {
-    name: "Version Control",
-    category: "Concepts",
-    description: "Tracking changes to code",
-  },
-  {
-    name: "Design Patterns",
-    category: "Concepts",
-    description: "Reusable solutions to common software problems",
-  },
-  {
-    name: "Sequelize ORM",
+    name: "SQL",
     category: "Database",
-    description: "Promise-based ORM for Node.js",
-  },
-  {
-    name: "Mongoose ORM",
-    category: "Database",
-    description: "MongoDB ORM for Node.js",
+    description: "Structured Query Language for relational databases",
+    level: 3,
   },
   {
     name: "Docker",
     category: "Tools",
     description: "Containerization platform for applications",
+    level: 3,
   },
   {
-    name: "Kubernetes",
-    category: "Tools",
-    description: "Orchestration platform for containerized apps",
+    name: "Redux.js",
+    category: "Frontend",
+    description: "State management library for React",
+    level: 4,
+  },
+  {
+    name: "Data Structures",
+    category: "Concepts",
+    description: "Organizing and storing data efficiently",
+    level: 4,
+  },
+  {
+    name: "Algorithms",
+    category: "Concepts",
+    description: "Step-by-step procedure for solving problems",
+    level: 4,
   },
   {
     name: "Jest",
     category: "Tools",
     description: "JavaScript testing framework",
+    level: 3,
   },
   {
-    name: "Mocha",
+    name: "Git",
     category: "Tools",
-    description: "Testing framework for Node.js",
+    description: "Version control system for software development",
+    level: 3,
   },
   {
-    name: "Chai",
-    category: "Tools",
-    description: "Assertion library for Node.js testing",
+    name: "Python",
+    category: "Backend",
+    description: "Programming language for web development",
+    level: 4,
   },
   {
-    name: "Selenium",
-    category: "Tools",
-    description: "Automated testing for web applications",
+    name: "Flask",
+    category: "Backend",
+    description: "Web framework for Python",
+    level: 4,
+  },
+  {
+    name: "Bootstrap",
+    category: "Frontend",
+    description: "CSS framework for responsive web design",
+    level: 4,
+  },
+  {
+    name: "Material UI",
+    category: "Frontend",
+    description: "CSS library for building user interfaces",
+    level: 4,
   },
 ];
 
@@ -181,7 +135,7 @@ const Skills = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const handleTabChange = (event, newValue) => {
+  const handleTabChange = (_, newValue) => {
     setActiveTab(newValue);
   };
 
@@ -196,90 +150,135 @@ const Skills = () => {
   );
 
   return (
-    <Card
-      sx={{
-        backgroundColor: "rgba(255, 255, 255, 0.2)",
-        borderRadius: "15px",
-        boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
-        color: "#fff",
-        padding: "20px",
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
     >
-      <CardContent>
-        <Typography
-          variant="h5"
-          component="h2"
-          gutterBottom
-          sx={{
-            color: "#fff",
-            textAlign: "center",
-            marginBottom: "20px",
-          }}
-        >
-          Skills
-        </Typography>
-
-        {/* Search Bar */}
-        <TextField
-          label="Search Skills"
-          variant="outlined"
-          fullWidth
-          value={searchQuery}
-          onChange={handleSearchChange}
-          sx={{ marginBottom: 3 }}
-        />
-
-        <Tabs
-          value={activeTab}
-          onChange={handleTabChange}
-          variant="scrollable"
-          scrollButtons
-          allowScrollButtonsMobile
-          sx={{
-            marginBottom: 3,
-            "& .MuiTab-root": {
-              color: "#ddd",
-              "&:hover": { color: "#fff" },
-            },
-            "& .Mui-selected": {
-              color: "#ff7f50 !important",
-            },
-          }}
-        >
-          {categories.map((category, index) => (
-            <Tab key={index} label={category} />
-          ))}
-        </Tabs>
-
-        <Box sx={{ mb: 2, color: "#fff" }}>
-          <Typography variant="body2">
-            {filteredSkills.length} skills found in this category
+      <Card
+        sx={{
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
+          borderRadius: "15px",
+          boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
+          color: "#fff",
+          padding: "20px",
+          backdropFilter: "blur(10px)",
+        }}
+      >
+        <CardContent>
+          <Typography
+            variant="h4"
+            gutterBottom
+            align="center"
+            sx={{ fontWeight: "bold", color: "#fff", marginBottom: "20px" }}
+          >
+            🎯 Skills
           </Typography>
-        </Box>
 
-        <Grid container spacing={2}>
-          {filteredSkills.map((skill, index) => (
-            <Grid item xs={6} sm={4} lg={3} key={index}>
-              <Tooltip title={skill.description} arrow>
-                <Chip
-                  label={skill.name}
-                  sx={{
-                    width: "100%",
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    color: "#fff",
-                    backgroundColor: "#ff7f50",
-                    "&:hover": {
-                      backgroundColor: "#ff6347",
-                    },
-                  }}
-                />
-              </Tooltip>
+          {/* Search Bar */}
+          <TextField
+            label="Search Skills..."
+            variant="outlined"
+            fullWidth
+            value={searchQuery}
+            onChange={handleSearchChange}
+            sx={{
+              marginBottom: 3,
+              backgroundColor: "rgba(255,255,255,0.2)",
+              borderRadius: 1,
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ color: "#fff" }} />
+                </InputAdornment>
+              ),
+              sx: { color: "#fff" },
+            }}
+          />
+
+          {/* Category Tabs */}
+          <Tabs
+            value={activeTab}
+            onChange={handleTabChange}
+            variant="scrollable"
+            scrollButtons="auto"
+            sx={{
+              marginBottom: 3,
+              "& .MuiTab-root": { color: "#ddd", "&:hover": { color: "#fff" } },
+              "& .Mui-selected": {
+                color: "#ff7f50 !important",
+                fontWeight: "bold",
+              },
+            }}
+          >
+            {categories.map((category, index) => (
+              <Tab key={index} label={category} />
+            ))}
+          </Tabs>
+
+          {/* Skill Count */}
+          <Box sx={{ mb: 2, color: "#fff" }}>
+            <Typography variant="body1">
+              <strong>{filteredSkills.length}</strong> skills found in this
+              category
+            </Typography>
+          </Box>
+
+          {/* Skill Grid */}
+          {filteredSkills.length > 0 ? (
+            <Grid container spacing={2}>
+              {filteredSkills.map((skill, index) => (
+                <Grid item xs={12} sm={6} md={4} key={index}>
+                  <Fade in>
+                    <Tooltip title={skill.description} arrow>
+                      <Chip
+                        label={
+                          <Box sx={{ display: "flex", alignItems: "center" }}>
+                            <CodeIcon sx={{ fontSize: 18, marginRight: 1 }} />
+                            {skill.name}
+                          </Box>
+                        }
+                        sx={{
+                          width: "100%",
+                          textAlign: "center",
+                          fontWeight: "bold",
+                          color: "#fff",
+                          backgroundColor: "#ff7f50",
+                          "&:hover": { backgroundColor: "#ff6347" },
+                        }}
+                      />
+                    </Tooltip>
+                  </Fade>
+                  {/* Proficiency Level Bar */}
+                  <Box
+                    sx={{
+                      height: 8,
+                      width: `${skill.level * 20}%`,
+                      backgroundColor: "#ff7f50",
+                      borderRadius: "5px",
+                      marginTop: 1,
+                      transition: "width 0.5s ease-in-out",
+                    }}
+                  />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-      </CardContent>
-    </Card>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100px",
+              }}
+            >
+              <CircularProgress sx={{ color: "#ff7f50" }} />
+            </Box>
+          )}
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 };
 
