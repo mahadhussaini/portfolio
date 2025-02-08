@@ -1,14 +1,12 @@
 import React from "react";
 import { Card, CardContent, Typography, Box, Divider } from "@mui/material";
-import { WorkOutline } from "@mui/icons-material";
 
 const Experience = () => {
   return (
     <Card
       sx={{
-        backgroundColor: "rgba(255, 255, 255, 0.2)",
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
         borderRadius: "15px",
-        boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
         color: "#fff",
       }}
     >
@@ -27,7 +25,7 @@ const Experience = () => {
           <Typography variant="h6" sx={{ color: "#f1c40f" }}>
             Freelancer.com - Full Stack Developer
           </Typography>
-          <Typography color="textSecondary">
+          <Typography color="textprimary">
             03/2024 - Present | Remote
           </Typography>
 
@@ -71,7 +69,7 @@ const Experience = () => {
             authentication, shopping cart, order management, and secure payment
             processing.
           </Typography>
-          <Typography variant="body2" color="textSecondary">
+          <Typography variant="body2" color="textprimary">
             <em>Project Duration: January 2025 - May 2025</em>
           </Typography>
           <Typography color="textSecondary">
@@ -93,7 +91,7 @@ const Experience = () => {
             Management System featuring real-time chat, video streaming, and
             interactive courses.
           </Typography>
-          <Typography variant="body2" color="textSecondary">
+          <Typography variant="body2" color="textprimary">
             <em>Project Duration: August 2024 - December 2024</em>
           </Typography>
           <Typography color="textSecondary">
@@ -116,7 +114,7 @@ const Experience = () => {
             registrations, and feedback collection. Integrated Google Calendar
             API for event synchronization.
           </Typography>
-          <Typography variant="body2" color="textSecondary">
+          <Typography variant="body2" color="textprimary">
             <em>Project Duration: March 2024 - July 2024</em>
           </Typography>
           <Typography color="textSecondary">
@@ -138,7 +136,7 @@ const Experience = () => {
           <Typography variant="h6" sx={{ color: "#f1c40f" }}>
             Paysys Labs - Software Development Intern
           </Typography>
-          <Typography color="textSecondary">
+          <Typography color="textprimary">
             12/2023 - 02/2024 | Karachi, Pakistan
           </Typography>
           <Typography variant="body1" sx={{ marginTop: 2 }}>
@@ -154,7 +152,7 @@ const Experience = () => {
           <Typography variant="h6" sx={{ color: "#f1c40f" }}>
             Volunteer - Tech for Good
           </Typography>
-          <Typography color="textSecondary">
+          <Typography color="textprimary">
             06/2023 - 09/2023 | Karachi, Pakistan
           </Typography>
           <Typography variant="body1" sx={{ marginTop: 2 }}>

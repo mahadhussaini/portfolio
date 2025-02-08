@@ -10,11 +10,9 @@ import {
   ListItemText,
   Collapse,
   IconButton,
-  Box,
 } from "@mui/material";
 import {
   School as SchoolIcon,
-  Star as StarIcon,
   ExpandMore as ExpandMoreIcon,
   ExpandLess as ExpandLessIcon,
   Work as WorkIcon,
@@ -35,9 +33,8 @@ const Education = () => {
     >
       <Card
         sx={{
-          backgroundColor: "rgba(255, 255, 255, 0.2)",
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
           borderRadius: "15px",
-          boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
           color: "#fff",
           padding: "20px",
           backdropFilter: "blur(10px)",
@@ -68,10 +65,12 @@ const Education = () => {
                 }
                 secondary={
                   <>
-                    <Typography color="textSecondary">
+                    <Typography sx={{ color: "white" }}>
                       Iqra University, Karachi, Pakistan
                     </Typography>
-                    <Typography variant="body1">2020 - 2023</Typography>
+                    <Typography variant="body1" sx={{ color: "white" }}>
+                      2020 - 2023
+                    </Typography>
                   </>
                 }
               />
@@ -206,6 +205,7 @@ const Education = () => {
                   <ListItemText
                     primary={project.title}
                     secondary={project.description}
+                    sx={{ "& .MuiTypography-body2": { color: "white" } }}
                   />
                 </ListItem>
               ))}
@@ -221,7 +221,7 @@ const Education = () => {
             🌟 Additional Activities
           </Typography>
           <Typography variant="body2" sx={{ marginTop: 2 }}>
-            - Lead Organizer for University's Annual Hackathon (2022)
+            - Lead Organizer for University&apos;s Annual Hackathon (2022)
             <br />
             - Member of the Computer Science Society, Iqra University
             <br />

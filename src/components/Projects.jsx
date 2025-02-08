@@ -200,7 +200,7 @@ const Projects = () => {
   return (
     <Card
       sx={{
-        backgroundColor: "rgba(255, 255, 255, 0.1)",
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
         borderRadius: "15px",
         padding: "20px",
         color: "#fff",
@@ -252,13 +252,11 @@ const Projects = () => {
                 sx={{
                   backgroundColor: "rgba(255, 255, 255, 0.2)",
                   borderRadius: "10px",
-                  boxShadow: "0 4px 20px rgba(31, 38, 135, 0.2)",
                   padding: "15px",
                   color: "#fff",
                   transition: "transform 0.3s ease-in-out",
                   "&:hover": {
                     transform: "scale(1.05)",
-                    boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
                   },
                 }}
               >

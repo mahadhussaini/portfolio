@@ -157,9 +157,8 @@ const Skills = () => {
     >
       <Card
         sx={{
-          backgroundColor: "rgba(255, 255, 255, 0.1)",
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
           borderRadius: "15px",
-          boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
           color: "#fff",
           padding: "20px",
           backdropFilter: "blur(10px)",

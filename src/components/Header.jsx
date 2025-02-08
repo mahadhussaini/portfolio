@@ -7,8 +7,16 @@ import {
   Stack,
   Chip,
   Grid,
+  Divider,
 } from "@mui/material";
-import { LinkedIn, GitHub } from "@mui/icons-material";
+import {
+  LinkedIn,
+  GitHub,
+  Email,
+  Phone,
+  Work,
+  Code,
+} from "@mui/icons-material";
 
 const avatarUrl =
   "https://media.licdn.com/dms/image/v2/D4D03AQFE5DwmKkGEgg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1700839156751?e=1742428800&v=beta&t=lrJaDWj0t-jZZ1RSD-KhIxLbPc3YX_Ej4Xy-7621LS8";
@@ -19,10 +27,9 @@ const Header = () => {
       textAlign="center"
       mb={5}
       sx={{
-        background: "linear-gradient(135deg, #667eea, #764ba2)",
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
         padding: "50px 20px",
         borderRadius: "15px",
-        boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
         animation: "fadeIn 1.5s ease-in-out",
       }}
     >
@@ -79,22 +86,28 @@ const Header = () => {
         variant="body1"
         sx={{ color: "#ddd", mb: 4, maxWidth: "800px", margin: "0 auto" }}
       >
-        <strong>2+ years of experience</strong> in developing web applications,
-        specializing in the **MERN Stack**, **RESTful APIs**, and **Cloud
-        Deployments**. Experienced in working on **Freelance Projects,
-        Enterprise Applications, and Open-Source Contributions**.
+        <strong>2+ years of experience</strong> in web development, specializing
+        in the **MERN Stack**, **RESTful APIs**, and **Cloud Deployments**.
+        Worked on **Freelance Projects, Enterprise Applications, and Open-Source
+        Contributions**.
       </Typography>
 
       {/* Contact Information */}
-      <Typography variant="body1" sx={{ mb: 3 }}>
-        📧 Email:{" "}
+      <Divider sx={{ bgcolor: "#bbb", margin: "20px auto", width: "60%" }} />
+      <Typography variant="h6" sx={{ color: "#fff", mb: 2 }}>
+        📩 Contact Information
+      </Typography>
+      <Typography variant="body1" sx={{ mb: 2 }}>
+        <Email sx={{ verticalAlign: "middle", mr: 1 }} />
         <a
           href="mailto:mahadarshad214@gmail.com"
           style={{ color: "#f1c40f", textDecoration: "none" }}
         >
           mahadarshad214@gmail.com
-        </a>{" "}
-        | 📞 Phone:{" "}
+        </a>
+      </Typography>
+      <Typography variant="body1" sx={{ mb: 3 }}>
+        <Phone sx={{ verticalAlign: "middle", mr: 1 }} />
         <a
           href="tel:+923306147798"
           style={{ color: "#f1c40f", textDecoration: "none" }}
@@ -103,19 +116,20 @@ const Header = () => {
         </a>
       </Typography>
 
-      {/* Skills Section */}
+      {/* Tech Stack Section */}
+      <Divider sx={{ bgcolor: "#bbb", margin: "20px auto", width: "60%" }} />
       <Typography variant="h6" sx={{ color: "#fff", mb: 2 }}>
-        Tech Stack
+        🛠️ Tech Stack
       </Typography>
       <Grid container spacing={1} justifyContent="center" sx={{ mb: 3 }}>
         {[
           "JavaScript",
           "React.js",
+          "React Native",
           "Next.js",
           "Node.js",
-          "Express",
+          "Express.js",
           "MongoDB",
-          "SQL",
           "GraphQL",
           "Docker",
           "Firebase",
@@ -132,7 +146,24 @@ const Header = () => {
         ))}
       </Grid>
 
+      {/* Work Experience */}
+      <Divider sx={{ bgcolor: "#bbb", margin: "20px auto", width: "60%" }} />
+      <Typography variant="h6" sx={{ color: "#fff", mb: 2 }}>
+        💼 Work Experience
+      </Typography>
+      <Typography variant="body1" sx={{ color: "#ddd", mb: 2 }}>
+        <Work sx={{ verticalAlign: "middle", mr: 1 }} />
+        <strong>Freelance Developer</strong> - Developed custom web applications
+        for clients in various industries, optimizing performance and UI/UX.
+      </Typography>
+      <Typography variant="body1" sx={{ color: "#ddd", mb: 2 }}>
+        <Code sx={{ verticalAlign: "middle", mr: 1 }} />
+        <strong>Open Source Contributor</strong> - Contributed to popular GitHub
+        repositories, fixing bugs and improving functionality.
+      </Typography>
+
       {/* Quote */}
+      <Divider sx={{ bgcolor: "#bbb", margin: "20px auto", width: "60%" }} />
       <Typography
         variant="body1"
         sx={{
@@ -144,11 +175,11 @@ const Header = () => {
           margin: "0 auto",
         }}
       >
-        "Building scalable, high-performance web solutions to bridge the gap
-        between ideas and real-world applications."
+        &quot;Building scalable, high-performance web solutions to bridge the
+        gap between ideas and real-world applications.&quot;
       </Typography>
 
-      {/* Buttons for LinkedIn, GitHub */}
+      {/* Social Links */}
       <Stack
         direction="row"
         spacing={3}
