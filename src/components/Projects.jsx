@@ -222,13 +222,46 @@ const Projects = () => {
             variant="outlined"
             label="Search Projects..."
             fullWidth
-            sx={{ backgroundColor: "white", borderRadius: 1 }}
+            sx={{
+              backgroundColor: "white",
+              borderRadius: 1,
+              "& .MuiInputLabel-root": {
+                color: "#333",
+              },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "#764ba2",
+                },
+                "&:hover fieldset": {
+                  borderColor: "#5a3d90",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "#4a2c7d",
+                },
+              },
+            }}
+            InputLabelProps={{
+              sx: {
+                color: "#333",
+                fontWeight: "bold",
+              },
+            }}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
 
           <FormControl fullWidth>
-            <InputLabel>Filter by Technology</InputLabel>
+            <InputLabel
+              sx={{
+                color: "#333",
+                fontWeight: "bold",
+                fontSize: "1rem",
+                mb: 1,
+              }}
+            >
+              Filter by Technology
+            </InputLabel>
+
             <Select
               value={selectedTag}
               onChange={(e) => setSelectedTag(e.target.value)}

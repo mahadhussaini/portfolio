@@ -98,7 +98,7 @@ const Header = () => {
         📩 Contact Information
       </Typography>
       <Typography variant="body1" sx={{ mb: 2 }}>
-        <Email sx={{ verticalAlign: "middle", mr: 1 }} />
+        <Email sx={{ verticalAlign: "middle", mr: 1, color: "white" }} />
         <a
           href="mailto:mahadarshad214@gmail.com"
           style={{ color: "#f1c40f", textDecoration: "none" }}
@@ -107,7 +107,7 @@ const Header = () => {
         </a>
       </Typography>
       <Typography variant="body1" sx={{ mb: 3 }}>
-        <Phone sx={{ verticalAlign: "middle", mr: 1 }} />
+        <Phone sx={{ verticalAlign: "middle", mr: 1, color: "white" }} />
         <a
           href="tel:+923306147798"
           style={{ color: "#f1c40f", textDecoration: "none" }}

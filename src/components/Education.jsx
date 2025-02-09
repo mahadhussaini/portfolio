@@ -168,7 +168,7 @@ const Education = () => {
           />
 
           {/* Projects Section */}
-          <Typography variant="h6" sx={{ color: "#f1c40f" }}>
+          {/* <Typography variant="h6" sx={{ color: "#f1c40f" }}>
             💻 Projects
             <IconButton onClick={() => setOpenProjects(!openProjects)}>
               {openProjects ? (
@@ -177,9 +177,9 @@ const Education = () => {
                 <ExpandMoreIcon sx={{ color: "#ff7f50" }} />
               )}
             </IconButton>
-          </Typography>
+          </Typography> */}
 
-          <Collapse in={openProjects}>
+          {/* <Collapse in={openProjects}>
             <List dense>
               {[
                 {
@@ -205,28 +205,28 @@ const Education = () => {
                   <ListItemText
                     primary={project.title}
                     secondary={project.description}
-                    sx={{ "& .MuiTypography-body2": { color: "white" } }}
                   />
                 </ListItem>
               ))}
             </List>
-          </Collapse>
+          </Collapse> */}
 
-          <Divider
+          {/* <Divider
             sx={{ marginTop: 3, marginBottom: 3, backgroundColor: "#f1c40f" }}
-          />
+          /> */}
 
           {/* Additional Activities */}
           <Typography variant="h6" sx={{ color: "#f1c40f" }}>
             🌟 Additional Activities
           </Typography>
           <Typography variant="body2" sx={{ marginTop: 2 }}>
-            - Lead Organizer for University&apos;s Annual Hackathon (2022)
+            🏆 Lead Organizer for University&apos;s Annual Hackathon (2022)
             <br />
-            - Member of the Computer Science Society, Iqra University
+            🖥️ Member of the Computer Science Society, Iqra University
             <br />
-            - Active Open Source Contributor on GitHub
-            <br />- Peer Mentor for Junior CS Students
+            💻 Active Open Source Contributor on GitHub
+            <br />
+            🎓 Peer Mentor for Junior CS Students
           </Typography>
         </CardContent>
       </Card>

@@ -1,35 +1,29 @@
 import React, { useState, Suspense, lazy, useMemo } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   Container,
   Grid,
   Box,
   Toolbar,
   Typography,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
   IconButton,
   CssBaseline,
-  useMediaQuery,
   Skeleton,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
-  Menu as MenuIcon,
   Brightness4 as Brightness4Icon,
   Brightness7 as Brightness7Icon,
 } from "@mui/icons-material";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Lazy load components
-const Header = lazy(() => import("./components/Header"));
-const Skills = lazy(() => import("./components/Skills"));
-const Projects = lazy(() => import("./components/Projects"));
-const Experience = lazy(() => import("./components/Experience"));
-const Education = lazy(() => import("./components/Education"));
-const Footer = lazy(() => import("./components/Footer"));
+const Header = lazy(() => import("./components/Header.jsx"));
+const Skills = lazy(() => import("./components/Skills.jsx"));
+const Projects = lazy(() => import("./components/Projects.jsx"));
+const Experience = lazy(() => import("./components/Experience.jsx"));
+const Education = lazy(() => import("./components/Education.jsx"));
+const Footer = lazy(() => import("./components/Footer.jsx"));
 
 // Page transition animation
 const pageTransition = {
@@ -41,8 +35,6 @@ const pageTransition = {
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 768px)");
 
   // Dynamic MUI theme based on darkMode state
   const theme = useMemo(
@@ -65,6 +57,14 @@ const App = () => {
     [darkMode]
   );
 
+  // Map paths to their respective components
+  const componentMap = {
+    skills: Skills,
+    projects: Projects,
+    experience: Experience,
+    education: Education,
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -72,56 +72,21 @@ const App = () => {
         <Box
           sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
         >
-          {/* AppBar - Navbar */}
-          {/* <AppBar
-            position="sticky"
-            sx={{ backgroundColor: theme.palette.background.paper }}
-          > */}
-          <Toolbar>
-            {/* <IconButton
-              edge="start"
-              color="inherit"
-              onClick={() => setDrawerOpen(true)}
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton> */}
-            <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              My Portfolio
-            </Typography>
+          {/* Navbar */}
+          <Toolbar
+            sx={{ display: "flex", justifyContent: "space-between", px: 2 }}
+          >
+            <Typography variant="h6">My Portfolio</Typography>
             <IconButton color="inherit" onClick={() => setDarkMode(!darkMode)}>
               {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton>
           </Toolbar>
-          {/* </AppBar> */}
-
-          {/* Sidebar Navigation (Drawer) */}
-          {/* <Drawer
-            anchor="left"
-            open={drawerOpen}
-            onClose={() => setDrawerOpen(false)}
-          >
-            <List sx={{ width: 250 }}>
-              {["Skills", "Projects", "Experience", "Education"].map(
-                (text, index) => (
-                  <ListItem
-                    button
-                    component={Link}
-                    to={`/${text.toLowerCase()}`}
-                    key={index}
-                    onClick={() => setDrawerOpen(false)}
-                  >
-                    <ListItemText primary={text} sx={{ color: "white" }} />
-                  </ListItem>
-                )
-              )}
-            </List>
-          </Drawer> */}
 
           {/* Main Content */}
           <Container maxWidth="lg" sx={{ flexGrow: 1, py: 4 }}>
             <AnimatePresence mode="wait">
               <Routes>
+                {/* Home Page */}
                 <Route
                   path="/"
                   element={
@@ -153,37 +118,29 @@ const App = () => {
                     </Grid>
                   }
                 />
-                {["skills", "projects", "experience", "education"].map(
-                  (path) => (
-                    <Route
-                      key={path}
-                      path={`/${path}`}
-                      element={
-                        <motion.div {...pageTransition}>
-                          <Suspense
-                            fallback={
-                              <Skeleton
-                                variant="rectangular"
-                                height={400}
-                                sx={{ borderRadius: 2 }}
-                              />
-                            }
-                          >
-                            {React.createElement(
-                              lazy(() =>
-                                import(
-                                  `./components/${
-                                    path.charAt(0).toUpperCase() + path.slice(1)
-                                  }`
-                                )
-                              )
-                            )}
-                          </Suspense>
-                        </motion.div>
-                      }
-                    />
-                  )
-                )}
+
+                {/* Dynamic Routes for Other Pages */}
+                {Object.entries(componentMap).map(([path, Component]) => (
+                  <Route
+                    key={path}
+                    path={`/${path}`}
+                    element={
+                      <motion.div {...pageTransition}>
+                        <Suspense
+                          fallback={
+                            <Skeleton
+                              variant="rectangular"
+                              height={400}
+                              sx={{ borderRadius: 2 }}
+                            />
+                          }
+                        >
+                          <Component />
+                        </Suspense>
+                      </motion.div>
+                    }
+                  />
+                ))}
 
                 {/* 404 Page */}
                 <Route
@@ -198,18 +155,15 @@ const App = () => {
                         textAlign: "center",
                       }}
                     >
-                      {/* <motion.div {...pageTransition}>
-                        <Typography
-                          variant={isMobile ? "h5" : "h4"}
-                          color="error"
-                        >
+                      <motion.div {...pageTransition}>
+                        <Typography variant="h4" color="error">
                           404 - Page Not Found
                         </Typography>
                         <Typography variant="body1" sx={{ mt: 1 }}>
                           Oops! The page you&apos;re looking for doesn&apos;t
                           exist.
                         </Typography>
-                      </motion.div> */}
+                      </motion.div>
                     </Box>
                   }
                 />
