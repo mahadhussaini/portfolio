@@ -8,6 +8,9 @@ import {
   Chip,
   Grid,
   Divider,
+  Card,
+  CardContent,
+  CardMedia,
 } from "@mui/material";
 import {
   LinkedIn,
@@ -16,6 +19,8 @@ import {
   Phone,
   Work,
   Code,
+  BusinessCenter,
+  School,
 } from "@mui/icons-material";
 
 const avatarUrl =
@@ -27,7 +32,7 @@ const Header = () => {
       textAlign="center"
       mb={5}
       sx={{
-        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        backgroundColor: "rgba(0, 0, 0, 0.85)",
         padding: "50px 20px",
         borderRadius: "15px",
         animation: "fadeIn 1.5s ease-in-out",
@@ -76,9 +81,10 @@ const Header = () => {
           fontStyle: "italic",
         }}
       >
-        Passionate about developing modern web applications that solve
-        real-world problems. With a strong foundation in front-end and back-end
-        technologies, I focus on writing clean, scalable, and maintainable code.
+        I am a dedicated developer with a passion for creating efficient and
+        scalable web solutions. My expertise lies in the **MERN Stack**, with
+        proficiency in both front-end and back-end technologies. I enjoy solving
+        complex problems and continuously learning new tools and technologies.
       </Typography>
 
       {/* Experience Summary */}
@@ -86,18 +92,20 @@ const Header = () => {
         variant="body1"
         sx={{ color: "#ddd", mb: 4, maxWidth: "800px", margin: "0 auto" }}
       >
-        <strong>2+ years of experience</strong> in web development, specializing
-        in the **MERN Stack**, **RESTful APIs**, and **Cloud Deployments**.
-        Worked on **Freelance Projects, Enterprise Applications, and Open-Source
-        Contributions**.
+        <strong>2+ years of experience</strong> in web development, focusing on
+        modern JavaScript frameworks, RESTful APIs, and cloud deployment. My
+        projects range from <strong>freelance applications</strong> to{" "}
+        <strong>enterprise-level solutions</strong> and{" "}
+        <strong>open-source contributions</strong>.
       </Typography>
 
-      {/* Contact Information */}
       <Divider sx={{ bgcolor: "#bbb", margin: "20px auto", width: "60%" }} />
+
+      {/* Contact Information */}
       <Typography variant="h6" sx={{ color: "#fff", mb: 2 }}>
         📩 Contact Information
       </Typography>
-      <Typography variant="body1" sx={{ mb: 2 }}>
+      <Typography variant="body1" sx={{ mb: 2, color: "#ddd" }}>
         <Email sx={{ verticalAlign: "middle", mr: 1, color: "white" }} />
         <a
           href="mailto:mahadarshad214@gmail.com"
@@ -106,7 +114,7 @@ const Header = () => {
           mahadarshad214@gmail.com
         </a>
       </Typography>
-      <Typography variant="body1" sx={{ mb: 3 }}>
+      <Typography variant="body1" sx={{ mb: 3, color: "#ddd" }}>
         <Phone sx={{ verticalAlign: "middle", mr: 1, color: "white" }} />
         <a
           href="tel:+923306147798"
@@ -116,12 +124,13 @@ const Header = () => {
         </a>
       </Typography>
 
-      {/* Tech Stack Section */}
       <Divider sx={{ bgcolor: "#bbb", margin: "20px auto", width: "60%" }} />
+
+      {/* Tech Stack */}
       <Typography variant="h6" sx={{ color: "#fff", mb: 2 }}>
         🛠️ Tech Stack
       </Typography>
-      <Grid container spacing={1} justifyContent="center" sx={{ mb: 3 }}>
+      <Grid container spacing={1} justifyContent="center" sx={{ mb: 4 }}>
         {[
           "JavaScript",
           "React.js",
@@ -146,47 +155,57 @@ const Header = () => {
         ))}
       </Grid>
 
-      {/* Work Experience */}
       <Divider sx={{ bgcolor: "#bbb", margin: "20px auto", width: "60%" }} />
-      <Typography variant="h6" sx={{ color: "#fff", mb: 2 }}>
+
+      {/* Work Experience */}
+      {/* <Typography variant="h6" sx={{ color: "#fff", mb: 2 }}>
         💼 Work Experience
       </Typography>
-      <Typography variant="body1" sx={{ color: "#ddd", mb: 2 }}>
-        <Work sx={{ verticalAlign: "middle", mr: 1 }} />
-        <strong>Freelance Developer</strong> - Developed custom web applications
-        for clients in various industries, optimizing performance and UI/UX.
-      </Typography>
-      <Typography variant="body1" sx={{ color: "#ddd", mb: 2 }}>
-        <Code sx={{ verticalAlign: "middle", mr: 1 }} />
-        <strong>Open Source Contributor</strong> - Contributed to popular GitHub
-        repositories, fixing bugs and improving functionality.
-      </Typography>
-
-      {/* Quote */}
-      <Divider sx={{ bgcolor: "#bbb", margin: "20px auto", width: "60%" }} />
-      <Typography
-        variant="body1"
-        sx={{
-          color: "#ddd",
-          fontStyle: "italic",
-          fontSize: "1.1rem",
-          mb: 4,
-          maxWidth: "700px",
-          margin: "0 auto",
-        }}
-      >
-        &quot;Building scalable, high-performance web solutions to bridge the
-        gap between ideas and real-world applications.&quot;
-      </Typography>
+      <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+        <Card
+          sx={{
+            maxWidth: 345,
+            backgroundColor: "rgba(255, 255, 255, 0.1)",
+            margin: 2,
+          }}
+        >
+          <CardContent>
+            <Typography
+              variant="h6"
+              sx={{ color: "#f1c40f", mb: 1, fontWeight: "bold" }}
+            >
+              Freelance Developer
+            </Typography>
+            <Typography variant="body2" color="#ddd">
+              Developed custom web applications for clients across different
+              industries, focusing on performance and user experience.
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card
+          sx={{
+            maxWidth: 345,
+            backgroundColor: "rgba(255, 255, 255, 0.1)",
+            margin: 2,
+          }}
+        >
+          <CardContent>
+            <Typography
+              variant="h6"
+              sx={{ color: "#f1c40f", mb: 1, fontWeight: "bold" }}
+            >
+              Open Source Contributor
+            </Typography>
+            <Typography variant="body2" color="#ddd">
+              Contributed to GitHub repositories, implementing new features and
+              enhancing application stability.
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box> */}
 
       {/* Social Links */}
-      <Stack
-        direction="row"
-        spacing={3}
-        justifyContent="center"
-        mb={3}
-        marginTop={2}
-      >
+      <Stack direction="row" spacing={3} justifyContent="center" mt={4}>
         <Button
           variant="contained"
           startIcon={<LinkedIn />}

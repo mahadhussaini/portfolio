@@ -1,5 +1,5 @@
 import React, { useState, Suspense, lazy, useMemo } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import {
   Container,
   Grid,
@@ -9,11 +9,25 @@ import {
   IconButton,
   CssBaseline,
   Skeleton,
+  AppBar,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  useMediaQuery,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   Brightness4 as Brightness4Icon,
   Brightness7 as Brightness7Icon,
+  Menu as MenuIcon,
+  Home as HomeIcon,
+  School as SchoolIcon,
+  Work as WorkIcon,
+  Code as CodeIcon,
+  EmojiObjects as EmojiObjectsIcon,
 } from "@mui/icons-material";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -33,8 +47,23 @@ const pageTransition = {
   transition: { duration: 0.8 },
 };
 
+// Map paths to their respective components and icons
+const componentMap = {
+  home: { Component: Header, icon: <HomeIcon />, label: "Home" },
+  skills: { Component: Skills, icon: <EmojiObjectsIcon />, label: "Skills" },
+  projects: { Component: Projects, icon: <CodeIcon />, label: "Projects" },
+  experience: {
+    Component: Experience,
+    icon: <WorkIcon />,
+    label: "Experience",
+  },
+  education: { Component: Education, icon: <SchoolIcon />, label: "Education" },
+};
+
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   // Dynamic MUI theme based on darkMode state
   const theme = useMemo(
@@ -43,7 +72,7 @@ const App = () => {
         palette: {
           mode: darkMode ? "dark" : "light",
           primary: {
-            main: darkMode ? "#f1c40f" : "#764ba2",
+            main: "rgba(241, 196, 15, 0)",
           },
           background: {
             default: darkMode ? "#121212" : "#f4f4f4",
@@ -57,13 +86,27 @@ const App = () => {
     [darkMode]
   );
 
-  // Map paths to their respective components
-  const componentMap = {
-    skills: Skills,
-    projects: Projects,
-    experience: Experience,
-    education: Education,
-  };
+  // Toggle dark mode
+  const handleThemeToggle = () => setDarkMode(!darkMode);
+
+  // Toggle drawer for mobile navigation
+  const handleDrawerToggle = () => setDrawerOpen(!drawerOpen);
+
+  // Navigation items
+  const navItems = Object.entries(componentMap).map(
+    ([path, { icon, label }]) => (
+      <ListItem
+        button
+        key={path}
+        component={Link}
+        to={path === "home" ? "/" : `/${path}`}
+        onClick={isMobile ? handleDrawerToggle : undefined}
+      >
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={label} />
+      </ListItem>
+    )
+  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -72,15 +115,37 @@ const App = () => {
         <Box
           sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
         >
-          {/* Navbar */}
-          <Toolbar
-            sx={{ display: "flex", justifyContent: "space-between", px: 2 }}
+          {/* AppBar with theme toggle and menu button */}
+          <AppBar position="static">
+            <Toolbar sx={{ justifyContent: "space-between" }}>
+              <IconButton
+                color="inherit"
+                edge="start"
+                onClick={handleDrawerToggle}
+                sx={{ display: { sm: "none" } }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" component="div">
+                My Portfolio
+              </Typography>
+              <IconButton color="inherit" onClick={handleThemeToggle}>
+                {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+              </IconButton>
+            </Toolbar>
+          </AppBar>
+
+          {/* Side Drawer for mobile */}
+          <Drawer
+            open={drawerOpen}
+            onClose={handleDrawerToggle}
+            sx={{ display: { xs: "block", sm: "none" } }}
           >
-            <Typography variant="h6">My Portfolio</Typography>
-            <IconButton color="inherit" onClick={() => setDarkMode(!darkMode)}>
-              {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-            </IconButton>
-          </Toolbar>
+            <Box sx={{ width: 250 }} role="presentation">
+              <List>{navItems}</List>
+              <Divider />
+            </Box>
+          </Drawer>
 
           {/* Main Content */}
           <Container maxWidth="lg" sx={{ flexGrow: 1, py: 4 }}>
@@ -97,7 +162,6 @@ const App = () => {
                         { Component: Projects, key: "projects" },
                         { Component: Experience, key: "experience" },
                         { Component: Education, key: "education" },
-                        { Component: Footer, key: "footer" },
                       ].map(({ Component, key }) => (
                         <Grid item xs={12} key={key}>
                           <Suspense
@@ -120,7 +184,7 @@ const App = () => {
                 />
 
                 {/* Dynamic Routes for Other Pages */}
-                {Object.entries(componentMap).map(([path, Component]) => (
+                {Object.entries(componentMap).map(([path, { Component }]) => (
                   <Route
                     key={path}
                     path={`/${path}`}
@@ -149,9 +213,10 @@ const App = () => {
                     <Box
                       sx={{
                         display: "flex",
-                        justifyContent: "center",
+                        flexDirection: "column",
                         alignItems: "center",
-                        height: "100vh",
+                        justifyContent: "center",
+                        minHeight: "60vh",
                         textAlign: "center",
                       }}
                     >
@@ -181,7 +246,7 @@ const App = () => {
               />
             }
           >
-            {/* <Footer /> */}
+            <Footer />
           </Suspense>
         </Box>
       </Router>

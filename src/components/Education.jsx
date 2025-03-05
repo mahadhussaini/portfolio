@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -8,23 +8,20 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Collapse,
-  IconButton,
 } from "@mui/material";
 import {
   School as SchoolIcon,
-  ExpandMore as ExpandMoreIcon,
-  ExpandLess as ExpandLessIcon,
-  Work as WorkIcon,
-  EmojiEvents as EmojiEventsIcon,
   Code as CodeIcon,
+  EmojiEvents as EmojiEventsIcon,
   Verified as VerifiedIcon,
+  Event as EventIcon,
+  Science as ScienceIcon,
+  Group as GroupIcon,
+  Lightbulb as LightbulbIcon,
 } from "@mui/icons-material";
 import { motion } from "framer-motion";
 
 const Education = () => {
-  const [openProjects, setOpenProjects] = useState(false);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -60,7 +57,7 @@ const Education = () => {
               <ListItemText
                 primary={
                   <Typography variant="h6" sx={{ color: "#f1c40f" }}>
-                    Bachelor in Computer Science
+                    Bachelor of Science in Computer Science
                   </Typography>
                 }
                 secondary={
@@ -77,32 +74,21 @@ const Education = () => {
             </ListItem>
           </List>
 
-          {/* Course Overview */}
-          <Typography variant="body2" sx={{ marginTop: 2 }}>
-            Specialized in **software development, algorithms, system
-            architecture, and full-stack web development**. Participated in
-            **hackathons, research projects, and coding competitions**, earning
-            multiple recognitions.
-          </Typography>
-
-          <Divider
-            sx={{ marginTop: 3, marginBottom: 3, backgroundColor: "#f1c40f" }}
-          />
-
-          {/* Key Courses & Skills */}
-          <Typography variant="h6" sx={{ color: "#f1c40f" }}>
-            📚 Key Courses & Skills
+          {/* Coursework & Practical Experience */}
+          <Typography variant="h6" sx={{ color: "#f1c40f", marginTop: 2 }}>
+            📚 Key Courses & Practical Skills
           </Typography>
           <List dense>
             {[
-              "Data Structures & Algorithms",
-              "Object-Oriented Programming",
-              "Web Development (JavaScript, React, Node.js)",
-              "Database Management (SQL, MongoDB)",
-              "Operating Systems",
-              "Software Engineering",
-              "Cloud Computing (AWS, Azure)",
-              "Machine Learning (Python, TensorFlow)",
+              "Advanced Data Structures & Algorithms",
+              "Object-Oriented Programming with C++ & Java",
+              "Full Stack Web Development (MERN Stack)",
+              "Database Systems (SQL, MongoDB, Firebase)",
+              "Machine Learning & AI (Python, TensorFlow)",
+              "Cloud Computing & DevOps (AWS, Docker, CI/CD)",
+              "System Design & Software Architecture",
+              "Mobile Application Development (React Native)",
+              "Computer Networks & Cybersecurity",
             ].map((course, index) => (
               <ListItem key={index}>
                 <ListItemIcon>
@@ -113,35 +99,75 @@ const Education = () => {
             ))}
           </List>
 
-          <Divider
-            sx={{ marginTop: 3, marginBottom: 3, backgroundColor: "#f1c40f" }}
-          />
+          <Divider sx={{ marginY: 3, backgroundColor: "#f1c40f" }} />
 
-          {/* Achievements & Recognition */}
+          {/* Research Projects & Academic Contributions */}
           <Typography variant="h6" sx={{ color: "#f1c40f" }}>
-            🏆 Achievements & Recognition
+            🔬 Research & Projects
           </Typography>
           <List dense>
             {[
-              "HOD's List Award (2021 - 2022)",
-              'Winner of Hackathon "Code for Change" (2022)',
-              "Completed Full-Stack Web Development Bootcamp (2022)",
-              "Volunteered as a tutor for programming students",
-              "Awarded 'Best Final Year Project' for the Mobile App",
-              "Received multiple accolades for innovation in app design",
-            ].map((achievement, index) => (
+              {
+                title: "AI-Powered Healthcare Diagnostic Tool",
+                description:
+                  "Developed a machine learning model to predict early symptoms of diseases using TensorFlow and Python.",
+              },
+              {
+                title: "E-Learning Platform (LearnHub)",
+                description:
+                  "Built a full-stack LMS with real-time chat, course management, and video streaming features.",
+              },
+              {
+                title: "Automated Attendance System",
+                description:
+                  "Implemented a facial recognition-based attendance system using OpenCV and Flask.",
+              },
+            ].map((project, index) => (
               <ListItem key={index}>
                 <ListItemIcon>
-                  <EmojiEventsIcon sx={{ color: "#ff7f50" }} />
+                  <ScienceIcon sx={{ color: "#ff7f50" }} />
                 </ListItemIcon>
-                <ListItemText primary={achievement} />
+                <ListItemText
+                  primary={project.title}
+                  secondary={project.description}
+                  sx={{
+                    color: "#fff",
+                    "& .MuiListItemText-primary": {
+                      fontWeight: "bold",
+                    },
+                    "& .MuiListItemText-secondary": {
+                      color: "#fff",
+                      opacity: 0.8,
+                    },
+                  }}
+                />
               </ListItem>
             ))}
           </List>
 
-          <Divider
-            sx={{ marginTop: 3, marginBottom: 3, backgroundColor: "#f1c40f" }}
-          />
+          <Divider sx={{ marginY: 3, backgroundColor: "#f1c40f" }} />
+
+          {/* Extracurricular Activities & Leadership */}
+          <Typography variant="h6" sx={{ color: "#f1c40f" }}>
+            🌟 Extracurricular Activities
+          </Typography>
+          <List dense>
+            {[
+              "Lead Organizer of Annual University Hackathon (2022)",
+              "Vice President, Computer Science Society",
+              "Peer Mentor & Tutor for Programming Students",
+              "Active Member of 'Tech for Good' Volunteer Program",
+            ].map((activity, index) => (
+              <ListItem key={index}>
+                <ListItemIcon>
+                  <GroupIcon sx={{ color: "#ff7f50" }} />
+                </ListItemIcon>
+                <ListItemText primary={activity} />
+              </ListItem>
+            ))}
+          </List>
+
+          <Divider sx={{ marginY: 3, backgroundColor: "#f1c40f" }} />
 
           {/* Certifications */}
           <Typography variant="h6" sx={{ color: "#f1c40f" }}>
@@ -149,10 +175,11 @@ const Education = () => {
           </Typography>
           <List dense>
             {[
-              "Full Stack Web Development Certificate (2022) - Udemy",
-              "AWS Certified Solutions Architect (2023) - Amazon Web Services",
-              "Machine Learning Specialist Certificate (2023) - Coursera",
-              "React Developer Certification (2023) - FreeCodeCamp",
+              "AWS Certified Solutions Architect - Amazon Web Services",
+              "Full Stack Web Development - Udemy",
+              "Machine Learning Specialization - Coursera",
+              "React Developer Certification - FreeCodeCamp",
+              "DevOps Foundations - LinkedIn Learning",
             ].map((cert, index) => (
               <ListItem key={index}>
                 <ListItemIcon>
@@ -163,70 +190,45 @@ const Education = () => {
             ))}
           </List>
 
-          <Divider
-            sx={{ marginTop: 3, marginBottom: 3, backgroundColor: "#f1c40f" }}
-          />
+          <Divider sx={{ marginY: 3, backgroundColor: "#f1c40f" }} />
 
-          {/* Projects Section */}
-          {/* <Typography variant="h6" sx={{ color: "#f1c40f" }}>
-            💻 Projects
-            <IconButton onClick={() => setOpenProjects(!openProjects)}>
-              {openProjects ? (
-                <ExpandLessIcon sx={{ color: "#ff7f50" }} />
-              ) : (
-                <ExpandMoreIcon sx={{ color: "#ff7f50" }} />
-              )}
-            </IconButton>
-          </Typography> */}
-
-          {/* <Collapse in={openProjects}>
-            <List dense>
-              {[
-                {
-                  title: "E-Commerce Web App",
-                  description:
-                    "Built a full-fledged e-commerce platform using React, Node.js, and MongoDB. Implemented authentication, payment processing, and product search.",
-                },
-                {
-                  title: "AI Chatbot",
-                  description:
-                    "Developed an AI-powered chatbot using Python and TensorFlow, integrated for real-time customer support on websites.",
-                },
-                {
-                  title: "Task Manager App",
-                  description:
-                    "Created a task management application with real-time collaboration using React, Redux, and Firebase.",
-                },
-              ].map((project, index) => (
-                <ListItem key={index}>
-                  <ListItemIcon>
-                    <WorkIcon sx={{ color: "#ff7f50" }} />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={project.title}
-                    secondary={project.description}
-                  />
-                </ListItem>
-              ))}
-            </List>
-          </Collapse> */}
-
-          {/* <Divider
-            sx={{ marginTop: 3, marginBottom: 3, backgroundColor: "#f1c40f" }}
-          /> */}
-
-          {/* Additional Activities */}
+          {/* Conferences & Workshops */}
           <Typography variant="h6" sx={{ color: "#f1c40f" }}>
-            🌟 Additional Activities
+            🎤 Conferences & Workshops Attended
+          </Typography>
+          <List dense>
+            {[
+              "Google DevFest Karachi 2022 - Speaker on React Development",
+              "Microsoft Azure Bootcamp 2023",
+              "Web3 & Blockchain Workshop - NUST",
+              "DevOps & Cloud Computing Seminar - P@SHA",
+            ].map((event, index) => (
+              <ListItem key={index}>
+                <ListItemIcon>
+                  <EventIcon sx={{ color: "#ff7f50" }} />
+                </ListItemIcon>
+                <ListItemText primary={event} />
+              </ListItem>
+            ))}
+          </List>
+
+          <Divider sx={{ marginY: 3, backgroundColor: "#f1c40f" }} />
+
+          {/* Future Learning Goals */}
+          <Typography variant="h6" sx={{ color: "#f1c40f" }}>
+            🚀 Future Learning Goals
           </Typography>
           <Typography variant="body2" sx={{ marginTop: 2 }}>
-            🏆 Lead Organizer for University&apos;s Annual Hackathon (2022)
+            🔍 Expanding expertise in **AI & Machine Learning**, with a focus on
+            deep learning and computer vision.
             <br />
-            🖥️ Member of the Computer Science Society, Iqra University
+            🌐 Diving into **Blockchain Development** and exploring **Web3
+            technologies**.
             <br />
-            💻 Active Open Source Contributor on GitHub
+            📈 Enhancing skills in **Data Engineering** and **Big Data
+            Analytics**.
             <br />
-            🎓 Peer Mentor for Junior CS Students
+            🤖 Developing proficiency in **Robotics and IoT** systems.
           </Typography>
         </CardContent>
       </Card>
