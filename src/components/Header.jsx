@@ -24,7 +24,7 @@ import {
 } from "@mui/icons-material";
 
 const avatarUrl =
-  "https://media.licdn.com/dms/image/v2/D4D03AQFE5DwmKkGEgg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1700839156751?e=1742428800&v=beta&t=lrJaDWj0t-jZZ1RSD-KhIxLbPc3YX_Ej4Xy-7621LS8";
+  "https://media.licdn.com/dms/image/v2/D4D03AQFE5DwmKkGEgg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1700839156751?e=1748476800&v=beta&t=m-ApWJYLSAZaNF66HFH9opbF7iq-AS4YTUSUT1h_I20";
 
 const Header = () => {
   return (
