@@ -94,19 +94,28 @@ const App = () => {
 
   // Navigation items
   const navItems = Object.entries(componentMap).map(
-    ([path, { icon, label }]) => (
-      <ListItem
-        button
-        key={path}
-        component={Link}
-        to={path === "home" ? "/" : `/${path}`}
-        onClick={isMobile ? handleDrawerToggle : undefined}
+  ([path, { icon, label }]) => (
+    <ListItem
+      button
+      key={path}
+      component={Link}
+      to={path === "home" ? "/" : `/${path}`}
+      onClick={isMobile ? handleDrawerToggle : undefined}
+    >
+      <ListItemIcon
+        sx={{ color: theme.palette.mode === "dark" ? "#fff" : "#000" }}
       >
-        <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText primary={label} />
-      </ListItem>
-    )
-  );
+        {icon}
+      </ListItemIcon>
+      <ListItemText
+        primary={label}
+        primaryTypographyProps={{
+          sx: { color: theme.palette.mode === "dark" ? "#fff" : "#000" },
+        }}
+      />
+    </ListItem>
+  )
+);
 
   return (
     <ThemeProvider theme={theme}>
