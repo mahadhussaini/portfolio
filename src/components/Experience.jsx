@@ -68,19 +68,17 @@ const Experience = () => {
 
         <Divider sx={{ marginY: 3, backgroundColor: "#f1c40f" }} />
 
-        {/* Freelancer.com Experience */}
+        {/* Ziphire HR Experience */}
         <Box mb={4}>
           <Typography variant="h6" sx={{ color: "#f1c40f" }}>
-            Freelancer.com - Full Stack Developer
+            Ziphire HR - Full Stack Developer
           </Typography>
           <Typography color="textprimary">
             03/2024 - 02/2025 | Remote
           </Typography>
 
           <Typography variant="body1" sx={{ marginTop: 2 }}>
-            As a Full Stack Developer on Freelancer, I delivered custom
-            solutions to clients across various industries, focusing on building
-            dynamic and high-performance applications.
+            Worked as a Full Stack Developer at Ziphire HR, contributing to the design and development of scalable web applications. Focused on delivering dynamic, high-performance solutions tailored to meet diverse business needs across multiple industries.
           </Typography>
 
           <ul style={{ marginTop: 10, paddingLeft: 20 }}>
