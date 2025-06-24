@@ -92,7 +92,7 @@ const Header = () => {
         variant="body1"
         sx={{ color: "#ddd", mb: 4, maxWidth: "800px", margin: "0 auto" }}
       >
-        <strong>2+ years of experience</strong> in web development, focusing on
+        <strong>3 years of experience</strong> in web development, focusing on
         modern JavaScript frameworks, RESTful APIs, and cloud deployment. My
         projects range from <strong>freelance applications</strong> to{" "}
         <strong>enterprise-level solutions</strong> and{" "}
