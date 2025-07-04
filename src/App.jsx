@@ -30,6 +30,7 @@ import {
   EmojiObjects as EmojiObjectsIcon,
 } from "@mui/icons-material";
 import { motion, AnimatePresence } from "framer-motion";
+import { Global } from "@emotion/react";
 
 // Lazy load components
 const Header = lazy(() => import("./components/Header.jsx"));
@@ -65,21 +66,59 @@ const App = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width:600px)");
 
-  // Dynamic MUI theme based on darkMode state
+  // Modern color palette
+  const palette = darkMode
+    ? {
+        mode: "dark",
+        primary: { main: "#00c6fb" }, // Vibrant blue
+        secondary: { main: "#ff7f50" }, // Coral
+        background: {
+          default: "#181c24",
+          paper: "rgba(24,28,36,0.95)",
+        },
+        text: { primary: "#fff" },
+      }
+    : {
+        mode: "light",
+        primary: { main: "#6a11cb" }, // Purple
+        secondary: { main: "#2575fc" }, // Blue
+        background: {
+          default: "#f4f7fa",
+          paper: "rgba(255,255,255,0.95)",
+        },
+        text: { primary: "#222" },
+      };
+
+  // Modern font
   const theme = useMemo(
     () =>
       createTheme({
-        palette: {
-          mode: darkMode ? "dark" : "light",
-          primary: {
-            main: "rgba(241, 196, 15, 0)",
-          },
-          background: {
-            default: darkMode ? "#121212" : "#f4f4f4",
-            paper: darkMode ? "#1e1e1e" : "#fff",
-          },
-          text: {
-            primary: darkMode ? "#ffffff" : "#333",
+        palette,
+        typography: {
+          fontFamily: [
+            'Poppins',
+            'Inter',
+            'Roboto',
+            'Helvetica Neue',
+            'Arial',
+            'sans-serif',
+          ].join(','),
+          h1: { fontWeight: 700 },
+          h2: { fontWeight: 700 },
+          h3: { fontWeight: 600 },
+          h4: { fontWeight: 600 },
+        },
+        shape: { borderRadius: 16 },
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: {
+                borderRadius: 24,
+                textTransform: 'none',
+                fontWeight: 600,
+                fontSize: '1rem',
+              },
+            },
           },
         },
       }),
@@ -120,6 +159,19 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      {/* Global gradient background */}
+      <Global
+        styles={{
+          body: {
+            minHeight: '100vh',
+            background: darkMode
+              ? 'linear-gradient(135deg, #232526 0%, #414345 100%)'
+              : 'linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%)',
+            fontFamily: 'Poppins, Inter, Roboto, Helvetica Neue, Arial, sans-serif',
+            transition: 'background 0.5s',
+          },
+        }}
+      />
       <Router>
         <Box
           sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}

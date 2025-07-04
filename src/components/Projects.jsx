@@ -7,15 +7,15 @@ import {
   Grid,
   Chip,
   Stack,
-  Modal,
-  Box,
   TextField,
   Select,
   MenuItem,
   InputLabel,
   FormControl,
+  Box,
 } from "@mui/material";
-import { Build } from "@mui/icons-material";
+import { Search as SearchIcon, WebAsset } from "@mui/icons-material";
+import { motion } from "framer-motion";
 
 // Project Data
 const projects = [
@@ -198,141 +198,141 @@ const Projects = () => {
   });
 
   return (
-    <Card
-      sx={{
-        backgroundColor: "rgba(0, 0, 0, 0.8)",
-        borderRadius: "15px",
-        padding: "20px",
-        color: "#fff",
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
     >
-      <CardContent>
+      <Box
+        sx={{
+          background: 'rgba(255,255,255,0.15)',
+          borderRadius: 6,
+          boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+          backdropFilter: 'blur(16px)',
+          border: '1.5px solid rgba(255,255,255,0.25)',
+          maxWidth: 1200,
+          margin: '0 auto',
+          p: { xs: 2, sm: 4 },
+        }}
+      >
         <Typography
           variant="h4"
-          gutterBottom
           align="center"
-          sx={{ fontWeight: "bold", color: "#fff", marginBottom: "20px" }}
+          sx={{ fontWeight: 700, color: '#2575fc', mb: 3 }}
         >
           🚀 Projects
         </Typography>
-
-        {/* Search and Filter Options */}
-        <Stack direction="row" spacing={2} sx={{ marginBottom: 3 }}>
+        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} mb={3} alignItems="center" justifyContent="center">
           <TextField
-            variant="outlined"
             label="Search Projects..."
-            fullWidth
-            sx={{
-              backgroundColor: "white",
-              borderRadius: 1,
-              "& .MuiInputLabel-root": {
-                color: "#333",
-              },
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "#764ba2",
-                },
-                "&:hover fieldset": {
-                  borderColor: "#5a3d90",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "#4a2c7d",
-                },
-              },
-            }}
-            InputLabelProps={{
-              sx: {
-                color: "#333",
-                fontWeight: "bold",
-              },
-            }}
+            variant="outlined"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={e => setSearchQuery(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <SearchIcon sx={{ color: '#2575fc', mr: 1 }} />
+              ),
+              sx: { color: '#222' },
+            }}
+            sx={{ backgroundColor: 'rgba(255,255,255,0.3)', borderRadius: 2, minWidth: 220 }}
           />
-
-          <FormControl fullWidth>
-            <InputLabel
-              sx={{
-                color: "#333",
-                fontWeight: "bold",
-                fontSize: "1rem",
-                mb: 1,
-              }}
-            >
-              Filter by Technology
-            </InputLabel>
-
+          <FormControl sx={{ minWidth: 180 }}>
+            <InputLabel sx={{ color: '#2575fc' }}>Filter by Tech</InputLabel>
             <Select
               value={selectedTag}
-              onChange={(e) => setSelectedTag(e.target.value)}
-              sx={{ backgroundColor: "white", borderRadius: 1 }}
+              onChange={e => setSelectedTag(e.target.value)}
+              sx={{ color: '#2575fc', backgroundColor: 'rgba(255,255,255,0.3)' }}
+              displayEmpty
             >
               <MenuItem value="">All</MenuItem>
-              {uniqueTags.map((tag, index) => (
-                <MenuItem key={index} value={tag}>
-                  {tag}
-                </MenuItem>
+              {uniqueTags.map(tag => (
+                <MenuItem key={tag} value={tag}>{tag}</MenuItem>
               ))}
             </Select>
           </FormControl>
         </Stack>
-
-        {/* Project Cards */}
         <Grid container spacing={3}>
-          {filteredProjects.map((project, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card
-                sx={{
-                  backgroundColor: "rgba(255, 255, 255, 0.2)",
-                  borderRadius: "10px",
-                  padding: "15px",
-                  color: "#fff",
-                  transition: "transform 0.3s ease-in-out",
-                  "&:hover": {
-                    transform: "scale(1.05)",
-                  },
-                }}
-              >
-                <Typography variant="h6" sx={{ color: "#fff" }}>
-                  {project.name}
-                </Typography>
-                <Typography variant="body2" sx={{ color: "#ddd", mb: 2 }}>
-                  {project.description}
-                </Typography>
-                <Typography variant="body2" sx={{ color: "#bbb", mb: 2 }}>
-                  <strong>Year: </strong>
-                  {project.year}
-                </Typography>
-
-                <Stack direction="row" spacing={1} mb={2}>
-                  {project.tags.map((tag, index) => (
-                    <Chip
-                      key={index}
-                      label={tag}
-                      size="small"
-                      color="primary"
-                    />
-                  ))}
-                </Stack>
-
-                <Button
-                  variant="contained"
-                  href={project.url}
-                  target="_blank"
-                  sx={{
-                    backgroundColor: "#ff7f50",
-                    "&:hover": { backgroundColor: "#ff6347" },
-                    borderRadius: "10px",
-                  }}
+          {filteredProjects.length > 0 ? (
+            filteredProjects.map((project, idx) => (
+              <Grid item xs={12} sm={6} md={4} key={project.name}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 * idx }}
+                  viewport={{ once: true }}
                 >
-                  View Project
-                </Button>
-              </Card>
+                  <Card
+                    sx={{
+                      background: 'linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%)',
+                      borderRadius: 4,
+                      boxShadow: 3,
+                      p: 2,
+                      minHeight: 220,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      transition: 'transform 0.2s, box-shadow 0.2s',
+                      '&:hover': {
+                        transform: 'translateY(-8px) scale(1.03)',
+                        boxShadow: 6,
+                      },
+                    }}
+                  >
+                    <CardContent>
+                      <Stack direction="row" alignItems="center" spacing={1} mb={1}>
+                        <WebAsset sx={{ color: '#2575fc' }} />
+                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#2575fc' }}>
+                          {project.name}
+                        </Typography>
+                      </Stack>
+                      <Typography variant="body2" sx={{ color: '#333', mb: 1 }}>
+                        {project.description}
+                      </Typography>
+                      <Stack direction="row" spacing={1} flexWrap="wrap" mb={1}>
+                        {project.tags.map(tag => (
+                          <Chip
+                            key={tag}
+                            label={tag}
+                            size="small"
+                            sx={{
+                              background: 'linear-gradient(90deg, #00c6fb 0%, #005bea 100%)',
+                              color: '#fff',
+                              fontWeight: 500,
+                              fontSize: '0.9rem',
+                            }}
+                          />
+                        ))}
+                      </Stack>
+                      <Typography variant="caption" sx={{ color: '#888' }}>
+                        {project.year}
+                      </Typography>
+                    </CardContent>
+                    <Stack direction="row" spacing={1} mt={1}>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        href={project.url}
+                        target="_blank"
+                        size="small"
+                        sx={{ fontWeight: 600, borderRadius: 2 }}
+                      >
+                        View Code
+                      </Button>
+                    </Stack>
+                  </Card>
+                </motion.div>
+              </Grid>
+            ))
+          ) : (
+            <Grid item xs={12}>
+              <Typography align="center" color="#888" sx={{ mt: 4 }}>
+                No projects found.
+              </Typography>
             </Grid>
-          ))}
+          )}
         </Grid>
-      </CardContent>
-    </Card>
+      </Box>
+    </motion.div>
   );
 };
 

@@ -8,7 +8,6 @@ import {
   Grid,
   Chip,
   TextField,
-  Box,
   Tooltip,
   CircularProgress,
   Fade,
@@ -20,35 +19,35 @@ import {
   LinearProgress,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { Search as SearchIcon, Code as CodeIcon } from "@mui/icons-material";
+import { Search as SearchIcon, Code as CodeIcon, Storage, Cloud, Security, Build, BugReport, Web, DeveloperMode } from "@mui/icons-material";
 
 // Skill data with proficiency levels (1-5)
 const skills = [
-  { name: "HTML", category: "Frontend", description: "Markup language for web pages", level: 5 },
-  { name: "CSS", category: "Frontend", description: "Style sheet language for web design", level: 5 },
-  { name: "JavaScript", category: "Frontend", description: "Programming language for web development", level: 5 },
-  { name: "React.js", category: "Frontend", description: "Library for building UIs", level: 4 },
-  { name: "Node.js", category: "Backend", description: "Runtime for server-side development", level: 4 },
-  { name: "Express.js", category: "Backend", description: "Web framework for Node.js", level: 4 },
-  { name: "MongoDB", category: "Database", description: "NoSQL database", level: 4 },
-  { name: "SQL", category: "Database", description: "Relational database language", level: 3 },
-  { name: "Python", category: "Backend", description: "Versatile programming language", level: 4 },
-  { name: "Docker", category: "Tools", description: "Containerization platform", level: 3 },
-  { name: "Git", category: "Tools", description: "Version control system", level: 4 },
-  { name: "Bootstrap", category: "Frontend", description: "CSS framework for responsive design", level: 4 },
-  { name: "Material UI", category: "Frontend", description: "CSS library for UI design", level: 4 },
-  { name: "TypeScript", category: "Frontend", description: "Superset of JavaScript", level: 4 },
-  { name: "Next.js", category: "Frontend", description: "React framework for server-side rendering", level: 3 },
-  { name: "Redux", category: "Frontend", description: "State management library for React", level: 3 },
-  { name: "GraphQL", category: "Backend", description: "Query language for APIs", level: 3 },
-  { name: "RESTful API", category: "Backend", description: "API design for web services", level: 3 },
-  { name: "Jest", category: "Testing", description: "JavaScript testing framework", level: 3 },
-  { name: "Cypress", category: "Testing", description: "JavaScript testing framework", level: 3 },
-  { name: "JWT", category: "Security", description: "JSON Web Token for authentication", level: 3 },
-  { name: "OAuth", category: "Security", description: "Open standard for authorization", level: 3 },
-  { name: "Firebase", category: "Backend", description: "Platform for building web and mobile apps", level: 3 },
-  { name: "AWS", category: "Cloud", description: "Cloud computing platform", level: 3 },
-  { name: "Azure", category: "Cloud", description: "Cloud computing platform", level: 3 },
+  { name: "HTML", category: "Frontend", description: "Markup language for web pages", level: 5, icon: <Web /> },
+  { name: "CSS", category: "Frontend", description: "Style sheet language for web design", level: 5, icon: <Web /> },
+  { name: "JavaScript", category: "Frontend", description: "Programming language for web development", level: 5, icon: <DeveloperMode /> },
+  { name: "React.js", category: "Frontend", description: "Library for building UIs", level: 4, icon: <CodeIcon /> },
+  { name: "Node.js", category: "Backend", description: "Runtime for server-side development", level: 4, icon: <Build /> },
+  { name: "Express.js", category: "Backend", description: "Web framework for Node.js", level: 4, icon: <Build /> },
+  { name: "MongoDB", category: "Database", description: "NoSQL database", level: 4, icon: <Storage /> },
+  { name: "SQL", category: "Database", description: "Relational database language", level: 3, icon: <Storage /> },
+  { name: "Python", category: "Backend", description: "Versatile programming language", level: 4, icon: <DeveloperMode /> },
+  { name: "Docker", category: "Tools", description: "Containerization platform", level: 3, icon: <Build /> },
+  { name: "Git", category: "Tools", description: "Version control system", level: 4, icon: <Build /> },
+  { name: "Bootstrap", category: "Frontend", description: "CSS framework for responsive design", level: 4, icon: <Web /> },
+  { name: "Material UI", category: "Frontend", description: "CSS library for UI design", level: 4, icon: <Web /> },
+  { name: "TypeScript", category: "Frontend", description: "Superset of JavaScript", level: 4, icon: <DeveloperMode /> },
+  { name: "Next.js", category: "Frontend", description: "React framework for server-side rendering", level: 3, icon: <CodeIcon /> },
+  { name: "Redux", category: "Frontend", description: "State management library for React", level: 3, icon: <CodeIcon /> },
+  { name: "GraphQL", category: "Backend", description: "Query language for APIs", level: 3, icon: <CodeIcon /> },
+  { name: "RESTful API", category: "Backend", description: "API design for web services", level: 3, icon: <CodeIcon /> },
+  { name: "Jest", category: "Testing", description: "JavaScript testing framework", level: 3, icon: <BugReport /> },
+  { name: "Cypress", category: "Testing", description: "JavaScript testing framework", level: 3, icon: <BugReport /> },
+  { name: "JWT", category: "Security", description: "JSON Web Token for authentication", level: 3, icon: <Security /> },
+  { name: "OAuth", category: "Security", description: "Open standard for authorization", level: 3, icon: <Security /> },
+  { name: "Firebase", category: "Backend", description: "Platform for building web and mobile apps", level: 3, icon: <Cloud /> },
+  { name: "AWS", category: "Cloud", description: "Cloud computing platform", level: 3, icon: <Cloud /> },
+  { name: "Azure", category: "Cloud", description: "Cloud computing platform", level: 3, icon: <Cloud /> },
 ];
 
 // Extract unique categories and add 'All' for general display
@@ -93,17 +92,21 @@ const Skills = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: -20 }}
+      initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.7 }}
     >
       <Card
         sx={{
-          backgroundColor: "rgba(0, 0, 0, 0.8)",
-          borderRadius: "15px",
-          color: "#fff",
-          padding: "20px",
-          backdropFilter: "blur(10px)",
+          background: 'rgba(255,255,255,0.15)',
+          borderRadius: 6,
+          color: '#222',
+          padding: { xs: 2, sm: 4 },
+          boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+          backdropFilter: 'blur(16px)',
+          border: '1.5px solid rgba(255,255,255,0.25)',
+          maxWidth: 900,
+          margin: '0 auto',
         }}
       >
         <CardContent>
@@ -111,9 +114,9 @@ const Skills = () => {
             variant="h4"
             gutterBottom
             align="center"
-            sx={{ fontWeight: "bold", color: "#fff", marginBottom: "20px" }}
+            sx={{ fontWeight: 700, color: '#2575fc', mb: 3 }}
           >
-            🎯 Skills
+            🏆 Skills
           </Typography>
 
           {/* Search Bar */}
@@ -123,24 +126,24 @@ const Skills = () => {
             fullWidth
             value={searchQuery}
             onChange={handleSearchChange}
-            sx={{ marginBottom: 3, backgroundColor: "rgba(255,255,255,0.2)", borderRadius: 1 }}
+            sx={{ marginBottom: 3, backgroundColor: 'rgba(255,255,255,0.3)', borderRadius: 2 }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon sx={{ color: "#fff" }} />
+                  <SearchIcon sx={{ color: '#2575fc' }} />
                 </InputAdornment>
               ),
-              sx: { color: "#fff" },
+              sx: { color: '#222' },
             }}
           />
 
           {/* Proficiency Filter */}
           <FormControl fullWidth sx={{ mb: 3 }}>
-            <InputLabel sx={{ color: "#fff" }}>Proficiency Level</InputLabel>
+            <InputLabel sx={{ color: '#2575fc' }}>Proficiency Level</InputLabel>
             <Select
               value={selectedProficiency}
               onChange={handleProficiencyChange}
-              sx={{ color: "#fff", backgroundColor: "rgba(255,255,255,0.2)" }}
+              sx={{ color: '#2575fc', backgroundColor: 'rgba(255,255,255,0.3)' }}
             >
               {proficiencyLevels.map((level) => (
                 <MenuItem key={level} value={level}>
@@ -158,8 +161,8 @@ const Skills = () => {
             scrollButtons="auto"
             sx={{
               marginBottom: 3,
-              "& .MuiTab-root": { color: "#ddd", "&:hover": { color: "#fff" } },
-              "& .Mui-selected": { color: "#ff7f50 !important", fontWeight: "bold" },
+              '& .MuiTab-root': { color: '#888', '&:hover': { color: '#2575fc' } },
+              '& .Mui-selected': { color: '#2575fc !important', fontWeight: 700 },
             }}
           >
             {categories.map((category, index) => (
@@ -174,15 +177,45 @@ const Skills = () => {
                 <Grid item xs={12} sm={6} md={4} key={index}>
                   <Fade in>
                     <Tooltip title={skill.description} arrow>
-                      <Chip label={skill.name} sx={{ width: "100%", color: "#fff", backgroundColor: "#ff7f50" }} />
+                      <Chip
+                        icon={skill.icon}
+                        label={skill.name}
+                        sx={{
+                          width: '100%',
+                          color: '#fff',
+                          background: 'linear-gradient(90deg, #00c6fb 0%, #005bea 100%)',
+                          fontWeight: 500,
+                          fontSize: '1rem',
+                          mb: 1,
+                          boxShadow: 1,
+                        }}
+                      />
                     </Tooltip>
                   </Fade>
-                  <LinearProgress variant="determinate" value={skill.level * 20} sx={{ mt: 1, height: 8, borderRadius: 1 }} />
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '100%' }}
+                    transition={{ duration: 0.8, delay: 0.1 * index }}
+                  >
+                    <LinearProgress
+                      variant="determinate"
+                      value={skill.level * 20}
+                      sx={{
+                        mt: 1,
+                        height: 8,
+                        borderRadius: 2,
+                        background: 'rgba(0,0,0,0.08)',
+                        '& .MuiLinearProgress-bar': {
+                          background: 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)',
+                        },
+                      }}
+                    />
+                  </motion.div>
                 </Grid>
               ))}
             </Grid>
           ) : (
-            <CircularProgress sx={{ color: "#ff7f50", marginTop: 5 }} />
+            <CircularProgress sx={{ color: '#2575fc', marginTop: 5 }} />
           )}
         </CardContent>
       </Card>
