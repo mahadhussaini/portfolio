@@ -38,6 +38,7 @@ const Skills = lazy(() => import("./components/Skills.jsx"));
 const Projects = lazy(() => import("./components/Projects.jsx"));
 const Experience = lazy(() => import("./components/Experience.jsx"));
 const Education = lazy(() => import("./components/Education.jsx"));
+const Testimonials = lazy(() => import("./components/Testimonials.jsx"));
 const Footer = lazy(() => import("./components/Footer.jsx"));
 
 // Page transition animation
@@ -59,6 +60,7 @@ const componentMap = {
     label: "Experience",
   },
   education: { Component: Education, icon: <SchoolIcon />, label: "Education" },
+  testimonials: { Component: Testimonials, icon: <EmojiObjectsIcon />, label: "Testimonials" },
 };
 
 const App = () => {
@@ -70,23 +72,31 @@ const App = () => {
   const palette = darkMode
     ? {
         mode: "dark",
-        primary: { main: "#00c6fb" }, // Vibrant blue
-        secondary: { main: "#ff7f50" }, // Coral
+        primary: { main: "#6366f1" }, // Modern indigo
+        secondary: { main: "#f59e0b" }, // Amber
         background: {
-          default: "#181c24",
-          paper: "rgba(24,28,36,0.95)",
+          default: "#0f172a",
+          paper: "rgba(15,23,42,0.95)",
         },
-        text: { primary: "#fff" },
+        text: { primary: "#f8fafc" },
+        success: { main: "#10b981" },
+        warning: { main: "#f59e0b" },
+        error: { main: "#ef4444" },
+        info: { main: "#3b82f6" },
       }
     : {
         mode: "light",
-        primary: { main: "#6a11cb" }, // Purple
-        secondary: { main: "#2575fc" }, // Blue
+        primary: { main: "#6366f1" }, // Modern indigo
+        secondary: { main: "#f59e0b" }, // Amber
         background: {
-          default: "#f4f7fa",
+          default: "#f8fafc",
           paper: "rgba(255,255,255,0.95)",
         },
-        text: { primary: "#222" },
+        text: { primary: "#1e293b" },
+        success: { main: "#10b981" },
+        warning: { main: "#f59e0b" },
+        error: { main: "#ef4444" },
+        info: { main: "#3b82f6" },
       };
 
   // Modern font
@@ -96,27 +106,120 @@ const App = () => {
         palette,
         typography: {
           fontFamily: [
-            'Poppins',
             'Inter',
+            'Poppins',
             'Roboto',
             'Helvetica Neue',
             'Arial',
             'sans-serif',
           ].join(','),
-          h1: { fontWeight: 700 },
-          h2: { fontWeight: 700 },
-          h3: { fontWeight: 600 },
-          h4: { fontWeight: 600 },
+          h1: { 
+            fontWeight: 800,
+            fontSize: '2.5rem',
+            letterSpacing: '-0.025em'
+          },
+          h2: { 
+            fontWeight: 700,
+            fontSize: '2rem',
+            letterSpacing: '-0.025em'
+          },
+          h3: { 
+            fontWeight: 600,
+            fontSize: '1.5rem',
+            letterSpacing: '-0.025em'
+          },
+          h4: { 
+            fontWeight: 600,
+            fontSize: '1.25rem',
+            letterSpacing: '-0.025em'
+          },
+          h5: { 
+            fontWeight: 600,
+            fontSize: '1.125rem',
+            letterSpacing: '-0.025em'
+          },
+          h6: { 
+            fontWeight: 600,
+            fontSize: '1rem',
+            letterSpacing: '-0.025em'
+          },
+          body1: {
+            fontSize: '1rem',
+            lineHeight: 1.6,
+            letterSpacing: '0.025em'
+          },
+          body2: {
+            fontSize: '0.875rem',
+            lineHeight: 1.5,
+            letterSpacing: '0.025em'
+          },
         },
-        shape: { borderRadius: 16 },
+        shape: { borderRadius: 12 },
         components: {
           MuiButton: {
             styleOverrides: {
               root: {
-                borderRadius: 24,
+                borderRadius: 8,
                 textTransform: 'none',
                 fontWeight: 600,
-                fontSize: '1rem',
+                fontSize: '0.875rem',
+                padding: '8px 24px',
+                boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+                '&:hover': {
+                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                },
+              },
+              contained: {
+                background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                '&:hover': {
+                  background: 'linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%)',
+                },
+              },
+              outlined: {
+                borderWidth: '2px',
+                '&:hover': {
+                  borderWidth: '2px',
+                },
+              },
+            },
+          },
+          MuiCard: {
+            styleOverrides: {
+              root: {
+                borderRadius: 16,
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                '&:hover': {
+                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                },
+              },
+            },
+          },
+          MuiChip: {
+            styleOverrides: {
+              root: {
+                borderRadius: 8,
+                fontWeight: 500,
+                fontSize: '0.75rem',
+              },
+            },
+          },
+          MuiTextField: {
+            styleOverrides: {
+              root: {
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: 8,
+                },
+              },
+            },
+          },
+          MuiAppBar: {
+            styleOverrides: {
+              root: {
+                background: darkMode 
+                  ? 'rgba(15,23,42,0.8)' 
+                  : 'rgba(255,255,255,0.98)',
+                backdropFilter: 'blur(20px)',
+                borderBottom: `1px solid ${darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`,
               },
             },
           },
@@ -165,9 +268,9 @@ const App = () => {
           body: {
             minHeight: '100vh',
             background: darkMode
-              ? 'linear-gradient(135deg, #232526 0%, #414345 100%)'
-              : 'linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%)',
-            fontFamily: 'Poppins, Inter, Roboto, Helvetica Neue, Arial, sans-serif',
+              ? 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)'
+              : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)',
+            fontFamily: 'Inter, Poppins, Roboto, Helvetica Neue, Arial, sans-serif',
             transition: 'background 0.5s',
           },
         }}
@@ -177,20 +280,26 @@ const App = () => {
           sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
         >
           {/* AppBar with theme toggle and menu button */}
-          <AppBar position="static">
+          <AppBar position="static" sx={{
+            background: theme.palette.mode === 'dark'
+              ? 'rgba(15,23,42,0.8)'
+              : 'rgba(255,255,255,0.98)',
+            color: theme.palette.text.primary,
+            boxShadow: theme.palette.mode === 'dark' ? 3 : 2,
+            borderBottom: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`,
+          }}>
             <Toolbar sx={{ justifyContent: "space-between" }}>
               <IconButton
-                color="inherit"
                 edge="start"
                 onClick={handleDrawerToggle}
-                sx={{ display: { sm: "none" } }}
+                sx={{ display: { sm: "none" }, color: theme.palette.text.primary }}
               >
                 <MenuIcon />
               </IconButton>
-              <Typography variant="h6" component="div">
+              <Typography variant="h6" component="div" sx={{ color: theme.palette.text.primary, fontWeight: 700 }}>
                 My Portfolio
               </Typography>
-              <IconButton color="inherit" onClick={handleThemeToggle}>
+              <IconButton onClick={handleThemeToggle} sx={{ color: theme.palette.text.primary }}>
                 {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
               </IconButton>
             </Toolbar>
@@ -223,6 +332,7 @@ const App = () => {
                         { Component: Projects, key: "projects" },
                         { Component: Experience, key: "experience" },
                         { Component: Education, key: "education" },
+                        { Component: Testimonials, key: "testimonials" },
                       ].map(({ Component, key }) => (
                         <Grid item xs={12} key={key}>
                           <Suspense

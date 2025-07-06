@@ -9,7 +9,6 @@ import {
   Chip,
   TextField,
   Tooltip,
-  CircularProgress,
   Fade,
   InputAdornment,
   MenuItem,
@@ -17,37 +16,80 @@ import {
   FormControl,
   InputLabel,
   LinearProgress,
+  Box,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import { Search as SearchIcon, Code as CodeIcon, Storage, Cloud, Security, Build, BugReport, Web, DeveloperMode } from "@mui/icons-material";
 
 // Skill data with proficiency levels (1-5)
 const skills = [
-  { name: "HTML", category: "Frontend", description: "Markup language for web pages", level: 5, icon: <Web /> },
-  { name: "CSS", category: "Frontend", description: "Style sheet language for web design", level: 5, icon: <Web /> },
-  { name: "JavaScript", category: "Frontend", description: "Programming language for web development", level: 5, icon: <DeveloperMode /> },
-  { name: "React.js", category: "Frontend", description: "Library for building UIs", level: 4, icon: <CodeIcon /> },
-  { name: "Node.js", category: "Backend", description: "Runtime for server-side development", level: 4, icon: <Build /> },
-  { name: "Express.js", category: "Backend", description: "Web framework for Node.js", level: 4, icon: <Build /> },
-  { name: "MongoDB", category: "Database", description: "NoSQL database", level: 4, icon: <Storage /> },
-  { name: "SQL", category: "Database", description: "Relational database language", level: 3, icon: <Storage /> },
-  { name: "Python", category: "Backend", description: "Versatile programming language", level: 4, icon: <DeveloperMode /> },
-  { name: "Docker", category: "Tools", description: "Containerization platform", level: 3, icon: <Build /> },
-  { name: "Git", category: "Tools", description: "Version control system", level: 4, icon: <Build /> },
-  { name: "Bootstrap", category: "Frontend", description: "CSS framework for responsive design", level: 4, icon: <Web /> },
-  { name: "Material UI", category: "Frontend", description: "CSS library for UI design", level: 4, icon: <Web /> },
-  { name: "TypeScript", category: "Frontend", description: "Superset of JavaScript", level: 4, icon: <DeveloperMode /> },
-  { name: "Next.js", category: "Frontend", description: "React framework for server-side rendering", level: 3, icon: <CodeIcon /> },
-  { name: "Redux", category: "Frontend", description: "State management library for React", level: 3, icon: <CodeIcon /> },
-  { name: "GraphQL", category: "Backend", description: "Query language for APIs", level: 3, icon: <CodeIcon /> },
-  { name: "RESTful API", category: "Backend", description: "API design for web services", level: 3, icon: <CodeIcon /> },
-  { name: "Jest", category: "Testing", description: "JavaScript testing framework", level: 3, icon: <BugReport /> },
-  { name: "Cypress", category: "Testing", description: "JavaScript testing framework", level: 3, icon: <BugReport /> },
-  { name: "JWT", category: "Security", description: "JSON Web Token for authentication", level: 3, icon: <Security /> },
-  { name: "OAuth", category: "Security", description: "Open standard for authorization", level: 3, icon: <Security /> },
-  { name: "Firebase", category: "Backend", description: "Platform for building web and mobile apps", level: 3, icon: <Cloud /> },
-  { name: "AWS", category: "Cloud", description: "Cloud computing platform", level: 3, icon: <Cloud /> },
-  { name: "Azure", category: "Cloud", description: "Cloud computing platform", level: 3, icon: <Cloud /> },
+  // Frontend Technologies
+  { name: "React.js", category: "Frontend", description: "Modern UI library for building interactive web applications", level: 5, icon: <CodeIcon /> },
+  { name: "Next.js", category: "Frontend", description: "Full-stack React framework with SSR and SSG", level: 5, icon: <CodeIcon /> },
+  { name: "TypeScript", category: "Frontend", description: "Typed superset of JavaScript for better development experience", level: 5, icon: <DeveloperMode /> },
+  { name: "JavaScript (ES6+)", category: "Frontend", description: "Modern JavaScript with advanced features", level: 5, icon: <DeveloperMode /> },
+  { name: "HTML5", category: "Frontend", description: "Semantic markup for web applications", level: 5, icon: <Web /> },
+  { name: "CSS3", category: "Frontend", description: "Advanced styling with Flexbox, Grid, and animations", level: 5, icon: <Web /> },
+  { name: "Material UI", category: "Frontend", description: "React component library for rapid UI development", level: 5, icon: <Web /> },
+  { name: "Tailwind CSS", category: "Frontend", description: "Utility-first CSS framework for rapid styling", level: 4, icon: <Web /> },
+  { name: "Redux Toolkit", category: "Frontend", description: "State management for React applications", level: 4, icon: <CodeIcon /> },
+  { name: "React Query", category: "Frontend", description: "Data fetching and caching for React", level: 4, icon: <CodeIcon /> },
+  { name: "Framer Motion", category: "Frontend", description: "Animation library for React", level: 4, icon: <CodeIcon /> },
+  { name: "React Native", category: "Frontend", description: "Cross-platform mobile development", level: 4, icon: <CodeIcon /> },
+
+  // Backend Technologies
+  { name: "Node.js", category: "Backend", description: "JavaScript runtime for server-side development", level: 5, icon: <Build /> },
+  { name: "Express.js", category: "Backend", description: "Fast, unopinionated web framework for Node.js", level: 5, icon: <Build /> },
+  { name: "Python", category: "Backend", description: "Versatile programming language for backend and ML", level: 4, icon: <DeveloperMode /> },
+  { name: "FastAPI", category: "Backend", description: "Modern Python web framework for APIs", level: 4, icon: <Build /> },
+  { name: "GraphQL", category: "Backend", description: "Query language for APIs with strong typing", level: 4, icon: <CodeIcon /> },
+  { name: "RESTful APIs", category: "Backend", description: "API design principles and best practices", level: 5, icon: <CodeIcon /> },
+  { name: "Microservices", category: "Backend", description: "Distributed system architecture", level: 4, icon: <Build /> },
+  { name: "Serverless", category: "Backend", description: "Cloud-native serverless architecture", level: 4, icon: <Cloud /> },
+
+  // Database Technologies
+  { name: "MongoDB", category: "Database", description: "NoSQL document database", level: 5, icon: <Storage /> },
+  { name: "PostgreSQL", category: "Database", description: "Advanced open-source relational database", level: 4, icon: <Storage /> },
+  { name: "Redis", category: "Database", description: "In-memory data structure store", level: 4, icon: <Storage /> },
+  { name: "Elasticsearch", category: "Database", description: "Distributed search and analytics engine", level: 3, icon: <Storage /> },
+  { name: "Database Design", category: "Database", description: "Schema design and optimization", level: 4, icon: <Storage /> },
+
+  // Cloud & DevOps
+  { name: "AWS", category: "Cloud", description: "Amazon Web Services cloud platform", level: 4, icon: <Cloud /> },
+  { name: "Docker", category: "Cloud", description: "Containerization platform", level: 4, icon: <Cloud /> },
+  { name: "Kubernetes", category: "Cloud", description: "Container orchestration platform", level: 3, icon: <Cloud /> },
+  { name: "CI/CD", category: "Cloud", description: "Continuous Integration and Deployment", level: 4, icon: <Build /> },
+  { name: "GitHub Actions", category: "Cloud", description: "Automated workflows and deployments", level: 4, icon: <Build /> },
+  { name: "Jenkins", category: "Cloud", description: "Automation server for CI/CD", level: 3, icon: <Build /> },
+  { name: "Terraform", category: "Cloud", description: "Infrastructure as Code", level: 3, icon: <Cloud /> },
+
+  // Testing & Quality
+  { name: "Jest", category: "Testing", description: "JavaScript testing framework", level: 4, icon: <BugReport /> },
+  { name: "Cypress", category: "Testing", description: "End-to-end testing framework", level: 4, icon: <BugReport /> },
+  { name: "React Testing Library", category: "Testing", description: "Testing utilities for React", level: 4, icon: <BugReport /> },
+  { name: "Unit Testing", category: "Testing", description: "Component and function testing", level: 4, icon: <BugReport /> },
+  { name: "Integration Testing", category: "Testing", description: "API and service testing", level: 4, icon: <BugReport /> },
+
+  // Security
+  { name: "JWT", category: "Security", description: "JSON Web Token authentication", level: 4, icon: <Security /> },
+  { name: "OAuth 2.0", category: "Security", description: "Authorization framework", level: 4, icon: <Security /> },
+  { name: "API Security", category: "Security", description: "REST API security best practices", level: 4, icon: <Security /> },
+  { name: "Data Encryption", category: "Security", description: "Encryption and data protection", level: 3, icon: <Security /> },
+
+  // Tools & Utilities
+  { name: "Git", category: "Tools", description: "Version control system", level: 5, icon: <Build /> },
+  { name: "VS Code", category: "Tools", description: "Code editor and development environment", level: 5, icon: <Build /> },
+  { name: "Postman", category: "Tools", description: "API development and testing", level: 4, icon: <Build /> },
+  { name: "Webpack", category: "Tools", description: "Module bundler for JavaScript", level: 3, icon: <Build /> },
+  { name: "Vite", category: "Tools", description: "Fast build tool for modern web development", level: 4, icon: <Build /> },
+
+  // Soft Skills
+  { name: "Problem Solving", category: "Soft Skills", description: "Analytical thinking and solution design", level: 5, icon: <DeveloperMode /> },
+  { name: "Team Collaboration", category: "Soft Skills", description: "Working effectively in cross-functional teams", level: 5, icon: <DeveloperMode /> },
+  { name: "Agile/Scrum", category: "Soft Skills", description: "Project management methodologies", level: 4, icon: <DeveloperMode /> },
+  { name: "Code Review", category: "Soft Skills", description: "Peer code review and feedback", level: 4, icon: <DeveloperMode /> },
+  { name: "Technical Documentation", category: "Soft Skills", description: "Writing clear technical documentation", level: 4, icon: <DeveloperMode /> },
+  { name: "Mentoring", category: "Soft Skills", description: "Guiding junior developers", level: 4, icon: <DeveloperMode /> }
 ];
 
 // Extract unique categories and add 'All' for general display
@@ -114,7 +156,7 @@ const Skills = () => {
             variant="h4"
             gutterBottom
             align="center"
-            sx={{ fontWeight: 700, color: '#2575fc', mb: 3 }}
+            sx={{ fontWeight: 700, color: '#6366f1', mb: 3, letterSpacing: '-0.025em' }}
           >
             🏆 Skills
           </Typography>
@@ -130,7 +172,7 @@ const Skills = () => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon sx={{ color: '#2575fc' }} />
+                  <SearchIcon sx={{ color: '#6366f1' }} />
                 </InputAdornment>
               ),
               sx: { color: '#222' },
@@ -139,11 +181,11 @@ const Skills = () => {
 
           {/* Proficiency Filter */}
           <FormControl fullWidth sx={{ mb: 3 }}>
-            <InputLabel sx={{ color: '#2575fc' }}>Proficiency Level</InputLabel>
+            <InputLabel sx={{ color: '#6366f1' }}>Proficiency Level</InputLabel>
             <Select
               value={selectedProficiency}
               onChange={handleProficiencyChange}
-              sx={{ color: '#2575fc', backgroundColor: 'rgba(255,255,255,0.3)' }}
+              sx={{ color: '#6366f1', backgroundColor: 'rgba(255,255,255,0.3)' }}
             >
               {proficiencyLevels.map((level) => (
                 <MenuItem key={level} value={level}>
@@ -161,8 +203,8 @@ const Skills = () => {
             scrollButtons="auto"
             sx={{
               marginBottom: 3,
-              '& .MuiTab-root': { color: '#888', '&:hover': { color: '#2575fc' } },
-              '& .Mui-selected': { color: '#2575fc !important', fontWeight: 700 },
+              '& .MuiTab-root': { color: '#888', '&:hover': { color: '#6366f1' } },
+              '& .Mui-selected': { color: '#6366f1 !important', fontWeight: 700 },
             }}
           >
             {categories.map((category, index) => (
@@ -183,11 +225,14 @@ const Skills = () => {
                         sx={{
                           width: '100%',
                           color: '#fff',
-                          background: 'linear-gradient(90deg, #00c6fb 0%, #005bea 100%)',
+                          background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
                           fontWeight: 500,
-                          fontSize: '1rem',
+                          fontSize: '0.875rem',
                           mb: 1,
-                          boxShadow: 1,
+                          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                          '&:hover': {
+                            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                          },
                         }}
                       />
                     </Tooltip>
@@ -199,14 +244,14 @@ const Skills = () => {
                   >
                     <LinearProgress
                       variant="determinate"
-                      value={skill.level * 20}
+                      value={(skill.level / 5) * 100}
                       sx={{
-                        mt: 1,
                         height: 8,
-                        borderRadius: 2,
-                        background: 'rgba(0,0,0,0.08)',
+                        borderRadius: 4,
+                        backgroundColor: 'rgba(99, 102, 241, 0.2)',
                         '& .MuiLinearProgress-bar': {
-                          background: 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)',
+                          background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                          borderRadius: 4,
                         },
                       }}
                     />
@@ -215,7 +260,11 @@ const Skills = () => {
               ))}
             </Grid>
           ) : (
-            <CircularProgress sx={{ color: '#2575fc', marginTop: 5 }} />
+            <Box sx={{ textAlign: 'center', py: 4 }}>
+              <Typography variant="body1" sx={{ color: '#666' }}>
+                No skills found matching your criteria.
+              </Typography>
+            </Box>
           )}
         </CardContent>
       </Card>

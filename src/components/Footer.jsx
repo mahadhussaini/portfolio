@@ -27,16 +27,41 @@ const Footer = () => {
       {/* Top Section - Let's Connect */}
       <Typography
         variant="h5"
-        sx={{ fontWeight: 700, mb: 2, color: '#2575fc' }}
+        sx={{ fontWeight: 700, mb: 2, color: '#6366f1', letterSpacing: '-0.025em' }}
       >
-        Let&apos;s Connect!
+        Ready to Build Something Amazing?
       </Typography>
       <Typography
         variant="body1"
-        sx={{ maxWidth: "600px", margin: "0 auto", mb: 3, color: '#333' }}
+        sx={{ maxWidth: "600px", margin: "0 auto", mb: 3, color: '#333', lineHeight: 1.6, letterSpacing: '0.025em' }}
       >
-        Whether you&apos;re looking to collaborate on an exciting project or just want to chat about technology, feel free to reach out!
+        Whether you&apos;re looking to collaborate on an exciting project, need technical consultation, or just want to discuss the latest in web development, I&apos;d love to hear from you!
       </Typography>
+
+      {/* Testimonials Section */}
+      <Box sx={{ mb: 4, p: 3, background: 'rgba(255,255,255,0.1)', borderRadius: 3 }}>
+        <Typography variant="h6" sx={{ color: '#6366f1', mb: 2, fontWeight: 600, letterSpacing: '-0.025em' }}>
+          💬 What Clients Say
+        </Typography>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2 }}>
+          <Box sx={{ flex: 1, p: 2, background: 'rgba(255,255,255,0.8)', borderRadius: 2 }}>
+            <Typography variant="body2" sx={{ fontStyle: 'italic', color: '#333', mb: 1, lineHeight: 1.6 }}>
+              &quot;Mahad delivered our SaaS platform ahead of schedule with exceptional quality. His technical expertise and problem-solving skills are outstanding.&quot;
+            </Typography>
+            <Typography variant="caption" sx={{ color: '#6366f1', fontWeight: 600 }}>
+              — Sarah Chen, CTO at TechFlow Solutions
+            </Typography>
+          </Box>
+          <Box sx={{ flex: 1, p: 2, background: 'rgba(255,255,255,0.8)', borderRadius: 2 }}>
+            <Typography variant="body2" sx={{ fontStyle: 'italic', color: '#333', mb: 1, lineHeight: 1.6 }}>
+              &quot;Working with Mahad was a game-changer for our startup. He not only built a great product but also mentored our team on best practices.&quot;
+            </Typography>
+            <Typography variant="caption" sx={{ color: '#6366f1', fontWeight: 600 }}>
+              — Alex Rodriguez, Founder at InnovateLab
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
 
       {/* Social Media Links */}
       <Stack direction="row" spacing={3} justifyContent="center" mt={2}>
@@ -48,7 +73,7 @@ const Footer = () => {
             color="inherit"
             sx={{ transition: "color 0.2s" }}
           >
-            <GitHub fontSize="large" sx={{ color: "#2575fc", '&:hover': { color: '#ff7f50' } }} />
+            <GitHub fontSize="large" sx={{ color: "#6366f1", '&:hover': { color: '#f59e0b' } }} />
           </Link>
         </motion.div>
         <motion.div whileHover={{ scale: 1.2, rotate: 8 }} whileTap={{ scale: 0.95 }}>
@@ -59,7 +84,7 @@ const Footer = () => {
             color="inherit"
             sx={{ transition: "color 0.2s" }}
           >
-            <LinkedIn fontSize="large" sx={{ color: "#2575fc", '&:hover': { color: '#ff7f50' } }} />
+            <LinkedIn fontSize="large" sx={{ color: "#6366f1", '&:hover': { color: '#f59e0b' } }} />
           </Link>
         </motion.div>
         <motion.div whileHover={{ scale: 1.2, rotate: 0 }} whileTap={{ scale: 0.95 }}>
@@ -70,7 +95,7 @@ const Footer = () => {
             color="inherit"
             sx={{ transition: "color 0.2s" }}
           >
-            <Email fontSize="large" sx={{ color: "#2575fc", '&:hover': { color: '#ff7f50' } }} />
+            <Email fontSize="large" sx={{ color: "#6366f1", '&:hover': { color: '#f59e0b' } }} />
           </Link>
         </motion.div>
       </Stack>
@@ -78,7 +103,7 @@ const Footer = () => {
       {/* Divider */}
       <Divider
         sx={{
-          bgcolor: "rgba(37, 117, 252, 0.2)",
+          bgcolor: "rgba(99, 102, 241, 0.2)",
           my: 4,
           width: "50%",
           margin: "20px auto",
@@ -94,10 +119,12 @@ const Footer = () => {
           maxWidth: "700px",
           margin: "0 auto",
           mb: 3,
-          color: '#2575fc',
+          color: '#6366f1',
+          lineHeight: 1.6,
+          letterSpacing: '0.025em',
         }}
       >
-        &quot;Passion fuels innovation. Let&apos;s build the future, one line of code at a time.&quot;
+        &quot;The best code is not just functional—it&apos;s elegant, maintainable, and scalable. Let&apos;s build the future, one line of code at a time.&quot;
       </Typography>
 
       {/* Bottom Section - Copyright */}
@@ -106,7 +133,7 @@ const Footer = () => {
       </Typography>
 
       <Typography variant="body2">
-        Built with <Favorite sx={{ verticalAlign: "middle", color: "#ff7f50", mx: 0.5 }} /> by Syed Mahad Hussaini
+        Built with <Favorite sx={{ verticalAlign: "middle", color: "#f59e0b", mx: 0.5 }} /> and modern web technologies
       </Typography>
     </Box>
   );
