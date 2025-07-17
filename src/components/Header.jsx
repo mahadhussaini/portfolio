@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Typography,
   Button,
@@ -172,13 +173,13 @@ const Header = () => {
           letterSpacing: '0.025em',
         }}
       >
-        I&apos;m a passionate <b>Full Stack Developer</b> with expertise in building scalable, high-performance web applications. Specializing in modern JavaScript ecosystems, cloud-native architectures, and microservices, I transform complex business requirements into elegant, maintainable solutions.
+        Hi, I’m Mahad—a curious problem solver, lifelong learner, and passionate <b>Full Stack Developer</b>. I love building things that make life easier, more beautiful, or more fun. My journey in tech began with a fascination for how things work, and it’s grown into a career where I get to collaborate, create, and help others every day.
       </Typography>
       <Typography
         variant="body1"
         sx={{ color: subTextColor, maxWidth: 800, mb: 3, lineHeight: 1.6, letterSpacing: '0.025em' }}
       >
-        With <b>3+ years of experience</b> across diverse domains including <b>SaaS platforms</b>, <b>enterprise applications</b>, and <b>real-time systems</b>, I&apos;ve successfully delivered projects that serve millions of users. My expertise spans from <b>frontend optimization</b> and <b>backend architecture</b> to <b>DevOps automation</b> and <b>cloud infrastructure</b>.
+        Over the past few years, I’ve worked with amazing teams to deliver projects that solve real problems—whether it’s a SaaS platform for businesses, a tool for healthcare professionals, or a simple app that brings people together. I believe in the power of technology to connect, empower, and inspire. When I’m not coding, you’ll find me mentoring, learning something new, or enjoying a good cup of coffee. Let’s build something meaningful together!
       </Typography>
 
       {/* Call to Action */}

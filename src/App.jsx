@@ -38,7 +38,8 @@ const Skills = lazy(() => import("./components/Skills.jsx"));
 const Projects = lazy(() => import("./components/Projects.jsx"));
 const Experience = lazy(() => import("./components/Experience.jsx"));
 const Education = lazy(() => import("./components/Education.jsx"));
-const Testimonials = lazy(() => import("./components/Testimonials.jsx"));
+// Remove Testimonials import and lazy loading
+// const Testimonials = lazy(() => import("./components/Testimonials.jsx"));
 const Footer = lazy(() => import("./components/Footer.jsx"));
 
 // Page transition animation
@@ -60,7 +61,8 @@ const componentMap = {
     label: "Experience",
   },
   education: { Component: Education, icon: <SchoolIcon />, label: "Education" },
-  testimonials: { Component: Testimonials, icon: <EmojiObjectsIcon />, label: "Testimonials" },
+  // Remove testimonials from componentMap
+  // testimonials: { Component: Testimonials, icon: <EmojiObjectsIcon />, label: "Testimonials" },
 };
 
 const App = () => {
@@ -69,41 +71,47 @@ const App = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
 
   // Modern color palette
-  const palette = darkMode
-    ? {
-        mode: "dark",
-        primary: { main: "#6366f1" }, // Modern indigo
-        secondary: { main: "#f59e0b" }, // Amber
-        background: {
-          default: "#0f172a",
-          paper: "rgba(15,23,42,0.95)",
-        },
-        text: { primary: "#f8fafc" },
-        success: { main: "#10b981" },
-        warning: { main: "#f59e0b" },
-        error: { main: "#ef4444" },
-        info: { main: "#3b82f6" },
-      }
-    : {
-        mode: "light",
-        primary: { main: "#6366f1" }, // Modern indigo
-        secondary: { main: "#f59e0b" }, // Amber
-        background: {
-          default: "#f8fafc",
-          paper: "rgba(255,255,255,0.95)",
-        },
-        text: { primary: "#1e293b" },
-        success: { main: "#10b981" },
-        warning: { main: "#f59e0b" },
-        error: { main: "#ef4444" },
-        info: { main: "#3b82f6" },
-      };
+  const lightPalette = {
+    mode: "light",
+    primary: { main: "#6366f1" },
+    secondary: { main: "#f59e0b" },
+    background: { default: "#f8fafc", paper: "rgba(255,255,255,0.95)" },
+    text: { primary: "#1e293b" },
+    success: { main: "#10b981" },
+    warning: { main: "#f59e0b" },
+    error: { main: "#ef4444" },
+    info: { main: "#3b82f6" },
+  };
+  const darkPalette = {
+    mode: "dark",
+    primary: { main: "#6366f1" },
+    secondary: { main: "#f59e0b" },
+    background: { default: "#0f172a", paper: "rgba(15,23,42,0.95)" },
+    text: { primary: "#f8fafc" },
+    success: { main: "#10b981" },
+    warning: { main: "#f59e0b" },
+    error: { main: "#ef4444" },
+    info: { main: "#3b82f6" },
+  };
+  const palette = darkMode ? darkPalette : lightPalette;
 
   // Modern font
   const theme = useMemo(
     () =>
       createTheme({
-        palette,
+        palette: {
+          mode: darkMode ? "dark" : "light",
+          primary: { main: "#6366f1" },
+          secondary: { main: "#f59e0b" },
+          background: darkMode
+            ? { default: "#0f172a", paper: "rgba(15,23,42,0.95)" }
+            : { default: "#f8fafc", paper: "rgba(255,255,255,0.95)" },
+          text: { primary: darkMode ? "#f8fafc" : "#1e293b" },
+          success: { main: "#10b981" },
+          warning: { main: "#f59e0b" },
+          error: { main: "#ef4444" },
+          info: { main: "#3b82f6" },
+        },
         typography: {
           fontFamily: [
             'Inter',
@@ -238,7 +246,6 @@ const App = () => {
   const navItems = Object.entries(componentMap).map(
   ([path, { icon, label }]) => (
     <ListItem
-      button
       key={path}
       component={Link}
       to={path === "home" ? "/" : `/${path}`}
@@ -332,7 +339,8 @@ const App = () => {
                         { Component: Projects, key: "projects" },
                         { Component: Experience, key: "experience" },
                         { Component: Education, key: "education" },
-                        { Component: Testimonials, key: "testimonials" },
+                        // Remove Testimonials from the home page grid
+                        // { Component: Testimonials, key: "testimonials" },
                       ].map(({ Component, key }) => (
                         <Grid item xs={12} key={key}>
                           <Suspense

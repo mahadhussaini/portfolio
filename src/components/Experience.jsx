@@ -9,12 +9,11 @@ const experiences = [
     date: "02/2024 - Present | Karachi, Pakistan",
     icon: <Work sx={{ color: '#2575fc' }} />,
     description: [
-      "Led development of enterprise SaaS platform serving 10K+ users with microservices architecture and Kubernetes orchestration",
-      "Implemented CI/CD pipelines using GitHub Actions and Jenkins, reducing deployment time by 60% and improving release frequency",
-      "Designed and developed GraphQL APIs with complex data querying, reducing API response time by 40%",
-      "Architected real-time collaboration features using WebSocket and Socket.io, enabling concurrent editing for 500+ users",
-      "Optimized frontend performance by implementing React Query, code splitting, and server-side rendering, achieving 90+ Lighthouse scores",
-      "Mentored 3 junior developers and conducted code reviews, improving team code quality and knowledge sharing"
+      "Led a talented team to build an enterprise SaaS platform serving 10K+ users, focusing on collaboration and user experience.",
+      "Worked closely with colleagues to design and develop GraphQL APIs, making data accessible and useful for everyone involved.",
+      "Mentored junior developers, sharing knowledge and fostering a supportive, growth-oriented environment.",
+      "Implemented CI/CD pipelines and real-time features, always striving to make our work smoother and more impactful.",
+      "Celebrated team wins and learned from challenges, believing that great products come from great teamwork."
     ],
     tech: "React.js, Next.js, TypeScript, Node.js, Express, MongoDB, PostgreSQL, GraphQL, Docker, Kubernetes, AWS, Redis"
   },
@@ -23,12 +22,10 @@ const experiences = [
     date: "03/2023 - 02/2024 | Remote",
     icon: <Work sx={{ color: '#2575fc' }} />,
     description: [
-      "Built comprehensive HR management platform with employee onboarding, performance tracking, and payroll integration",
-      "Developed RESTful and GraphQL APIs handling 1M+ requests monthly with 99.9% uptime and comprehensive error handling",
-      "Implemented real-time notifications and dashboard analytics using WebSocket and Chart.js for data visualization",
-      "Integrated third-party services (Stripe, SendGrid, AWS S3) for payment processing, email automation, and file storage",
-      "Led database optimization initiatives, reducing query execution time by 50% and implementing Redis caching",
-      "Collaborated with UI/UX team to create responsive, accessible interfaces using Material UI and custom components"
+      "Collaborated with a diverse team to build an HR management platform that made work life easier for thousands of users.",
+      "Listened to user feedback and worked with designers to create accessible, intuitive interfaces.",
+      "Integrated third-party services and optimized databases, always with an eye on making things better for people.",
+      "Enjoyed the process of learning together, solving problems, and celebrating our progress as a team."
     ],
     tech: "React.js, Next.js, Node.js, Express, MongoDB, MySQL, Firebase, AWS, Docker, Redis, GraphQL, Material UI"
   },
@@ -37,11 +34,9 @@ const experiences = [
     date: "12/2022 - 02/2023 | Karachi, Pakistan",
     icon: <School sx={{ color: '#2575fc' }} />,
     description: [
-      "Enhanced backend API performance by implementing caching strategies and database query optimization",
-      "Developed automated testing suite using Jest and Supertest, achieving 85% code coverage",
-      "Implemented security measures including JWT authentication, input validation, and SQL injection prevention",
-      "Created comprehensive API documentation using Swagger/OpenAPI for better developer experience",
-      "Participated in agile development processes including sprint planning, daily standups, and retrospectives"
+      "Worked alongside experienced engineers to improve backend APIs and implement security measures, learning the value of teamwork and mentorship.",
+      "Participated in agile development, daily standups, and retrospectives, growing both technically and personally.",
+      "Contributed to automated testing and documentation, always eager to help the team succeed."
     ],
     tech: "Node.js, Express, MongoDB, Jest, JWT, API Security, Swagger, Git, Agile"
   },
@@ -50,11 +45,9 @@ const experiences = [
     date: "06/2022 - 11/2022 | Remote",
     icon: <VolunteerActivism sx={{ color: '#2575fc' }} />,
     description: [
-      "Developed 15+ client projects including e-commerce platforms, portfolio websites, and business applications",
-      "Built responsive web applications using React, Next.js, and modern CSS frameworks",
-      "Implemented payment gateways (Stripe, PayPal) and third-party integrations (Google Maps, social media APIs)",
-      "Optimized website performance and SEO, achieving 95+ Lighthouse scores for all projects",
-      "Provided ongoing maintenance and support, ensuring client satisfaction and long-term relationships"
+      "Partnered with clients to bring their ideas to life, building e-commerce platforms and business applications that made a difference.",
+      "Focused on clear communication, reliability, and building lasting relationships with clients and collaborators.",
+      "Took pride in delivering high-quality work and supporting clients beyond project delivery."
     ],
     tech: "React.js, Next.js, Node.js, MongoDB, Stripe, AWS, SEO, Performance Optimization"
   },
@@ -63,11 +56,8 @@ const experiences = [
     date: "01/2022 - Present | GitHub",
     icon: <VolunteerActivism sx={{ color: '#2575fc' }} />,
     description: [
-      "Contributed to 20+ open source projects including React libraries, developer tools, and documentation",
-      "Maintained popular React component library with 1K+ stars and 500+ downloads weekly",
-      "Participated in hackathons and coding competitions, winning 3 awards for innovative solutions",
-      "Created educational content and tutorials for the developer community",
-      "Mentored junior developers through code reviews and technical discussions"
+      "Contributed to open source projects, sharing knowledge and learning from a vibrant developer community.",
+      "Created educational content and mentored newcomers, believing in the power of giving back and growing together."
     ],
     tech: "React.js, TypeScript, Open Source, Technical Writing, Community Building"
   }

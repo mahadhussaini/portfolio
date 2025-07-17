@@ -23,34 +23,33 @@ const education = [
     years: "2020 - 2023",
     icon: <SchoolIcon sx={{ color: '#2575fc' }} />,
     details: [
-      "Advanced Data Structures & Algorithms with competitive programming focus",
-      "Full Stack Web Development (MERN Stack, Next.js, TypeScript)",
-      "Database Systems (SQL, MongoDB, Redis, PostgreSQL)",
-      "Machine Learning & AI (Python, TensorFlow, Scikit-learn)",
-      "Cloud Computing & DevOps (AWS, Docker, Kubernetes, CI/CD)",
-      "System Design & Software Architecture (Microservices, Scalability)",
-      "Mobile Application Development (React Native, Flutter)",
-      "Computer Networks & Cybersecurity (Network Security, Penetration Testing)",
-      "Software Engineering (Agile, Scrum, Project Management)",
-      "Data Science & Analytics (Big Data, Data Visualization)"
+      "Advanced Data Structures & Algorithms with a focus on real-world problem solving and teamwork",
+      "Full Stack Web Development (MERN Stack, Next.js, TypeScript) with collaborative projects",
+      "Database Systems (SQL, MongoDB, Redis, PostgreSQL) and practical applications",
+      "Cloud Computing & DevOps (AWS, Docker, Kubernetes, CI/CD) for scalable, reliable systems",
+      "System Design & Software Architecture (Microservices, Scalability) with hands-on experience",
+      "Mobile Application Development (React Native, Flutter) for user-centric solutions",
+      "Computer Networks & Cybersecurity (Network Security, Penetration Testing) with a focus on safety and ethics",
+      "Software Engineering (Agile, Scrum, Project Management) emphasizing communication and leadership",
+      "Data Science & Analytics (Big Data, Data Visualization) for actionable insights"
     ],
   },
 ];
 
 const research = [
   {
-    title: "AI-Powered Healthcare Diagnostic System",
-    description: "Developed machine learning models for early disease detection using TensorFlow and Python. Achieved 95% accuracy in skin disease classification and 90% in respiratory condition prediction.",
+    title: "Healthcare Diagnostic System",
+    description: "Collaborated with a multidisciplinary team to develop early disease detection tools, improving patient outcomes and supporting healthcare professionals.",
     icon: <ScienceIcon sx={{ color: '#ff7f50' }} />,
   },
   {
     title: "Smart City IoT Management Platform",
-    description: "Built comprehensive IoT platform for smart city management with real-time sensor data collection, predictive analytics, and automated alert systems. Monitored 1000+ devices across multiple city sectors.",
+    description: "Worked with city officials and engineers to build a platform for real-time sensor data collection and automated alerts, enhancing urban safety and efficiency.",
     icon: <ScienceIcon sx={{ color: '#ff7f50' }} />,
   },
   {
     title: "Blockchain-Based Supply Chain Tracking",
-    description: "Implemented blockchain solution for transparent supply chain management with smart contracts, real-time tracking, and immutable audit trails. Reduced fraud by 80% and improved traceability.",
+    description: "Implemented transparent supply chain management solutions, fostering trust and collaboration among stakeholders.",
     icon: <ScienceIcon sx={{ color: '#ff7f50' }} />,
   },
 ];

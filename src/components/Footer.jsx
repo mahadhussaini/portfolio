@@ -38,31 +38,6 @@ const Footer = () => {
         Whether you&apos;re looking to collaborate on an exciting project, need technical consultation, or just want to discuss the latest in web development, I&apos;d love to hear from you!
       </Typography>
 
-      {/* Testimonials Section */}
-      <Box sx={{ mb: 4, p: 3, background: 'rgba(255,255,255,0.1)', borderRadius: 3 }}>
-        <Typography variant="h6" sx={{ color: '#6366f1', mb: 2, fontWeight: 600, letterSpacing: '-0.025em' }}>
-          💬 What Clients Say
-        </Typography>
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2 }}>
-          <Box sx={{ flex: 1, p: 2, background: 'rgba(255,255,255,0.8)', borderRadius: 2 }}>
-            <Typography variant="body2" sx={{ fontStyle: 'italic', color: '#333', mb: 1, lineHeight: 1.6 }}>
-              &quot;Mahad delivered our SaaS platform ahead of schedule with exceptional quality. His technical expertise and problem-solving skills are outstanding.&quot;
-            </Typography>
-            <Typography variant="caption" sx={{ color: '#6366f1', fontWeight: 600 }}>
-              — Sarah Chen, CTO at TechFlow Solutions
-            </Typography>
-          </Box>
-          <Box sx={{ flex: 1, p: 2, background: 'rgba(255,255,255,0.8)', borderRadius: 2 }}>
-            <Typography variant="body2" sx={{ fontStyle: 'italic', color: '#333', mb: 1, lineHeight: 1.6 }}>
-              &quot;Working with Mahad was a game-changer for our startup. He not only built a great product but also mentored our team on best practices.&quot;
-            </Typography>
-            <Typography variant="caption" sx={{ color: '#6366f1', fontWeight: 600 }}>
-              — Alex Rodriguez, Founder at InnovateLab
-            </Typography>
-          </Box>
-        </Box>
-      </Box>
-
       {/* Social Media Links */}
       <Stack direction="row" spacing={3} justifyContent="center" mt={2}>
         <motion.div whileHover={{ scale: 1.2, rotate: -8 }} whileTap={{ scale: 0.95 }}>
@@ -126,6 +101,16 @@ const Footer = () => {
       >
         &quot;The best code is not just functional—it&apos;s elegant, maintainable, and scalable. Let&apos;s build the future, one line of code at a time.&quot;
       </Typography>
+
+      {/* Beyond Work Section */}
+      <Box sx={{ mt: 4, p: 3, background: 'rgba(255,255,255,0.1)', borderRadius: 3 }}>
+        <Typography variant="h6" sx={{ color: '#6366f1', mb: 2, fontWeight: 600, letterSpacing: '-0.025em' }}>
+          🌱 Beyond Work
+        </Typography>
+        <Typography variant="body2" sx={{ color: '#333', mb: 1, lineHeight: 1.6 }}>
+          Outside of coding, I enjoy exploring new places, reading about psychology and design, and volunteering at local tech meetups. I’m always up for a good conversation about technology, creativity, or life in general. Let’s connect and share ideas!
+        </Typography>
+      </Box>
 
       {/* Bottom Section - Copyright */}
       <Typography variant="body2" mb={1} sx={{ color: "#888" }}>
