@@ -1,9 +1,10 @@
-import React from "react";
 import { Box, Typography, Link, Divider, Stack } from "@mui/material";
 import { GitHub, LinkedIn, Email, Favorite } from "@mui/icons-material";
 import { motion } from "framer-motion";
+import { useAnalytics } from "../hooks/useAnalytics";
 
 const Footer = () => {
+  const { trackSocialLinkClick } = useAnalytics();
   return (
     <Box
       component={motion.footer}
@@ -47,6 +48,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             color="inherit"
             sx={{ transition: "color 0.2s" }}
+            onClick={() => trackSocialLinkClick('github')}
           >
             <GitHub fontSize="large" sx={{ color: "#6366f1", '&:hover': { color: '#f59e0b' } }} />
           </Link>
@@ -58,6 +60,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             color="inherit"
             sx={{ transition: "color 0.2s" }}
+            onClick={() => trackSocialLinkClick('linkedin')}
           >
             <LinkedIn fontSize="large" sx={{ color: "#6366f1", '&:hover': { color: '#f59e0b' } }} />
           </Link>
@@ -69,6 +72,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             color="inherit"
             sx={{ transition: "color 0.2s" }}
+            onClick={() => trackSocialLinkClick('email')}
           >
             <Email fontSize="large" sx={{ color: "#6366f1", '&:hover': { color: '#f59e0b' } }} />
           </Link>

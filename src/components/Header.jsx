@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Typography,
   Button,
@@ -19,7 +18,7 @@ import {
 import { motion } from "framer-motion";
 
 const avatarUrl =
-  "https://media.licdn.com/dms/image/v2/D4D03AQH5f51S2SOtlg/profile-displayphoto-shrink_800_800/B4DZbelo9KHEAc-/0/1747491133558?e=1757548800&v=beta&t=4Orc-qR5upojYuVYw--IruZ-4uFbe-kLSHNsLXdGfcY";
+  "https://media.licdn.com/dms/image/v2/D4D03AQEtiGaJsk1NFw/profile-displayphoto-crop_800_800/B4DZk5wKrdGQAI-/0/1757610554381?e=1760572800&v=beta&t=sDD_kcHRLG7NHgIQIa2GMlZ_fufFUdYQnYDiKwanQQQ";
 
 const techStack = [
   "React.js",
@@ -44,9 +43,6 @@ const Header = () => {
   const isDark = theme.palette.mode === "dark";
 
   // Dynamic styles based on theme
-  const background = isDark
-    ? 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%)'
-    : 'linear-gradient(135deg, #ede9fe 0%, #c7d2fe 50%, #a5b4fc 100%)';
   const textColor = isDark ? '#fff' : '#1e293b';
   const subTextColor = isDark ? '#f1f5f9' : '#475569';
   const chipBg = isDark
@@ -64,16 +60,25 @@ const Header = () => {
       sx={{
         position: 'relative',
         overflow: 'hidden',
-        borderRadius: 4,
-        mb: 6,
-        p: { xs: 3, sm: 6 },
-        minHeight: { xs: 400, sm: 500 },
+        borderRadius: 6,
+        mb: 8,
+        p: { xs: 4, sm: 8 },
+        minHeight: { xs: 500, sm: 600 },
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        background,
-        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02)',
+        background: isDark
+          ? `linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%),
+             radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
+             radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.3) 0%, transparent 50%)`
+          : `linear-gradient(135deg, #ede9fe 0%, #ddd6fe 30%, #c7d2fe 70%, #a5b4fc 100%),
+             radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
+             radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)`,
+        boxShadow: isDark
+          ? '0 25px 50px -12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+          : '0 25px 50px -12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+        border: `2px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.5)'}`,
         '&::before': {
           content: '""',
           position: 'absolute',
@@ -82,57 +87,113 @@ const Header = () => {
           right: 0,
           bottom: 0,
           background: isDark
-            ? 'radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)'
-            : 'radial-gradient(circle at 30% 20%, rgba(99,102,241,0.08) 0%, transparent 60%)',
+            ? `radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 40%),
+               radial-gradient(circle at 70% 80%, rgba(99,102,241,0.2) 0%, transparent 40%)`
+            : `radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4) 0%, transparent 40%),
+               radial-gradient(circle at 70% 80%, rgba(99,102,241,0.1) 0%, transparent 40%)`,
           pointerEvents: 'none',
+        },
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '2px',
+          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)',
+          animation: 'shimmer 3s ease-in-out infinite',
         },
       }}
       component={motion.div}
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
     >
-      {/* Animated Avatar with border */}
+      {/* Enhanced Animated Avatar with multiple rings */}
       <Box
         sx={{
-          mb: 2,
+          mb: 3,
           position: 'relative',
           display: 'inline-block',
         }}
       >
         <motion.div
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.8, type: 'spring' }}
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, type: 'spring', bounce: 0.4 }}
         >
           <Avatar
             alt="Syed Mahad Hussaini"
             src={avatarUrl}
             sx={{
-              width: { xs: 110, sm: 140 },
-              height: { xs: 110, sm: 140 },
-              border: '5px solid #fff',
-              boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-              background: background,
+              width: { xs: 130, sm: 160 },
+              height: { xs: 130, sm: 160 },
+              border: '6px solid rgba(255,255,255,0.9)',
+              boxShadow: isDark
+                ? '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 4px rgba(99, 102, 241, 0.3)'
+                : '0 25px 50px -12px rgba(0, 0, 0, 0.2), 0 0 0 4px rgba(99, 102, 241, 0.2)',
+              background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+              position: 'relative',
+              zIndex: 2,
+              transition: 'all 0.3s ease-in-out',
+              '&:hover': {
+                transform: 'scale(1.05)',
+                boxShadow: isDark
+                  ? '0 35px 60px -12px rgba(0, 0, 0, 0.8), 0 0 0 6px rgba(99, 102, 241, 0.4)'
+                  : '0 35px 60px -12px rgba(0, 0, 0, 0.3), 0 0 0 6px rgba(99, 102, 241, 0.3)',
+              },
             }}
           />
-          {/* Animated border ring */}
+          
+          {/* Primary animated ring */}
           <Box
             sx={{
               position: 'absolute',
-              top: -8,
-              left: -8,
-              width: { xs: 126, sm: 156 },
-              height: { xs: 126, sm: 156 },
+              top: -12,
+              left: -12,
+              width: { xs: 154, sm: 184 },
+              height: { xs: 154, sm: 184 },
               borderRadius: '50%',
               border: `3px solid ${borderRing}`,
               boxSizing: 'border-box',
+              zIndex: 1,
+              animation: 'spin 8s linear infinite',
+              opacity: 0.8,
+            }}
+          />
+          
+          {/* Secondary animated ring */}
+          <Box
+            sx={{
+              position: 'absolute',
+              top: -20,
+              left: -20,
+              width: { xs: 170, sm: 200 },
+              height: { xs: 170, sm: 200 },
+              borderRadius: '50%',
+              border: `2px dashed rgba(245, 158, 11, 0.6)`,
+              boxSizing: 'border-box',
               zIndex: 0,
-              animation: 'spin 6s linear infinite',
-              '@keyframes spin': {
-                '0%': { transform: 'rotate(0deg)' },
-                '100%': { transform: 'rotate(360deg)' },
-              },
+              animation: 'spin 12s linear infinite reverse',
+              opacity: 0.6,
+            }}
+          />
+          
+          {/* Glow effect */}
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: { xs: 180, sm: 220 },
+              height: { xs: 180, sm: 220 },
+              borderRadius: '50%',
+              background: isDark
+                ? 'radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%)'
+                : 'radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%)',
+              zIndex: -1,
+              animation: 'glow 3s ease-in-out infinite alternate',
             }}
           />
         </motion.div>
@@ -179,7 +240,7 @@ const Header = () => {
         variant="body1"
         sx={{ color: subTextColor, maxWidth: 800, mb: 3, lineHeight: 1.6, letterSpacing: '0.025em' }}
       >
-        Over the past few years, I’ve worked with amazing teams to deliver projects that solve real problems—whether it’s a SaaS platform for businesses, a tool for healthcare professionals, or a simple app that brings people together. I believe in the power of technology to connect, empower, and inspire. When I’m not coding, you’ll find me mentoring, learning something new, or enjoying a good cup of coffee. Let’s build something meaningful together!
+        Over the past few years, I’ve worked with amazing teams to deliver projects that solve real problems—whether it’s a SaaS platform for businesses, a tool for healthcare professionals, or a simple app that brings people together. I believe in the power of technology to connect, empower, and inspire. When I’m not coding, you’ll find me mentoring, learning something new, or enjoying a good cup of tea. Let’s build something meaningful together!
       </Typography>
 
       {/* Call to Action */}

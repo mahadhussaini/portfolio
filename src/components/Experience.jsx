@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, CardContent, Typography, Box, Stack, Avatar } from "@mui/material";
 import { Work, School, VolunteerActivism } from "@mui/icons-material";
 import { motion } from "framer-motion";

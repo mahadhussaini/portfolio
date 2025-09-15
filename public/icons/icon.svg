@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="256" fill="url(#bgGradient)"/>
+
+  <!-- Code brackets -->
+  <g fill="white">
+    <!-- Left bracket -->
+    <path d="M120 160 L80 160 L80 352 L120 352 L120 320 L100 320 L100 192 L120 192 Z"/>
+    <!-- Right bracket -->
+    <path d="M392 160 L432 160 L432 352 L392 352 L392 320 L412 320 L412 192 L392 192 Z"/>
+  </g>
+
+  <!-- Stylized M for Mahad -->
+  <g fill="white">
+    <path d="M200 200 L200 280 L220 280 L220 240 L240 280 L260 280 L260 200 L245 200 L245 250 L230 210 L215 250 L215 200 Z"/>
+  </g>
+
+  <!-- Accent dots -->
+  <circle cx="160" cy="220" r="8" fill="#f59e0b"/>
+  <circle cx="352" cy="220" r="8" fill="#f59e0b"/>
+  <circle cx="160" cy="292" r="8" fill="#f59e0b"/>
+  <circle cx="352" cy="292" r="8" fill="#f59e0b"/>
+</svg>
