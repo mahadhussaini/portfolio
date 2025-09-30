@@ -505,6 +505,179 @@ const projects = [
     category: "AI-Powered Companion",
     status: "Completed",
     image: "/project-images/memora-neon.vercel.app_.png"
+  },
+  {
+    id: 16,
+    name: "Blog Management System",
+    url: "https://github.com/mahadhussaini/blog-management-system",
+    liveUrl: "https://blog-management-system-nu.vercel.app",
+    description: "A blog management system with real-time monitoring, risk assessment, and community collaboration.",
+    detailedDescription: "Built a blog management system with real-time monitoring, risk assessment, and community collaboration. Features include real-time monitoring, risk assessment, and community collaboration.",
+    metrics: {
+      blogs: "10K+",
+      users: "100K+",
+      productivity: "40% Time Saved",
+      collaboration: "90% Team Collaboration"
+    },
+    features: [
+      "Real-time Monitoring",
+      "Risk Assessment",
+      "Community Collaboration",
+      "Integration APIs",
+      "Multi-cloud Support",
+      "Alert Management"
+    ],
+    challenges: "Developing accurate risk assessment algorithms while maintaining performance and minimizing false positives.",
+    solution: "Implemented machine learning models for risk assessment with comprehensive validation and continuous learning.",
+    year: 2025,
+    tags: ["React", "Node.js", "PostgreSQL", "Socket.io", "WebRTC"],
+    category: "Blog Management",
+    status: "Completed",
+    image: "/project-images/blog-management-system-nu.vercel.app_.png"
+  },
+  {
+    id: 17,
+    name: "PayVia - Modern Banking & Fintech Dashboard",
+    url: "https://github.com/mahadhussaini/payvia",
+    liveUrl: "https://payvia-sage.vercel.app",
+    description: "A modern banking and fintech dashboard with real-time monitoring, risk assessment, and community collaboration.",
+    detailedDescription: "Built a modern banking and fintech dashboard with real-time monitoring, risk assessment, and community collaboration. Features include real-time monitoring, risk assessment, and community collaboration.",
+    metrics: {
+      banks: "10K+",
+      users: "100K+",
+      productivity: "40% Time Saved",
+      collaboration: "90% Team Collaboration"
+    },
+    features: [
+      "Real-time Monitoring",
+      "Risk Assessment",
+      "Community Collaboration",
+      "Integration APIs",
+      "Multi-cloud Support",
+      "Alert Management"
+    ],
+    challenges: "Developing accurate risk assessment algorithms while maintaining performance and minimizing false positives.",
+    solution: "Implemented machine learning models for risk assessment with comprehensive validation and continuous learning.",
+    year: 2025,
+    tags: ["React", "Node.js", "PostgreSQL", "Socket.io", "WebRTC"],
+    category: "Banking & Fintech",
+    status: "Completed",
+    image: "/project-images/payvia-sage.vercel.app_.png"
+  },
+  {
+    id: 18,
+    name: "MediSphere Healthcare Portal",
+    url: "https://github.com/mahadhussaini/medisphere",
+    liveUrl: "https://medisphere-lyart.vercel.app",
+    description: "A healthcare portal with real-time monitoring, risk assessment, and community collaboration.",
+    detailedDescription: "Built a healthcare portal with real-time monitoring, risk assessment, and community collaboration. Features include real-time monitoring, risk assessment, and community collaboration.",
+    metrics: {
+      healthcare: "10K+",
+      users: "100K+",
+      productivity: "40% Time Saved",
+      collaboration: "90% Team Collaboration"
+    },
+    features: [
+      "Real-time Monitoring",
+      "Risk Assessment",
+      "Community Collaboration",
+      "Integration APIs",
+      "Multi-cloud Support",
+      "Alert Management"
+    ],
+    challenges: "Developing accurate risk assessment algorithms while maintaining performance and minimizing false positives.",
+    solution: "Implemented machine learning models for risk assessment with comprehensive validation and continuous learning.",
+    year: 2025,
+    tags: ["React", "Node.js", "PostgreSQL", "Socket.io", "WebRTC"],
+    category: "Healthcare",
+    status: "Completed",
+    image: "/project-images/medisphere-lyart.vercel.app_.png"
+  },
+  {
+    id: 19,
+    name: "Eterna - Find Your Perfect Match",
+    url: "https://github.com/mahadhussaini/eterna",
+    liveUrl: "https://eterna-nu.vercel.app",
+    description: "A dating platform with real-time monitoring, risk assessment, and community collaboration.",
+    detailedDescription: "Built a dating platform with real-time monitoring, risk assessment, and community collaboration. Features include real-time monitoring, risk assessment, and community collaboration.",
+    metrics: {
+      users: "10K+",
+      productivity: "40% Time Saved",
+      collaboration: "90% Team Collaboration"
+    },
+    features: [
+      "Real-time Monitoring",
+      "Risk Assessment",
+      "Community Collaboration",
+      "Integration APIs",
+      "Multi-cloud Support",
+      "Alert Management"
+    ],
+    challenges: "Developing accurate risk assessment algorithms while maintaining performance and minimizing false positives.",
+    solution: "Implemented machine learning models for risk assessment with comprehensive validation and continuous learning.",
+    year: 2025,
+    tags: ["React", "Node.js", "PostgreSQL", "Socket.io", "WebRTC"],
+    category: "Dating",
+    status: "Completed",
+    image: "/project-images/eterna-nu.vercel.app_.png"
+  },
+  {
+    id: 20,
+    name: "Unite - Community & Events Platform",
+    url: "https://github.com/mahadhussaini/unite",
+    liveUrl: "https://unite-azure.vercel.app",
+    description: "A community and events platform with real-time monitoring, risk assessment, and community collaboration.",
+    detailedDescription: "Built a community and events platform with real-time monitoring, risk assessment, and community collaboration. Features include real-time monitoring, risk assessment, and community collaboration.",
+    metrics: {
+      communities: "10K+",
+      events: "100K+",
+      productivity: "40% Time Saved",
+      collaboration: "90% Team Collaboration"
+    },
+    features: [
+      "Real-time Monitoring",
+      "Risk Assessment",
+      "Community Collaboration",
+      "Integration APIs",
+      "Multi-cloud Support",
+      "Alert Management"
+    ],
+    challenges: "Developing accurate risk assessment algorithms while maintaining performance and minimizing false positives.",
+    solution: "Implemented machine learning models for risk assessment with comprehensive validation and continuous learning.",
+    year: 2025,
+    tags: ["React", "Node.js", "PostgreSQL", "Socket.io", "WebRTC"],
+    category: "Community & Events",
+    status: "Completed",
+    image: "/project-images/unite-azure.vercel.app_.png"
+  },
+  {
+    id: 21,
+    name: "Coinify - Crypto Portfolio Tracker",
+    url: "https://github.com/mahadhussaini/coinify",
+    liveUrl: "https://coinify-one.vercel.app",
+    description: "A crypto portfolio tracker with real-time monitoring, risk assessment, and community collaboration.",
+    detailedDescription: "Built a crypto portfolio tracker with real-time monitoring, risk assessment, and community collaboration. Features include real-time monitoring, risk assessment, and community collaboration.",
+    metrics: {
+      crypto: "10K+",
+      users: "100K+",
+      productivity: "40% Time Saved",
+      collaboration: "90% Team Collaboration"
+    },
+    features: [
+      "Real-time Monitoring",
+      "Risk Assessment",
+      "Community Collaboration",
+      "Integration APIs",
+      "Multi-cloud Support",
+      "Alert Management"
+    ],
+    challenges: "Developing accurate risk assessment algorithms while maintaining performance and minimizing false positives.",
+    solution: "Implemented machine learning models for risk assessment with comprehensive validation and continuous learning.",
+    year: 2025,
+    tags: ["React", "Node.js", "PostgreSQL", "Socket.io", "WebRTC"],
+    category: "Crypto",
+    status: "Completed",
+    image: "/project-images/coinify-one.vercel.app_.png"
   }
 ];
 
