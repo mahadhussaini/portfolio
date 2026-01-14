@@ -326,34 +326,30 @@ const projects = [
   },
   {
     id: 10,
-    name: "Focusly Productivity",
+    name: "Focusly AI Agent",
     url: "https://github.com/mahadhussaini/focusly",
     liveUrl: "https://focusly-weld.vercel.app",
-    description: "A comprehensive productivity platform with Pomodoro timers, task management, and focus tracking.",
-    detailedDescription: "Created a productivity platform combining Pomodoro technique, task management, focus tracking, and habit building. Features include distraction blocking, progress analytics, and team productivity insights.",
-    year: 2025,
-    tags: ["TypeScript", "React", "Node.js", "MongoDB", "Chart.js", "Electron"],
-    category: "Productivity",
-    status: "Completed",
-    featured: false,
+    description: "An autonomous AI productivity agent that manages your calendar, blocks distractions, and optimizes your deep work sessions using local LLMs.",
+    detailedDescription: "Next-gen productivity platform combining autonomous AI agents with the Pomodoro technique. Features local LLMs for privacy-first focus tracking and automated schedule optimization.",
+    year: 2026,
+    tags: ["Next.js", "AI Agents", "TypeScript", "Vercel AI SDK", "PostgreSQL"],
+    category: "AI/Productivity",
+    status: "Active",
+    featured: true,
     metrics: {
-      users: "30,000+",
+      users: "30K+",
       sessions: "2M+",
-      productivity: "40% Time Saved"
+      automation: "85%"
     },
     features: [
-      "Pomodoro Timer",
-      "Task Management",
-      "Focus Tracking",
-      "Distraction Blocking",
-      "Progress Analytics",
-      "Habit Building",
-      "Team Collaboration",
-      "Cross-platform Support",
-      "Integration APIs"
+      "Autonomous Agentic Scheduling",
+      "Real-time Focus Detection",
+      "Privacy-First Local AI",
+      "Omnichannel Notifications",
+      "Complex Rule Engines"
     ],
-    challenges: "Creating effective productivity tools that are engaging and scientifically backed.",
-    solution: "Implemented evidence-based productivity techniques with gamification elements and comprehensive analytics.",
+    challenges: "Building a low-latency agentic loop that respects user privacy and system resources.",
+    solution: "Leveraged Web Workers and quantized local models for sub-100ms inference times.",
     image: "/project-images/focusly-weld.vercel.app_.png"
   },
   {
@@ -688,7 +684,7 @@ const uniqueTags = [...new Set(projects.flatMap((p) => p.tags))];
 const Projects = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
-  
+
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
@@ -730,40 +726,24 @@ const Projects = () => {
     >
       <Card
         sx={{
-          background: isDark
-            ? 'linear-gradient(145deg, rgba(15,23,42,0.9) 0%, rgba(30,41,59,0.9) 100%)'
-            : 'linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)',
-          backdropFilter: 'blur(20px)',
-          border: `2px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.4)'}`,
-          borderRadius: 6,
-          overflow: 'hidden',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
-          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-          boxShadow: isDark
-            ? '0 10px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-            : '0 10px 30px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '2px',
-            background: 'linear-gradient(90deg, transparent, rgba(99,102,241,0.6), transparent)',
-            transform: 'translateX(-100%)',
-            transition: 'transform 0.6s ease-in-out',
-          },
+          background: isDark
+            ? 'linear-gradient(165deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.4) 100%)'
+            : 'linear-gradient(165deg, rgba(255, 255, 255, 0.4) 0%, rgba(248, 250, 252, 0.4) 100%)',
+          backdropFilter: 'blur(16px) saturate(180%)',
+          borderRadius: 8,
+          border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(255, 255, 255, 0.3)'}`,
+          transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+          overflow: 'hidden',
           '&:hover': {
-            transform: 'translateY(-12px) rotateX(5deg)',
+            transform: 'translateY(-8px) scale(1.01)',
+            border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(99, 102, 241, 0.4)'}`,
             boxShadow: isDark
-              ? '0 25px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
-              : '0 25px 60px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9)',
-            '&::before': {
-              transform: 'translateX(100%)',
-            },
+              ? '0 20px 40px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.1)'
+              : '0 20px 40px rgba(99, 102, 241, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.8)',
           },
         }}
       >
@@ -772,22 +752,21 @@ const Projects = () => {
           <Box
             sx={{
               position: 'absolute',
-              top: 12,
-              right: 12,
-              zIndex: 1,
+              top: 16,
+              right: 16,
+              zIndex: 2,
             }}
           >
-            <Badge
-              badgeContent={<StarIcon sx={{ fontSize: 12 }} />}
+            <Chip
+              label="Featured"
+              size="small"
+              icon={<StarIcon sx={{ fontSize: '14px !important' }} />}
               sx={{
-                '& .MuiBadge-badge': {
-                  background: 'linear-gradient(135deg, #f59e0b 0%, #f97316 100%)',
-                  color: 'white',
-                  borderRadius: '50%',
-                  width: 24,
-                  height: 24,
-                  minWidth: 24,
-                },
+                background: 'linear-gradient(135deg, #f59e0b 0%, #f97316 100%)',
+                color: 'white',
+                fontWeight: 700,
+                border: 'none',
+                boxShadow: '0 4px 12px rgba(245, 158, 11, 0.3)',
               }}
             />
           </Box>
@@ -798,10 +777,8 @@ const Projects = () => {
           <Box
             sx={{
               height: 200,
-              backgroundImage: `url(${project.image})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
               position: 'relative',
+              overflow: 'hidden',
               '&::after': {
                 content: '""',
                 position: 'absolute',
@@ -809,51 +786,80 @@ const Projects = () => {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                background: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 100%)',
+                background: 'linear-gradient(to bottom, transparent 40%, rgba(15, 23, 42, 0.8) 100%)',
               },
             }}
-          />
+          >
+            <Box
+              component="img"
+              src={project.image}
+              alt={project.name}
+              sx={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                transition: 'transform 0.8s ease',
+                '.MuiCard-root:hover &': {
+                  transform: 'scale(1.1)',
+                }
+              }}
+            />
+          </Box>
         )}
 
-        <CardContent sx={{ p: 3, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-          <Stack direction="row" alignItems="center" spacing={1} mb={2}>
-            <WebAssetIcon sx={{ color: theme.palette.primary.main }} />
-            <Typography 
-              variant="h6" 
-              sx={{ 
-                fontWeight: 700, 
-                color: theme.palette.text.primary,
-                fontSize: '1.1rem'
+        <CardContent sx={{ p: 4, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+          <Stack direction="row" alignItems="center" spacing={1.5} mb={2}>
+            <Box
+              sx={{
+                p: 1,
+                borderRadius: 2,
+                background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
+                color: 'white',
+                display: 'flex',
+                boxShadow: '0 4px 12px rgba(99, 102, 241, 0.2)',
+              }}
+            >
+              <WebAssetIcon fontSize="small" />
+            </Box>
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: 800,
+                fontSize: '1.25rem',
+                letterSpacing: '-0.02em',
+                background: isDark ? '#fff' : '#1e293b',
+                backgroundClip: 'text',
               }}
             >
               {project.name}
             </Typography>
           </Stack>
 
-          <Typography 
-            variant="body2" 
-            sx={{ 
-              color: theme.palette.text.secondary, 
-              mb: 2, 
-              lineHeight: 1.6,
-              flexGrow: 1
+          <Typography
+            variant="body2"
+            sx={{
+              color: theme.palette.text.secondary,
+              mb: 3,
+              lineHeight: 1.7,
+              flexGrow: 1,
+              fontSize: '0.95rem'
             }}
           >
             {project.description}
           </Typography>
 
-          {/* Metrics for featured projects */}
+          {/* Metrics */}
           {project.metrics && (
-            <Box sx={{ mb: 2 }}>
-              <Grid container spacing={1}>
+            <Box sx={{ mb: 3 }}>
+              <Grid container spacing={2}>
                 {Object.entries(project.metrics).map(([key, value]) => (
                   <Grid item xs={4} key={key}>
-                    <Box sx={{ textAlign: 'center', p: 1, background: `${theme.palette.primary.main}10`, borderRadius: 1 }}>
-                      <Typography variant="caption" sx={{ display: 'block', fontWeight: 600, color: theme.palette.primary.main }}>
+                    <Box sx={{ p: 1, borderRadius: 2, bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', border: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}` }}>
+                      <Typography variant="caption" sx={{ display: 'block', fontWeight: 800, color: theme.palette.primary.main, mb: 0.5 }}>
                         {value}
                       </Typography>
-                      <Typography variant="caption" sx={{ color: theme.palette.text.secondary, fontSize: '0.7rem' }}>
-                        {key.charAt(0).toUpperCase() + key.slice(1)}
+                      <Typography variant="caption" sx={{ color: theme.palette.text.secondary, fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        {key}
                       </Typography>
                     </Box>
                   </Grid>
@@ -863,80 +869,64 @@ const Projects = () => {
           )}
 
           {/* Technologies */}
-          <Box sx={{ mb: 2 }}>
-            <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-              {project.tags.slice(0, 4).map(tag => (
-                <Chip
-                  key={tag}
-                  label={tag}
-                  size="small"
-                  sx={{
-                    background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
-                    color: 'white',
-                    fontWeight: 500,
-                    fontSize: '0.75rem',
-                    height: 24,
-                  }}
-                />
-              ))}
-              {project.tags.length > 4 && (
-                <Chip
-                  label={`+${project.tags.length - 4}`}
-                  size="small"
-                  sx={{
-                    background: theme.palette.grey[300],
-                    color: theme.palette.text.secondary,
-                    fontSize: '0.75rem',
-                    height: 24,
-                  }}
-                />
-              )}
-            </Stack>
-          </Box>
-
-          <Typography variant="caption" sx={{ color: theme.palette.text.secondary, mb: 2 }}>
-            {project.year} • {project.category}
-          </Typography>
+          <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap mb={3}>
+            {project.tags.slice(0, 5).map(tag => (
+              <Chip
+                key={tag}
+                label={tag}
+                size="small"
+                sx={{
+                  bgcolor: isDark ? 'rgba(99, 102, 241, 0.1)' : 'rgba(99, 102, 241, 0.05)',
+                  color: isDark ? '#a5b4fc' : '#4338ca',
+                  fontWeight: 600,
+                  fontSize: '0.7rem',
+                  border: `1px solid ${isDark ? 'rgba(99, 102, 241, 0.2)' : 'rgba(99, 102, 241, 0.1)'}`,
+                }}
+              />
+            ))}
+          </Stack>
 
           {/* Action Buttons */}
-          <Stack direction="row" spacing={1} mt="auto">
+          <Stack direction="row" spacing={1.5} mt="auto">
             <Button
               variant="contained"
-              size="small"
+              fullWidth
               onClick={() => handleProjectClick(project)}
               sx={{
+                borderRadius: 3,
+                py: 1,
                 background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
-                color: 'white',
-                fontWeight: 600,
-                flex: 1,
+                '&:hover': {
+                  background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
+                }
               }}
             >
-              View Details
+              Case Study
             </Button>
-            <IconButton
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                color: theme.palette.text.secondary,
-                '&:hover': { color: theme.palette.primary.main },
-              }}
-            >
-              <GitHubIcon />
-            </IconButton>
-            {project.liveUrl && (
+            <Stack direction="row" spacing={0.5}>
               <IconButton
-                href={project.liveUrl}
+                href={project.url}
                 target="_blank"
-                rel="noopener noreferrer"
                 sx={{
-                  color: theme.palette.text.secondary,
-                  '&:hover': { color: theme.palette.success.main },
+                  bgcolor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+                  '&:hover': { bgcolor: 'rgba(99, 102, 241, 0.1)', color: '#6366f1' }
                 }}
               >
-                <LaunchIcon />
+                <GitHubIcon fontSize="small" />
               </IconButton>
-            )}
+              {project.liveUrl && (
+                <IconButton
+                  href={project.liveUrl}
+                  target="_blank"
+                  sx={{
+                    bgcolor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+                    '&:hover': { bgcolor: 'rgba(16, 185, 129, 0.1)', color: '#10b981' }
+                  }}
+                >
+                  <LaunchIcon fontSize="small" />
+                </IconButton>
+              )}
+            </Stack>
           </Stack>
         </CardContent>
       </Card>
@@ -998,28 +988,29 @@ const Projects = () => {
         >
           Featured Projects
         </Typography>
-        
+
         <Typography
           variant="body1"
           align="center"
           sx={{
-            mb: 6,
+            mb: 8,
             color: theme.palette.text.secondary,
-            maxWidth: 600,
+            maxWidth: 750,
             mx: 'auto',
-            lineHeight: 1.6,
+            lineHeight: 1.8,
+            fontSize: '1.15rem',
+            opacity: 0.8
           }}
         >
-          Explore my portfolio of innovative solutions, from e-commerce platforms to AI-powered applications. 
-          Each project showcases different technologies and problem-solving approaches.
+          Engineering high-impact solutions with <strong>AI-infused architectures</strong> and <strong>agentic interfaces</strong>. Explore a curated selection of my latest work in the 2026 digital landscape.
         </Typography>
 
         {/* Filters */}
-        <Stack 
-          direction={{ xs: 'column', md: 'row' }} 
-          spacing={3} 
-          mb={4} 
-          alignItems="center" 
+        <Stack
+          direction={{ xs: 'column', md: 'row' }}
+          spacing={3}
+          mb={4}
+          alignItems="center"
           justifyContent="center"
         >
           <TextField
@@ -1072,18 +1063,35 @@ const Projects = () => {
           {sortedProjects.length > 0 ? (
             sortedProjects.map((project, idx) => (
               <Grid item xs={12} sm={6} lg={4} key={project.id}>
-                <ProjectCard project={project} index={idx} />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <ProjectCard project={project} index={idx} />
+                </motion.div>
               </Grid>
             ))
+
           ) : (
             <Grid item xs={12}>
-              <Box sx={{ textAlign: 'center', py: 8 }}>
-                <Typography variant="h6" sx={{ color: theme.palette.text.secondary, mb: 2 }}>
-                  No projects found
-                </Typography>
-                <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
-                  Try adjusting your search criteria or browse all projects
-                </Typography>
+              <Box sx={{ textAlign: 'center', py: 12 }}>
+                <Box
+                  sx={{
+                    p: 4,
+                    borderRadius: 6,
+                    background: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
+                    border: `1px dashed ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`
+                  }}
+                >
+                  <Typography variant="h6" sx={{ color: theme.palette.text.secondary, mb: 1 }}>
+                    No results found
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
+                    Try refining your search or exploring a different category.
+                  </Typography>
+                </Box>
               </Box>
             </Grid>
           )}
@@ -1115,7 +1123,7 @@ const Projects = () => {
                   </IconButton>
                 </Stack>
               </DialogTitle>
-              
+
               <DialogContent>
                 {selectedProject.image && (
                   <Box
@@ -1138,14 +1146,14 @@ const Projects = () => {
                   <>
                     <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
                       Key Features
-                        </Typography>
+                    </Typography>
                     <Grid container spacing={1} sx={{ mb: 3 }}>
                       {selectedProject.features.map((feature, index) => (
                         <Grid item xs={12} sm={6} key={index}>
                           <Stack direction="row" alignItems="center" spacing={1}>
                             <CheckCircleIcon sx={{ color: theme.palette.success.main, fontSize: 16 }} />
                             <Typography variant="body2">{feature}</Typography>
-                      </Stack>
+                          </Stack>
                         </Grid>
                       ))}
                     </Grid>
@@ -1178,32 +1186,32 @@ const Projects = () => {
 
                 <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
                   Technologies Used
-                      </Typography>
+                </Typography>
                 <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
                   {selectedProject.tags.map(tag => (
-                          <Chip
-                            key={tag}
-                            label={tag}
-                            sx={{
+                    <Chip
+                      key={tag}
+                      label={tag}
+                      sx={{
                         background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
                         color: 'white',
-                              fontWeight: 500,
-                            }}
-                          />
-                        ))}
-                      </Stack>
+                        fontWeight: 500,
+                      }}
+                    />
+                  ))}
+                </Stack>
               </DialogContent>
 
               <DialogActions sx={{ p: 3, pt: 0 }}>
-                      <Button
+                <Button
                   href={selectedProject.url}
-                        target="_blank"
+                  target="_blank"
                   rel="noopener noreferrer"
                   variant="outlined"
                   startIcon={<GitHubIcon />}
-                      >
-                        View Code
-                      </Button>
+                >
+                  View Code
+                </Button>
                 {selectedProject.liveUrl && (
                   <Button
                     href={selectedProject.liveUrl}
@@ -1223,7 +1231,7 @@ const Projects = () => {
           )}
         </Dialog>
       </Box>
-    </motion.div>
+    </motion.div >
   );
 };
 

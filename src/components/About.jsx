@@ -74,31 +74,18 @@ const About = () => {
       <Box
         sx={{
           background: isDark
-            ? `linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(139,92,246,0.15) 50%, rgba(168,85,247,0.15) 100%),
-               radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
-               radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 50%)`
-            : `linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(139,92,246,0.08) 50%, rgba(168,85,247,0.08) 100%),
-               radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-               radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)`,
-          borderRadius: 6,
-          p: { xs: 4, sm: 8 },
+            ? 'linear-gradient(165deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.4) 100%)'
+            : 'linear-gradient(165deg, rgba(255, 255, 255, 0.4) 0%, rgba(248, 250, 252, 0.4) 100%)',
+          borderRadius: 10,
+          p: { xs: 4, sm: 10 },
           mb: 8,
           position: 'relative',
           overflow: 'hidden',
           boxShadow: isDark
-            ? '0 25px 50px -12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-            : '0 25px 50px -12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
-          border: `2px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.4)'}`,
-          backdropFilter: 'blur(20px)',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '2px',
-            background: 'linear-gradient(90deg, transparent, rgba(99,102,241,0.6), transparent)',
-          },
+            ? '0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05)'
+            : '0 25px 50px -12px rgba(99, 102, 241, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.8)',
+          border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.3)'}`,
+          backdropFilter: 'blur(32px) saturate(200%)',
         }}
       >
         <Typography
@@ -106,7 +93,7 @@ const About = () => {
           align="center"
           sx={{
             fontWeight: 800,
-            mb: 6,
+            mb: 2,
             background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
@@ -114,7 +101,21 @@ const About = () => {
             letterSpacing: '-0.025em',
           }}
         >
-          About Me
+          Engineering the Future
+        </Typography>
+        <Typography
+          variant="h5"
+          align="center"
+          sx={{
+            fontWeight: 600,
+            mb: 6,
+            color: theme.palette.text.secondary,
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase',
+            fontSize: '1rem'
+          }}
+        >
+          High-Impact Digital Experiences & AI-Infused Architectures
         </Typography>
 
         <Grid container spacing={4}>
@@ -143,28 +144,23 @@ const About = () => {
                   variant="body1"
                   sx={{ lineHeight: 1.7, mb: 3, color: theme.palette.text.primary }}
                 >
-                  Hi! I&apos;m Mahad, a passionate Full Stack Developer from Karachi, Pakistan. 
-                  My journey in technology began during my Computer Science studies, where I 
-                  discovered the power of code to solve real-world problems and create 
-                  meaningful experiences.
+                  Hi! I&apos;m Mahad, a <strong>Full Stack Engineer & MERN Stack Specialist</strong> dedicated to building high-performance, enterprise-grade applications.
+                  My expertise spans across <strong>Angular</strong>, the <strong>MERN Stack</strong>, and <strong>Real-time Communication (WebRTC)</strong>.
                 </Typography>
                 <Typography
                   variant="body1"
                   sx={{ lineHeight: 1.7, mb: 3, color: theme.palette.text.primary }}
                 >
-                  Over the past 3+ years, I&apos;ve had the privilege of working with diverse teams 
-                  and clients, from innovative startups to established enterprises. I specialize 
-                  in building scalable web applications using modern technologies like React, 
-                  Node.js, and cloud platforms.
+                  With a track record of delivering scalable financial management systems, interactive communication tools, and robust HR modules,
+                  I focus on creating <strong>future-proof architectures</strong>. From architecting RESTful services to designing intuitive human-centric interfaces,
+                  I bridge the gap between complex engineering and seamless user experience.
                 </Typography>
                 <Typography
                   variant="body1"
                   sx={{ lineHeight: 1.7, color: theme.palette.text.primary }}
                 >
-                  What drives me is the intersection of technology and human experience. I believe 
-                  in writing clean, maintainable code that not only works but also tells a story. 
-                  When I&apos;m not coding, you&apos;ll find me mentoring aspiring developers, exploring new 
-                  technologies, or enjoying a perfectly brewed cup of tea.
+                  I believe that modern software should be <strong>agentic</strong>, <strong>data-driven</strong>, and <strong>performant</strong>.
+                  Whether it's integrating global communication APIs or optimizing multi-tenant cloud environments, I strive for engineering excellence in every line of code.
                 </Typography>
               </CardContent>
             </Card>
@@ -313,8 +309,8 @@ const About = () => {
                 <CoffeeIcon /> Fun Fact
               </Typography>
               <Typography variant="body1" sx={{ fontStyle: 'italic' }}>
-                I&apos;ve consumed over 1,000 cups of tea while coding and it&apos;s directly proportional 
-                to the quality of my code! ☕️ Each cup represents a problem solved, a feature built, 
+                I&apos;ve consumed over 1,000 cups of tea while coding and it&apos;s directly proportional
+                to the quality of my code! ☕️ Each cup represents a problem solved, a feature built,
                 or a bug squashed.
               </Typography>
             </Card>

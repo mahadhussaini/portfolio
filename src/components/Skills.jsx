@@ -15,7 +15,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { Search as SearchIcon, Code as CodeIcon, Storage, Cloud, Security, Build, BugReport, Web, DeveloperMode } from "@mui/icons-material";
+import { Search as SearchIcon, Code as CodeIcon, Storage, Cloud, Security, Build, BugReport, Web, DeveloperMode, Psychology } from "@mui/icons-material";
 
 // Skill data organized by categories
 const skills = [
@@ -72,6 +72,13 @@ const skills = [
   { name: "API Security", category: "Security", description: "REST API security best practices", icon: <Security /> },
   { name: "Data Encryption", category: "Security", description: "Encryption and data protection", icon: <Security /> },
 
+  // AI & Advanced Tech (New for 2026)
+  { name: "Vercel AI SDK", category: "AI/ML", description: "Integration of LLMs into web applications", icon: <Psychology /> },
+  { name: "LangChain.js", category: "AI/ML", description: "Framework for building context-aware AI agents", icon: <Psychology /> },
+  { name: "Vector Databases", category: "Database", description: "Pinecone, Weaviate for AI memory", icon: <Storage /> },
+  { name: "WebAssembly (WASM)", category: "Advanced", description: "Near-native performance in the browser", icon: <Build /> },
+  { name: "Edge Functions", category: "Cloud", description: "Deploying logic at the edge (Vercel, Cloudflare)", icon: <Cloud /> },
+
   // Tools & Utilities
   { name: "Git", category: "Tools", description: "Version control system", icon: <Build /> },
   { name: "VS Code", category: "Tools", description: "Code editor and development environment", icon: <Build /> },
@@ -118,31 +125,20 @@ const Skills = () => {
       <Card
         sx={{
           background: theme.palette.mode === 'dark'
-            ? `linear-gradient(145deg, rgba(15,23,42,0.9) 0%, rgba(30,41,59,0.9) 100%),
-               radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 50%)`
-            : `linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%),
-               radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%)`,
-          borderRadius: 6,
+            ? 'linear-gradient(165deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.4) 100%)'
+            : 'linear-gradient(165deg, rgba(255, 255, 255, 0.4) 0%, rgba(248, 250, 252, 0.4) 100%)',
+          borderRadius: 8,
           color: theme.palette.text.primary,
-          padding: { xs: 4, sm: 6 },
+          padding: { xs: 4, sm: 8 },
           position: 'relative',
           overflow: 'hidden',
           boxShadow: theme.palette.mode === 'dark'
-            ? '0 25px 50px -12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-            : '0 25px 50px -12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
-          backdropFilter: 'blur(20px)',
-          border: `2px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.4)'}`,
-          maxWidth: 1000,
+            ? '0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05)'
+            : '0 25px 50px -12px rgba(99, 102, 241, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.8)',
+          backdropFilter: 'blur(24px) saturate(200%)',
+          border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(255, 255, 255, 0.3)'}`,
+          maxWidth: 1100,
           margin: '0 auto',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '2px',
-            background: 'linear-gradient(90deg, transparent, rgba(99,102,241,0.6), transparent)',
-          },
         }}
       >
         <CardContent>
@@ -157,19 +153,24 @@ const Skills = () => {
 
           {/* Search Bar */}
           <TextField
-            label="Search Skills..."
+            placeholder="Search expertise..."
             variant="outlined"
             fullWidth
             value={searchQuery}
             onChange={handleSearchChange}
-            sx={{ marginBottom: 3, backgroundColor: 'rgba(255,255,255,0.3)', borderRadius: 2 }}
+            sx={{
+              marginBottom: 4,
+              '& .MuiOutlinedInput-root': {
+                borderRadius: 4,
+                bgcolor: theme.palette.mode === 'dark' ? 'rgba(15, 23, 42, 0.4)' : 'rgba(255, 255, 255, 0.5)',
+              }
+            }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon sx={{ color: '#6366f1' }} />
+                  <SearchIcon sx={{ color: theme.palette.primary.main }} />
                 </InputAdornment>
               ),
-              sx: { color: '#222' },
             }}
           />
 
@@ -201,37 +202,28 @@ const Skills = () => {
                       <Chip
                         icon={skill.icon}
                         label={skill.name}
+                        component={motion.div}
+                        whileHover={{ y: -4, scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                         sx={{
                           width: '100%',
-                          color: '#fff',
-                          background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%)',
-                          fontWeight: 600,
-                          fontSize: '0.875rem',
-                          mb: 1,
-                          borderRadius: 3,
-                          border: 'none',
-                          backdropFilter: 'blur(10px)',
-                          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                          boxShadow: '0 4px 15px rgba(99, 102, 241, 0.3)',
-                          position: 'relative',
-                          overflow: 'hidden',
-                          '&::before': {
-                            content: '""',
-                            position: 'absolute',
-                            top: 0,
-                            left: '-100%',
-                            width: '100%',
-                            height: '100%',
-                            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-                            transition: 'left 0.5s',
+                          p: 3,
+                          borderRadius: 4,
+                          background: theme.palette.mode === 'dark'
+                            ? 'rgba(99, 102, 241, 0.1)'
+                            : 'rgba(99, 102, 241, 0.05)',
+                          color: theme.palette.mode === 'dark' ? '#a5b4fc' : '#4338ca',
+                          fontWeight: 700,
+                          fontSize: '0.9rem',
+                          border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(99, 102, 241, 0.2)' : 'rgba(99, 102, 241, 0.1)'}`,
+                          backdropFilter: 'blur(8px)',
+                          boxShadow: 'none',
+                          '& .MuiChip-icon': {
+                            color: 'inherit',
                           },
                           '&:hover': {
-                            transform: 'translateY(-2px) scale(1.02)',
-                            background: 'linear-gradient(135deg, #5b21b6 0%, #7c3aed 50%, #9333ea 100%)',
-                            boxShadow: '0 8px 25px rgba(99, 102, 241, 0.4)',
-                            '&::before': {
-                              left: '100%',
-                            },
+                            background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2))',
+                            borderColor: '#6366f1',
                           },
                         }}
                       />

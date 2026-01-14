@@ -17,6 +17,8 @@ import {
   ListItemText,
   Divider,
   useMediaQuery,
+  Stack,
+  Button,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
@@ -46,6 +48,7 @@ const Testimonials = lazy(() => import("./components/Testimonials.jsx"));
 const Contact = lazy(() => import("./components/Contact.jsx"));
 const Footer = lazy(() => import("./components/Footer.jsx"));
 const Analytics = lazy(() => import("./components/Analytics.jsx"));
+const AIChatbot = lazy(() => import("./components/AIChatbot.jsx"));
 
 // Page transition animation
 const pageTransition = {
@@ -83,28 +86,28 @@ const App = () => {
       createTheme({
         palette: {
           mode: darkMode ? "dark" : "light",
-          primary: { 
+          primary: {
             main: "#6366f1",
             light: "#818cf8",
             dark: "#4338ca",
             contrastText: "#ffffff"
           },
-          secondary: { 
+          secondary: {
             main: "#f59e0b",
             light: "#fbbf24",
             dark: "#d97706",
             contrastText: "#ffffff"
           },
           background: darkMode
-            ? { 
-                default: "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #374151 100%)",
-                paper: "rgba(15,23,42,0.95)" 
-              }
-            : { 
-                default: "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)",
-                paper: "rgba(255,255,255,0.95)" 
-              },
-          text: { 
+            ? {
+              default: "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #374151 100%)",
+              paper: "rgba(15,23,42,0.95)"
+            }
+            : {
+              default: "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)",
+              paper: "rgba(255,255,255,0.95)"
+            },
+          text: {
             primary: darkMode ? "#f8fafc" : "#1e293b",
             secondary: darkMode ? "#cbd5e1" : "#64748b"
           },
@@ -126,57 +129,15 @@ const App = () => {
           }
         },
         typography: {
-          fontFamily: [
-            '"Inter"',
-            '"Poppins"',
-            '"Roboto"',
-            '"SF Pro Display"',
-            '-apple-system',
-            'BlinkMacSystemFont',
-            '"Segoe UI"',
-            'system-ui',
-            'sans-serif',
-          ].join(','),
-          h1: { 
-            fontWeight: 800,
-            fontSize: '2.5rem',
-            letterSpacing: '-0.025em'
-          },
-          h2: { 
-            fontWeight: 700,
-            fontSize: '2rem',
-            letterSpacing: '-0.025em'
-          },
-          h3: { 
-            fontWeight: 600,
-            fontSize: '1.5rem',
-            letterSpacing: '-0.025em'
-          },
-          h4: { 
-            fontWeight: 600,
-            fontSize: '1.25rem',
-            letterSpacing: '-0.025em'
-          },
-          h5: { 
-            fontWeight: 600,
-            fontSize: '1.125rem',
-            letterSpacing: '-0.025em'
-          },
-          h6: { 
-            fontWeight: 600,
-            fontSize: '1rem',
-            letterSpacing: '-0.025em'
-          },
-          body1: {
-            fontSize: '1rem',
-            lineHeight: 1.6,
-            letterSpacing: '0.025em'
-          },
-          body2: {
-            fontSize: '0.875rem',
-            lineHeight: 1.5,
-            letterSpacing: '0.025em'
-          },
+          fontFamily: '"Plus Jakarta Sans", "Outfit", sans-serif',
+          h1: { fontWeight: 800, fontSize: '2.5rem', letterSpacing: '-0.04em' },
+          h2: { fontWeight: 800, fontSize: '2rem', letterSpacing: '-0.03em' },
+          h3: { fontWeight: 700, fontSize: '1.5rem', letterSpacing: '-0.02em' },
+          h4: { fontWeight: 700, fontSize: '1.25rem', letterSpacing: '-0.02em' },
+          h5: { fontWeight: 600, fontSize: '1.125rem', letterSpacing: '-0.01em' },
+          h6: { fontWeight: 600, fontSize: '1rem', letterSpacing: '0em' },
+          body1: { fontSize: '1rem', lineHeight: 1.6, letterSpacing: '0.02em' },
+          body2: { fontSize: '0.875rem', lineHeight: 1.5, letterSpacing: '0.01em' },
         },
         shape: { borderRadius: 12 },
         components: {
@@ -232,34 +193,24 @@ const App = () => {
           MuiCard: {
             styleOverrides: {
               root: {
-                borderRadius: 20,
-                border: `1px solid ${darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}`,
-                background: darkMode 
-                  ? 'linear-gradient(145deg, rgba(15,23,42,0.8) 0%, rgba(30,41,59,0.8) 100%)'
-                  : 'linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.9) 100%)',
-                backdropFilter: 'blur(20px)',
+                borderRadius: 24,
+                border: `1px solid ${darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.3)'}`,
+                background: darkMode
+                  ? 'linear-gradient(165deg, rgba(30,41,59,0.5) 0%, rgba(15,23,42,0.5) 100%)'
+                  : 'linear-gradient(165deg, rgba(255,255,255,0.5) 0%, rgba(248,250,252,0.5) 100%)',
+                backdropFilter: 'blur(24px) saturate(200%)',
                 boxShadow: darkMode
-                  ? '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                  : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  ? '0 12px 40px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.05)'
+                  : '0 12px 40px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.5)',
+                transition: 'all 0.5s cubic-bezier(0.19, 1, 0.22, 1)',
                 position: 'relative',
                 overflow: 'hidden',
-                '&::before': {
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: '1px',
-                  background: darkMode 
-                    ? 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)'
-                    : 'linear-gradient(90deg, transparent, rgba(99,102,241,0.3), transparent)',
-                },
                 '&:hover': {
-                  transform: 'translateY(-8px)',
+                  transform: 'translateY(-10px) scale(1.01)',
+                  border: `1px solid ${darkMode ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.8)'}`,
                   boxShadow: darkMode
-                    ? '0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
-                    : '0 20px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9)',
+                    ? '0 25px 60px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.1)'
+                    : '0 25px 60px rgba(0, 0, 0, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 1)',
                 },
               },
             },
@@ -307,14 +258,10 @@ const App = () => {
           MuiAppBar: {
             styleOverrides: {
               root: {
-                background: darkMode 
-                  ? 'linear-gradient(145deg, rgba(15,23,42,0.9) 0%, rgba(30,41,59,0.9) 100%)'
-                  : 'linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)',
-                backdropFilter: 'blur(24px)',
-                borderBottom: `1px solid ${darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`,
-                boxShadow: darkMode
-                  ? '0 4px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                  : '0 4px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+                background: darkMode ? "rgba(15, 23, 42, 0.7)" : "rgba(255, 255, 255, 0.7)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                borderBottom: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
+                boxShadow: "none",
               },
             },
           },
@@ -331,27 +278,27 @@ const App = () => {
 
   // Navigation items
   const navItems = Object.entries(componentMap).map(
-  ([path, { icon, label }]) => (
-    <ListItem
-      key={path}
-      component={Link}
-      to={path === "home" ? "/" : `/${path}`}
-      onClick={isMobile ? handleDrawerToggle : undefined}
-    >
-      <ListItemIcon
-        sx={{ color: theme.palette.mode === "dark" ? "#fff" : "#000" }}
+    ([path, { icon, label }]) => (
+      <ListItem
+        key={path}
+        component={Link}
+        to={path === "home" ? "/" : `/${path}`}
+        onClick={isMobile ? handleDrawerToggle : undefined}
       >
-        {icon}
-      </ListItemIcon>
-      <ListItemText
-        primary={label}
-        primaryTypographyProps={{
-          sx: { color: theme.palette.mode === "dark" ? "#fff" : "#000" },
-        }}
-      />
-    </ListItem>
-  )
-);
+        <ListItemIcon
+          sx={{ color: theme.palette.mode === "dark" ? "#fff" : "#000" }}
+        >
+          {icon}
+        </ListItemIcon>
+        <ListItemText
+          primary={label}
+          primaryTypographyProps={{
+            sx: { color: theme.palette.mode === "dark" ? "#fff" : "#000" },
+          }}
+        />
+      </ListItem>
+    )
+  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -359,24 +306,44 @@ const App = () => {
       {/* Enhanced Global Styles */}
       <Global
         styles={{
+          '@import': 'url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap")',
           '*': {
             scrollBehavior: 'smooth',
           },
           body: {
             minHeight: '100vh',
             background: darkMode
-              ? `linear-gradient(135deg, #0f172a 0%, #1e293b 30%, #374151 60%, #4b5563 100%),
-                 radial-gradient(circle at 20% 80%, rgba(120, 113, 108, 0.3) 0%, transparent 50%),
-                 radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
-                 radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)`
-              : `linear-gradient(135deg, #f8fafc 0%, #e2e8f0 30%, #cbd5e1 60%, #94a3b8 100%),
-                 radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-                 radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
-                 radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)`,
+              ? `radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                 radial-gradient(at 50% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                 radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+                 radial-gradient(at 50% 50%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
+                 radial-gradient(at 0% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+                 radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.1) 0px, transparent 50%),
+                 #0a0f1d`
+              : `radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+                 radial-gradient(at 50% 0%, rgba(245, 158, 11, 0.1) 0px, transparent 50%),
+                 radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+                 radial-gradient(at 50% 50%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
+                 radial-gradient(at 0% 100%, rgba(245, 158, 11, 0.05) 0px, transparent 50%),
+                 radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.05) 0px, transparent 50%),
+                 #f0f4f8`,
             backgroundAttachment: 'fixed',
-            fontFamily: 'Inter, Poppins, Roboto, Helvetica Neue, Arial, sans-serif',
-            transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
-            overflow: 'auto',
+            position: 'relative',
+            '&::after': {
+              content: '""',
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              opacity: darkMode ? 0.35 : 0.15,
+              zIndex: -1,
+              pointerEvents: 'none',
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3e%3cturbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3e%3c/svg%3e")`,
+            },
+            fontFamily: '"Plus Jakarta Sans", sans-serif',
+            transition: 'background 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+            overflowX: 'hidden',
           },
           '::selection': {
             backgroundColor: darkMode ? 'rgba(99, 102, 241, 0.4)' : 'rgba(99, 102, 241, 0.2)',
@@ -389,15 +356,16 @@ const App = () => {
             background: darkMode ? 'rgba(15, 23, 42, 0.5)' : 'rgba(241, 245, 249, 0.5)',
           },
           '::-webkit-scrollbar-thumb': {
-            background: darkMode 
-              ? 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)'
-              : 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+            background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
             borderRadius: '10px',
             '&:hover': {
-              background: darkMode 
-                ? 'linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%)'
-                : 'linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%)',
+              background: 'linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%)',
             },
+          },
+          '@keyframes mesh': {
+            '0%': { backgroundPosition: '0% 50%' },
+            '50%': { backgroundPosition: '100% 50%' },
+            '100%': { backgroundPosition: '0% 50%' },
           },
           '@keyframes shimmer': {
             '0%': { backgroundPosition: '-1000px 0' },
@@ -418,68 +386,110 @@ const App = () => {
           sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
         >
           {/* AppBar with theme toggle and menu button */}
-          <AppBar position="sticky" sx={{
-            background: theme.palette.mode === 'dark'
-              ? 'rgba(15,23,42,0.95)'
-              : 'rgba(255,255,255,0.95)',
-            color: theme.palette.text.primary,
-            boxShadow: theme.palette.mode === 'dark' ? 3 : 2,
-            borderBottom: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`,
-            backdropFilter: 'blur(20px)',
-            zIndex: 1100,
-          }}>
-            <Toolbar sx={{ 
+          {/* Floating Pill Navbar */}
+          <AppBar
+            position="fixed"
+            sx={{
+              top: 20,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: { xs: '90%', sm: 'fit-content' },
+              minWidth: { sm: 400 },
+              borderRadius: 50,
+              background: darkMode
+                ? 'rgba(15, 23, 42, 0.6)'
+                : 'rgba(255, 255, 255, 0.6)',
+              backdropFilter: 'blur(12px) saturate(200%)',
+              border: `1px solid ${darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`,
+              boxShadow: darkMode
+                ? '0 10px 32px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.05)'
+                : '0 10px 32px rgba(99, 102, 241, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5)',
+              zIndex: 1100,
+              transition: 'all 0.3s ease-in-out',
+              '&:hover': {
+                background: darkMode ? 'rgba(15, 23, 42, 0.8)' : 'rgba(255, 255, 255, 0.8)',
+                boxShadow: darkMode
+                  ? '0 15px 40px rgba(0, 0, 0, 0.5)'
+                  : '0 15px 40px rgba(99, 102, 241, 0.2)',
+              }
+            }}
+          >
+            <Toolbar sx={{
               justifyContent: "space-between",
-              px: { xs: 2, sm: 3 },
-              minHeight: { xs: 56, sm: 64 }
+              px: { xs: 2, sm: 4 },
+              minHeight: { xs: 50, sm: 60 },
+              gap: 2
             }}>
               <IconButton
                 edge="start"
                 onClick={handleDrawerToggle}
-                sx={{ 
-                  display: { sm: "none" }, 
+                sx={{
+                  display: { sm: "none" },
                   color: theme.palette.text.primary,
-                  mr: 1
                 }}
               >
                 <MenuIcon />
               </IconButton>
-              <Typography 
-                variant="h6" 
-                component="div" 
-                sx={{ 
-                  color: theme.palette.text.primary, 
-                  fontWeight: 700,
-                  fontSize: { xs: '1.1rem', sm: '1.25rem' },
-                  display: { xs: 'none', sm: 'block' }
-                }}
-              >
-                Portfolio
-              </Typography>
-              <Typography 
-                variant="h6" 
-                component="div" 
-                sx={{ 
-                  color: theme.palette.text.primary, 
-                  fontWeight: 700,
-                  fontSize: '1rem',
-                  display: { xs: 'block', sm: 'none' }
-                }}
-              >
-                Portfolio
-              </Typography>
-              <IconButton 
-                onClick={handleThemeToggle} 
-                sx={{ 
+
+              <Typography
+                variant="h6"
+                component={Link}
+                to="/"
+                sx={{
                   color: theme.palette.text.primary,
-                  ml: 1
+                  fontWeight: 800,
+                  fontSize: '1.2rem',
+                  letterSpacing: '-0.02em',
+                  textDecoration: 'none',
+                  display: { xs: 'none', md: 'block' },
+                  '&:hover': {
+                    color: theme.palette.primary.main,
+                  }
                 }}
               >
-                {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+                PORTFOLIO.
+              </Typography>
+
+              {/* Desktop Nav Items inside the pill */}
+              <Stack direction="row" spacing={1} sx={{ display: { xs: 'none', sm: 'flex' } }}>
+                {Object.entries(componentMap).slice(0, 4).map(([path, { label }]) => (
+                  <Button
+                    key={path}
+                    component={Link}
+                    to={path === "home" ? "/" : `/${path}`}
+                    sx={{
+                      color: theme.palette.text.primary,
+                      fontSize: '0.85rem',
+                      fontWeight: 600,
+                      borderRadius: 10,
+                      px: 2,
+                      minWidth: 'auto',
+                      '&:hover': {
+                        bgcolor: 'rgba(99, 102, 241, 0.1)',
+                        color: theme.palette.primary.main,
+                      }
+                    }}
+                  >
+                    {label}
+                  </Button>
+                ))}
+              </Stack>
+
+              <IconButton
+                onClick={handleThemeToggle}
+                sx={{
+                  color: theme.palette.text.primary,
+                  bgcolor: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+                  '&:hover': {
+                    bgcolor: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                    transform: 'rotate(15deg)',
+                  }
+                }}
+              >
+                {darkMode ? <Brightness7Icon fontSize="small" /> : <Brightness4Icon fontSize="small" />}
               </IconButton>
             </Toolbar>
           </AppBar>
-
           {/* Side Drawer for mobile */}
           <Drawer
             open={drawerOpen}
@@ -492,12 +502,12 @@ const App = () => {
             </Box>
           </Drawer>
 
-          {/* Main Content */}
-          <Container 
-            maxWidth="lg" 
-            sx={{ 
-              flexGrow: 1, 
-              py: { xs: 2, sm: 4 },
+          <Container
+            maxWidth="lg"
+            sx={{
+              flexGrow: 1,
+              pt: { xs: 12, sm: 16 }, // Padding for floating navbar
+              pb: { xs: 4, sm: 8 },
               px: { xs: 2, sm: 3 }
             }}
           >
@@ -524,11 +534,16 @@ const App = () => {
                               <Skeleton
                                 variant="rectangular"
                                 height={200}
-                                sx={{ borderRadius: 2 }}
+                                sx={{ borderRadius: 8, opacity: 0.1 }}
                               />
                             }
                           >
-                            <motion.div {...pageTransition}>
+                            <motion.div
+                              initial={{ opacity: 0, y: 30, scale: 0.98 }}
+                              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                              viewport={{ once: true, margin: "-100px" }}
+                            >
                               <Component />
                             </motion.div>
                           </Suspense>
@@ -604,13 +619,17 @@ const App = () => {
             <Footer />
           </Suspense>
         </Box>
-        
+
         {/* Analytics Component */}
         <Suspense fallback={null}>
           <Analytics />
         </Suspense>
+
+        <Suspense fallback={null}>
+          <AIChatbot />
+        </Suspense>
       </Router>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 };
 

@@ -3,12 +3,13 @@ import {
   Button,
   Box,
   Avatar,
+  useTheme,
   Stack,
   Chip,
   Grid,
   Divider,
-  useTheme,
 } from "@mui/material";
+import { cloneElement } from "react";
 import {
   LinkedIn,
   GitHub,
@@ -18,7 +19,7 @@ import {
 import { motion } from "framer-motion";
 
 const avatarUrl =
-  "https://media.licdn.com/dms/image/v2/D4D03AQElb7kbs6CG7Q/profile-displayphoto-crop_800_800/B4DZtVFo0UIIAI-/0/1766659103911?e=1768435200&v=beta&t=6YjImW-24xvVeRmrT58frbfLNM2R3bCzq9vd1kYF19E";
+  "https://media.licdn.com/dms/image/v2/D4D03AQGYH11MBCKWog/profile-displayphoto-crop_800_800/B4DZuoGMV7KcAI-/0/1768051756516?e=1770249600&v=beta&t=nd7Rpj3tq40BY5LRH5wZ2xFrPuan_aXoc0wTN8b_6Yw";
 
 const techStack = [
   "React.js",
@@ -59,167 +60,129 @@ const Header = () => {
     <Box
       sx={{
         position: 'relative',
-        overflow: 'hidden',
-        borderRadius: 6,
+        borderRadius: { xs: 8, md: 12 },
         mb: 8,
-        p: { xs: 4, sm: 8 },
-        minHeight: { xs: 500, sm: 600 },
+        p: { xs: 4, sm: 8, md: 12 },
+        minHeight: { xs: 'auto', md: 600 },
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         background: isDark
-          ? `linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%),
-             radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
-             radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.3) 0%, transparent 50%)`
-          : `linear-gradient(135deg, #ede9fe 0%, #ddd6fe 30%, #c7d2fe 70%, #a5b4fc 100%),
-             radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
-             radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)`,
+          ? 'linear-gradient(165deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.4) 100%)'
+          : 'linear-gradient(165deg, rgba(255, 255, 255, 0.4) 0%, rgba(248, 250, 252, 0.4) 100%)',
+        backdropFilter: 'blur(40px) saturate(180%)',
         boxShadow: isDark
-          ? '0 25px 50px -12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-          : '0 25px 50px -12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
-        border: `2px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.5)'}`,
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: isDark
-            ? `radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 40%),
-               radial-gradient(circle at 70% 80%, rgba(99,102,241,0.2) 0%, transparent 40%)`
-            : `radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4) 0%, transparent 40%),
-               radial-gradient(circle at 70% 80%, rgba(99,102,241,0.1) 0%, transparent 40%)`,
-          pointerEvents: 'none',
-        },
-        '&::after': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '2px',
-          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)',
-          animation: 'shimmer 3s ease-in-out infinite',
-        },
+          ? '0 30px 60px -12px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05)'
+          : '0 30px 60px -12px rgba(99, 102, 241, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.8)',
+        border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.3)'}`,
+        overflow: 'hidden',
       }}
       component={motion.div}
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* Enhanced Animated Avatar with multiple rings */}
-      <Box
-        sx={{
-          mb: 3,
-          position: 'relative',
-          display: 'inline-block',
-        }}
+      {/* Availability Badge */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.5 }}
       >
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, type: 'spring', bounce: 0.4 }}
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1.5,
+            bgcolor: isDark ? 'rgba(16, 185, 129, 0.1)' : 'rgba(16, 185, 129, 0.05)',
+            border: `1px solid ${isDark ? 'rgba(16, 185, 129, 0.2)' : 'rgba(16, 185, 129, 0.1)'}`,
+            borderRadius: 10,
+            px: 2,
+            py: 0.5,
+            mb: 4,
+            width: 'fit-content'
+          }}
         >
-          <Avatar
-            alt="Syed Mahad Hussaini"
-            src={avatarUrl}
-            sx={{
-              width: { xs: 130, sm: 160 },
-              height: { xs: 130, sm: 160 },
-              border: '6px solid rgba(255,255,255,0.9)',
-              boxShadow: isDark
-                ? '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 4px rgba(99, 102, 241, 0.3)'
-                : '0 25px 50px -12px rgba(0, 0, 0, 0.2), 0 0 0 4px rgba(99, 102, 241, 0.2)',
-              background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
-              position: 'relative',
-              zIndex: 2,
-              transition: 'all 0.3s ease-in-out',
-              '&:hover': {
-                transform: 'scale(1.05)',
-                boxShadow: isDark
-                  ? '0 35px 60px -12px rgba(0, 0, 0, 0.8), 0 0 0 6px rgba(99, 102, 241, 0.4)'
-                  : '0 35px 60px -12px rgba(0, 0, 0, 0.3), 0 0 0 6px rgba(99, 102, 241, 0.3)',
-              },
-            }}
-          />
-          
-          {/* Primary animated ring */}
           <Box
             sx={{
-              position: 'absolute',
-              top: -12,
-              left: -12,
-              width: { xs: 154, sm: 184 },
-              height: { xs: 154, sm: 184 },
+              width: 8,
+              height: 8,
+              bgcolor: '#10b981',
               borderRadius: '50%',
-              border: `3px solid ${borderRing}`,
-              boxSizing: 'border-box',
-              zIndex: 1,
-              animation: 'spin 8s linear infinite',
-              opacity: 0.8,
+              boxShadow: '0 0 10px #10b981',
+              animation: 'pulse 2s infinite'
             }}
           />
-          
-          {/* Secondary animated ring */}
-          <Box
-            sx={{
-              position: 'absolute',
-              top: -20,
-              left: -20,
-              width: { xs: 170, sm: 200 },
-              height: { xs: 170, sm: 200 },
-              borderRadius: '50%',
-              border: `2px dashed rgba(245, 158, 11, 0.6)`,
-              boxSizing: 'border-box',
-              zIndex: 0,
-              animation: 'spin 12s linear infinite reverse',
-              opacity: 0.6,
-            }}
-          />
-          
-          {/* Glow effect */}
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: { xs: 180, sm: 220 },
-              height: { xs: 180, sm: 220 },
-              borderRadius: '50%',
-              background: isDark
-                ? 'radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%)'
-                : 'radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%)',
-              zIndex: -1,
-              animation: 'glow 3s ease-in-out infinite alternate',
-            }}
-          />
-        </motion.div>
+          <Typography variant="caption" sx={{ color: '#10b981', fontWeight: 700, letterSpacing: '0.05em' }}>
+            AVAILABLE FOR NEW PROJECTS
+          </Typography>
+        </Box>
+      </motion.div>
+      {/* Avatar Section */}
+      <Box sx={{ position: 'relative', mb: 4 }}>
+        <Avatar
+          alt="Syed Mahad Hussaini"
+          src={avatarUrl}
+          sx={{
+            width: { xs: 120, sm: 140 },
+            height: { xs: 120, sm: 140 },
+            border: `4px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,1)'}`,
+            boxShadow: theme.shadows[10],
+          }}
+        />
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: 5,
+            right: 5,
+            width: 32,
+            height: 32,
+            bgcolor: theme.palette.primary.main,
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: `4px solid ${isDark ? '#0f172a' : '#fff'}`,
+            boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+          }}
+        >
+          <Typography sx={{ fontSize: '1rem' }}>👋</Typography>
+        </Box>
       </Box>
 
       {/* Name & Title */}
+      {/* Hero Headline */}
       <Typography
-        variant="h2"
+        variant="h1"
         sx={{
-          fontWeight: 800,
+          fontWeight: 900,
           color: textColor,
-          textShadow: isDark ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : 'none',
-          mb: 1,
-          fontSize: { xs: '2.2rem', sm: '3rem' },
           textAlign: 'center',
-          width: '100%',
-          letterSpacing: '-0.025em',
+          mb: 2,
+          fontSize: { xs: '2.5rem', sm: '4rem', md: '5rem' },
+          lineHeight: 1.1,
+          letterSpacing: '-0.04em',
+          background: isDark
+            ? 'linear-gradient(to bottom, #fff 30%, rgba(255,255,255,0.6) 100%)'
+            : 'linear-gradient(to bottom, #0f172a 30%, #475569 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
         }}
       >
-        Syed Mahad Hussaini
+        Syed Mahad<br />Hussaini
       </Typography>
+
       <Typography
-        variant="h6"
-        sx={{ color: subTextColor, mb: 2, fontWeight: 500, letterSpacing: '0.025em' }}
+        variant="h4"
+        sx={{
+          color: theme.palette.primary.main,
+          mb: 4,
+          fontWeight: 600,
+          fontSize: { xs: '1.1rem', sm: '1.5rem' },
+          letterSpacing: '-0.01em',
+        }}
       >
-        Full Stack Developer &bull; Karachi, Pakistan
+        Full Stack Engineer & MERN Stack Specialist
       </Typography>
 
       {/* About Me */}
@@ -227,117 +190,131 @@ const Header = () => {
         variant="body1"
         sx={{
           color: subTextColor,
-          maxWidth: 700,
-          mb: 2,
-          fontStyle: 'italic',
-          lineHeight: 1.6,
-          letterSpacing: '0.025em',
+          maxWidth: 800,
+          textAlign: 'center',
+          mb: 6,
+          fontSize: { xs: '1rem', sm: '1.2rem' },
+          lineHeight: 1.7,
         }}
       >
-        Hi, I’m Mahad—a curious problem solver, lifelong learner, and passionate <b>Full Stack Developer</b>. I love building things that make life easier, more beautiful, or more fun. My journey in tech began with a fascination for how things work, and it’s grown into a career where I get to collaborate, create, and help others every day.
-      </Typography>
-      <Typography
-        variant="body1"
-        sx={{ color: subTextColor, maxWidth: 800, mb: 3, lineHeight: 1.6, letterSpacing: '0.025em' }}
-      >
-        Over the past few years, I’ve worked with amazing teams to deliver projects that solve real problems—whether it’s a SaaS platform for businesses, a tool for healthcare professionals, or a simple app that brings people together. I believe in the power of technology to connect, empower, and inspire. When I’m not coding, you’ll find me mentoring, learning something new, or enjoying a good cup of tea. Let’s build something meaningful together!
+        Engineering high-impact digital experiences and AI-infused architectures.
+        Passionate about building scalable systems that solve complex problems and
+        driving innovation through clean, performant code.
       </Typography>
 
-      {/* Call to Action */}
-      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} mb={3} alignItems="center" justifyContent="center">
+      {/* Buttons */}
+      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} mb={8}>
         <Button
           variant="contained"
-          color="secondary"
           size="large"
           href="mailto:mahadarshad214@gmail.com"
           sx={{
-            px: 4,
-            py: 1.5,
-            fontWeight: 600,
+            borderRadius: 10,
+            px: 6,
+            py: 2,
             fontSize: '1rem',
-            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-            background: buttonContained,
-            color: isDark ? '#fff' : '#7c2d12',
+            background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
             '&:hover': {
-              background: isDark
-                ? 'linear-gradient(135deg, #d97706 0%, #ea580c 100%)'
-                : 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
-              color: isDark ? '#fff' : '#fff',
-              boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-            },
+              background: 'linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%)',
+              transform: 'translateY(-2px)',
+              boxShadow: '0 12px 24px rgba(99, 102, 241, 0.4)',
+            }
           }}
         >
-          Let&apos;s Collaborate
+          Let&apos;s Build Together
         </Button>
         <Button
           variant="outlined"
-          color="secondary"
           size="large"
           href="/resume.pdf"
           target="_blank"
-          download
           sx={{
-            px: 4,
-            py: 1.5,
-            fontWeight: 600,
+            borderRadius: 10,
+            px: 6,
+            py: 2,
             fontSize: '1rem',
-            borderWidth: 2,
-            borderColor: buttonOutlined,
-            color: buttonOutlined,
-            background: isDark ? 'transparent' : '#fff',
+            borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.1)',
+            color: textColor,
+            backdropFilter: 'blur(10px)',
             '&:hover': {
-              background: buttonOutlined,
-              color: '#fff',
-              borderColor: buttonOutlined,
-              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-            },
+              borderColor: theme.palette.primary.main,
+              bgcolor: 'rgba(99, 102, 241, 0.05)',
+              transform: 'translateY(-2px)',
+            }
           }}
         >
-          Download Resume
+          View Resume
         </Button>
       </Stack>
 
-      {/* Contact Info */}
-      <Stack direction="row" spacing={3} justifyContent="center" mb={2}>
-        <a href="mailto:mahadarshad214@gmail.com" target="_blank" rel="noopener noreferrer">
-          <Email sx={{ color: textColor, fontSize: 32, transition: 'color 0.2s', '&:hover': { color: '#f59e0b' } }} />
-        </a>
-        <a href="tel:+923306147798" target="_blank" rel="noopener noreferrer">
-          <Phone sx={{ color: textColor, fontSize: 32, transition: 'color 0.2s', '&:hover': { color: '#f59e0b' } }} />
-        </a>
-        <a href="https://github.com/mahadhussaini" target="_blank" rel="noopener noreferrer">
-          <GitHub sx={{ color: textColor, fontSize: 32, transition: 'color 0.2s', '&:hover': { color: '#f59e0b' } }} />
-        </a>
-        <a href="https://www.linkedin.com/in/mahad-arshad" target="_blank" rel="noopener noreferrer">
-          <LinkedIn sx={{ color: textColor, fontSize: 32, transition: 'color 0.2s', '&:hover': { color: '#f59e0b' } }} />
-        </a>
+      {/* Quick Links */}
+      <Stack direction="row" spacing={4} sx={{ mb: 8 }}>
+        {[
+          { icon: <GitHub />, url: "https://github.com/mahadhussaini" },
+          { icon: <LinkedIn />, url: "https://www.linkedin.com/in/mahad-arshad" },
+          { icon: <Email />, url: "mailto:mahadarshad214@gmail.com" }
+        ].map((item, i) => (
+          <motion.a
+            key={i}
+            href={item.url}
+            target="_blank"
+            whileHover={{ y: -5, color: theme.palette.primary.main }}
+            style={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.6)', cursor: 'pointer' }}
+          >
+            {cloneElement(item.icon, { sx: { fontSize: 28 } })}
+          </motion.a>
+        ))}
       </Stack>
 
-      <Divider sx={{ bgcolor: textColor, opacity: 0.2, my: 3, width: '60%' }} />
+      {/* Tech Stack Horizontal Scroll/Grid */}
+      <Box sx={{ width: '100%', maxWidth: 900 }}>
+        <Divider sx={{ mb: 4, opacity: 0.1 }}>
+          <Chip
+            label="TECH ECOSYSTEM"
+            size="small"
+            sx={{ fontWeight: 800, letterSpacing: '0.1em', fontSize: '0.65rem' }}
+          />
+        </Divider>
+        <Grid container spacing={2} justifyContent="center">
+          {techStack.slice(0, 10).map((tech, i) => (
+            <Grid item key={i}>
+              <Box
+                component={motion.div}
+                whileHover={{ scale: 1.05, bgcolor: 'rgba(99, 102, 241, 0.1)' }}
+                sx={{
+                  px: 2.5,
+                  py: 1,
+                  borderRadius: 4,
+                  bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)',
+                  border: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
+                  color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                  transition: 'all 0.2s',
+                  cursor: 'default'
+                }}
+              >
+                {tech}
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
 
-      {/* Tech Stack */}
-      <Typography variant="h6" sx={{ color: textColor, mb: 2, fontWeight: 600, letterSpacing: '0.025em' }}>
-        🛠️ Core Technologies
-      </Typography>
-      <Grid container spacing={1} justifyContent="center" sx={{ mb: 2 }}>
-        {techStack.map((skill, index) => (
-          <Grid item key={index}>
-            <Chip
-              label={skill}
-              sx={{
-                background: chipBg,
-                color: chipText,
-                fontWeight: 500,
-                fontSize: '0.875rem',
-                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                '&:hover': {
-                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-                },
-              }}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      {/* Animations */}
+      <style>
+        {`
+          @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+          }
+          @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+        `}
+      </style>
     </Box>
   );
 };
