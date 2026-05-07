@@ -19,7 +19,7 @@ import {
 import { motion } from "framer-motion";
 
 const avatarUrl =
-  "https://media.licdn.com/dms/image/v2/D4D03AQE6zXMuLJU5dg/profile-displayphoto-crop_800_800/B4DZ2Npe1zHUAI-/0/1776197956457?e=1778112000&v=beta&t=0CyoLmnxbSWMoMtp5krq2vd7np2Bg-Q7IhJAMgEMnk0";
+  "https://media.licdn.com/dms/image/v2/D4D03AQE6zXMuLJU5dg/profile-displayphoto-crop_800_800/B4DZ2Npe1zHUAI-/0/1776197956457?e=1779926400&v=beta&t=D7dGWJICTh_Hw1QP1sCnmZ2kE9tHfMBGQ2_ZAShV6cU";
 
 const techStack = [
   "React.js",
