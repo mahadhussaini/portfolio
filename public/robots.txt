@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mahadhussaini.netlify.app/sitemap.xml

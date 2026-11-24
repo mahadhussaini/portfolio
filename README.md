@@ -1,212 +1,62 @@
-# Syed Mahad Hussaini - Professional Portfolio
+# Syed Mahad Hussaini — Portfolio
 
-A modern, responsive portfolio website showcasing my skills, projects, and professional experience as a Full Stack Developer.
+Personal portfolio for a Full Stack Developer (MERN, Next.js, TypeScript). Dark-first premium design with a bento-grid layout, light theme, subtle motion and full keyboard / screen-reader support.
 
-## 🚀 Features
+**Live:** https://mahadhussaini.netlify.app
 
-### Modern Design & UX
-- **Responsive Design**: Optimized for all devices and screen sizes
-- **Dark/Light Mode**: Toggle between themes for better user experience
-- **Smooth Animations**: Framer Motion animations for engaging interactions
-- **Modern UI**: Material-UI components with custom styling
-- **Performance Optimized**: Fast loading times and smooth transitions
+## Stack
 
-### Professional Content
-- **Updated Bio**: Fresh, compelling introduction highlighting expertise
-- **Comprehensive Skills**: Technical and soft skills with proficiency levels
-- **Detailed Projects**: 20+ projects with descriptions, technologies, and impact metrics
-- **Professional Experience**: Current work history with achievements and technologies
-- **Education & Certifications**: Academic background and professional certifications
-- **Client Testimonials**: Real feedback and case studies from clients
-- **Downloadable Resume**: Easy access to professional resume
+- **React 18 + TypeScript**, built with **Vite 5**
+- **Tailwind CSS v4** (design tokens in `src/index.css`, both themes)
+- **Framer Motion** for reveal, layout and micro-interactions (honours `prefers-reduced-motion`)
+- **Lucide** icons, self-hosted **Geist / Geist Mono** variable fonts
+- **React Router** — legacy deep links (`/projects`, `/contact`, …) scroll to their section
 
-### Technical Stack
-- **Frontend**: React.js, Next.js, TypeScript, Material-UI
-- **Styling**: CSS3, Tailwind CSS, Framer Motion
-- **Build Tool**: Vite for fast development and building
-- **Deployment**: Optimized for various hosting platforms
-
-## 📁 Project Structure
+## Project structure
 
 ```
-portfolio/
-├── public/
-│   ├── resume.pdf          # Downloadable resume
-│   └── vite.svg           # Vite logo
-├── src/
-│   ├── components/
-│   │   ├── Header.jsx     # Hero section with bio and contact
-│   │   ├── Skills.jsx     # Technical and soft skills
-│   │   ├── Projects.jsx   # Portfolio projects with filtering
-│   │   ├── Experience.jsx # Professional work history
-│   │   ├── Education.jsx  # Academic background and certifications
-│   │   ├── Testimonials.jsx # Client feedback and case studies
-│   │   └── Footer.jsx     # Contact information and social links
-│   ├── App.jsx            # Main application with routing
-│   └── main.jsx           # Application entry point
-├── package.json           # Dependencies and scripts
-└── README.md             # Project documentation
+src/
+  data/            ← all content lives here (edit these, not components)
+    profile.ts       bio, stats, skills, experience, impact, services, education
+    projects.ts      projects (stack + highlights taken from each repo)
+  components/
+    layout/          Navbar (scroll-spy, progress bar, mobile menu), Footer
+    sections/        Hero, About, Skills, Experience, Impact, Projects, ProjectDialog, Services, Contact
+    ui/              BentoCard, Button, Reveal, CountUp, Avatar, Tag, SectionHeading, BrandIcons
+    Assistant.tsx    keyword-based "quick answers" widget (answers only from data/)
+  hooks/           useTheme, useActiveSection, useGitHubProfile
+  lib/             analytics (local, no third parties), contact (validation + delivery)
+  pages/           Home, NotFound
+public/
+  project-images/  WebP screenshots (≈470 KB total)
+  resume.pdf, og-image.png, _redirects, robots.txt, sitemap.xml, manifest.json
 ```
 
-## 🛠️ Technologies Used
-
-### Frontend
-- **React 18**: Modern React with hooks and functional components
-- **Material-UI**: Professional UI component library
-- **Framer Motion**: Smooth animations and transitions
-- **TypeScript**: Type-safe development (planned upgrade)
-- **Responsive Design**: Mobile-first approach
-
-### Development Tools
-- **Vite**: Fast build tool and development server
-- **ESLint**: Code quality and consistency
-- **Git**: Version control and collaboration
-
-## 🎯 Key Features
-
-### 1. Professional Bio Section
-- Compelling introduction highlighting expertise
-- Contact information and social links
-- Downloadable resume
-- Core technologies showcase
-
-### 2. Comprehensive Skills Display
-- **Technical Skills**: Frontend, Backend, Database, Cloud, Testing, Security
-- **Soft Skills**: Problem Solving, Team Collaboration, Mentoring
-- **Proficiency Levels**: Visual indicators of skill expertise
-- **Search & Filter**: Easy navigation through skills
-
-### 3. Detailed Project Portfolio
-- **20+ Projects**: Diverse range of applications and platforms
-- **Project Details**: Descriptions, technologies, and impact metrics
-- **Filtering System**: Search by name, technology, or year
-- **Highlights**: Key features and achievements for each project
-
-### 4. Professional Experience
-- **Current Positions**: Senior Full Stack Developer roles
-- **Achievement Focused**: Quantified results and impact
-- **Technology Stack**: Detailed tech stack for each role
-- **Leadership**: Mentoring and team collaboration experience
-
-### 5. Education & Certifications
-- **Academic Background**: Computer Science degree with relevant coursework
-- **Research Projects**: AI, IoT, and Blockchain projects
-- **Professional Certifications**: AWS, Google Cloud, Microsoft Azure
-- **Extracurricular Activities**: Leadership and community involvement
-
-### 6. Client Testimonials & Case Studies
-- **Client Feedback**: Real testimonials from satisfied clients
-- **Case Studies**: Detailed project challenges, solutions, and results
-- **Impact Metrics**: Quantified business impact and technical achievements
-- **Professional Credibility**: Builds trust with potential clients/employers
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v16 or higher)
-- npm or yarn package manager
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/mahadhussaini/portfolio.git
-   cd portfolio
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start development server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open in browser**
-   Navigate to `http://localhost:5173`
-
-### Building for Production
+## Scripts
 
 ```bash
-npm run build
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # typecheck + production build → dist/
+npm run preview    # serve dist/
+npm run lint
+npm run typecheck
 ```
 
-The built files will be in the `dist` directory, ready for deployment.
+## Contact form
 
-## 📱 Responsive Design
+Delivery order (see `src/lib/contact.ts`):
 
-The portfolio is fully responsive and optimized for:
-- **Desktop**: Full feature set with side navigation
-- **Tablet**: Adaptive layout with touch-friendly interactions
-- **Mobile**: Mobile-first design with hamburger menu
+1. `VITE_CONTACT_ENDPOINT` — any JSON form endpoint (e.g. Formspree). Set it in `.env.local` or the host's env settings.
+2. **Netlify Forms** in production — the form is registered in `index.html`. Enable form detection in the Netlify dashboard and add an email notification.
+3. Otherwise (e.g. local dev) the form reports a delivery error and offers a pre-filled email instead. It never fakes success.
 
-## 🎨 Customization
+A honeypot field filters basic spam.
 
-### Colors & Theme
-- Primary: `#2575fc` (Blue)
-- Secondary: `#ff7f50` (Coral)
-- Dark Mode: Custom dark theme with gradient backgrounds
-- Light Mode: Clean, professional light theme
+## Profile photo
 
-### Content Updates
-- **Personal Information**: Update contact details in `Header.jsx`
-- **Projects**: Add/modify projects in `Projects.jsx`
-- **Experience**: Update work history in `Experience.jsx`
-- **Skills**: Modify skills list in `Skills.jsx`
-- **Testimonials**: Add client feedback in `Testimonials.jsx`
+Add a square image at `public/avatar.jpg` (≈320×320). Until then a monogram is shown.
 
-## 📊 Performance Features
+## Updating content
 
-- **Lazy Loading**: Components load on demand
-- **Code Splitting**: Optimized bundle sizes
-- **Image Optimization**: Responsive images with proper sizing
-- **Caching**: Efficient caching strategies
-- **SEO Optimized**: Meta tags and structured data
-
-## 🔧 Development
-
-### Available Scripts
-
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run preview      # Preview production build
-npm run lint         # Run ESLint
-```
-
-### Code Quality
-- ESLint configuration for consistent code style
-- Prettier formatting (recommended)
-- TypeScript support (planned)
-
-## 📈 Analytics & SEO
-
-- **Google Analytics**: Ready for integration
-- **SEO Meta Tags**: Optimized for search engines
-- **Social Media**: Open Graph and Twitter Card support
-- **Performance Monitoring**: Lighthouse scores optimization
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Contact
-
-- **Email**: mahadarshad214@gmail.com
-- **LinkedIn**: [mahad-arshad](https://www.linkedin.com/in/mahad-arshad)
-- **GitHub**: [mahadhussaini](https://github.com/mahadhussaini)
-- **Portfolio**: [Live Demo](https://mahadhussaini.netlify.app)
-
----
-
-**Built with ❤️ using React, Material-UI, and modern web technologies**
+Edit `src/data/profile.ts` and `src/data/projects.ts`. Every figure on the site comes from `public/resume.pdf`, so keep the two in sync.

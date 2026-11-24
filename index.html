@@ -1,42 +1,91 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Syed Mahad Hussaini - Full Stack Developer Portfolio showcasing modern web applications, React projects, and innovative solutions" />
-  <meta name="keywords" content="Full Stack Developer, React, Node.js, JavaScript, TypeScript, Portfolio, Web Development" />
-  <meta name="author" content="Syed Mahad Hussaini" />
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  
-  <!-- SEO and Social Media Meta Tags -->
-  <meta property="og:title" content="Syed Mahad Hussaini - Full Stack Developer" />
-  <meta property="og:description" content="Full Stack Developer specializing in React, Node.js, and modern web technologies. View my portfolio of innovative web applications." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://mahadhussaini.netlify.app" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Syed Mahad Hussaini - Full Stack Developer" />
-  <meta name="twitter:description" content="Full Stack Developer specializing in React, Node.js, and modern web technologies." />
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#6366f1" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="Mahad Portfolio" />
-  
-  <title>Syed Mahad Hussaini - Full Stack Developer Portfolio</title>
-</head>
+    <title>Syed Mahad Hussaini — Full Stack Developer (MERN, Next.js, TypeScript)</title>
+    <meta
+      name="description"
+      content="Full Stack Developer with 3+ years of experience building 15+ production applications serving 50,000+ users. React, Next.js, Node.js, TypeScript, Angular, AWS, Docker and Kubernetes."
+    />
+    <meta name="author" content="Syed Mahad Hussaini" />
+    <link rel="canonical" href="https://mahadhussaini.netlify.app/" />
+    <meta name="robots" content="index, follow" />
 
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-</body>
+    <!-- Theme: set before paint to avoid a flash of the wrong theme -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t !== "light" && t !== "dark") t = "dark";
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+    <meta name="theme-color" content="#08090b" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="dark light" />
 
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.svg" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Syed Mahad Hussaini" />
+    <meta property="og:url" content="https://mahadhussaini.netlify.app/" />
+    <meta property="og:title" content="Syed Mahad Hussaini — Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="MERN & Next.js engineer. 3+ years, 15+ production apps, 50,000+ users. Scalable architecture, secure APIs, reliable systems."
+    />
+    <meta property="og:image" content="https://mahadhussaini.netlify.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Syed Mahad Hussaini — Full Stack Developer" />
+    <meta
+      name="twitter:description"
+      content="MERN & Next.js engineer. 3+ years, 15+ production apps, 50,000+ users."
+    />
+    <meta name="twitter:image" content="https://mahadhussaini.netlify.app/og-image.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Syed Mahad Hussaini",
+        "jobTitle": "Full Stack Developer",
+        "url": "https://mahadhussaini.netlify.app/",
+        "email": "mailto:mahadarshad214@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Karachi", "addressCountry": "PK" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Iqra University" },
+        "knowsAbout": ["React.js", "Next.js", "Node.js", "TypeScript", "Angular", "MongoDB", "AWS", "Docker", "Kubernetes"],
+        "sameAs": ["https://github.com/mahadhussaini", "https://www.linkedin.com/in/mahad-arshad"]
+      }
+    </script>
+  </head>
+
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <div id="root"></div>
+
+    <!-- Registers the contact form with Netlify Forms at deploy time (never displayed). -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="subject" />
+      <textarea name="message"></textarea>
+      <input name="bot-field" />
+    </form>
+
+    <noscript>
+      <p style="padding:2rem;font-family:system-ui">
+        This portfolio needs JavaScript. You can reach Syed Mahad Hussaini at
+        <a href="mailto:mahadarshad214@gmail.com">mahadarshad214@gmail.com</a>.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
